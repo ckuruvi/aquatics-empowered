@@ -1,7 +1,7 @@
 var pg = require('pg');
 
 var pool = new pg.Pool({
-  database: 'passport'
+  database: 'aquatics'
 });
 
 module.exports = pool;
