@@ -1,4 +1,4 @@
-//users table:
+--users table:
 CREATE TABLE users(
 	id SERIAL PRIMARY KEY,
   username text NOT NULL UNIQUE,
@@ -9,20 +9,20 @@ CREATE TABLE users(
   street_address character varying(80),
   city character varying(80),
   state character varying(2),
-  zip integer(10),
+  zip integer,
   phone_number integer
 	);
 
-//facilities table:
+--facilities table:
 CREATE TABLE facilities(
 	id SERIAL PRIMARY KEY,
   contact_person text,
   street_address character varying(80),
   city character varying(80),
   state character varying(2),
-  zip integer(10),
+  zip integer,
   description text,
-  handicap accessibility boolean,
+  handicap_accessibility boolean,
   level integer,
   image_url text,
   cost boolean,
@@ -31,7 +31,7 @@ CREATE TABLE facilities(
 	);
 
 
-//facility_availability table:
+--facility_availability table:
 CREATE TABLE facility_availability(
 	id SERIAL PRIMARY KEY,
 	facility_id integer REFERENCES facilities,
@@ -40,7 +40,7 @@ CREATE TABLE facility_availability(
   end_time time
 	);
 
-  //facility_reservation table:
+  --facility_reservation table:
 	CREATE TABLE facility_reservation(
 	id SERIAL PRIMARY KEY,
 	reservation_id integer REFERENCES users,
@@ -48,9 +48,8 @@ CREATE TABLE facility_availability(
 	approved boolean
 	);
 
-  //accessbility table
+  --accessbility table
 	CREATE TABLE accessbility(
 	id SERIAL PRIMARY KEY,
 	facility_id integer REFERENCES facilities
 	);
-1 Comment Collapse
