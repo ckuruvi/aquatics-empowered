@@ -36,7 +36,8 @@ app.use(passport.session());
 // no auth needed
 app.use('/login', login);
 app.use('/home', home);
-app.use('/register', register)
+app.use('/register', register);
+app.use('/admins', admin);
 app.get('/loginStatus', function(req, res){
   res.send(req.isAuthenticated());
 })

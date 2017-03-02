@@ -1,4 +1,4 @@
-<body ng-controller="AdminController as admin">
+<body>
   <header>
     <h2>Admin</h2>
   </header>
@@ -13,10 +13,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr ng-repeat="facility in admin.facilitiesList">
+          <td>{{facility.name}}</td>
+          <td>{{facility.city}}</td>
+          <td>{{facility.approved}}</td>
         </tr>
       </tbody>
     </table>
