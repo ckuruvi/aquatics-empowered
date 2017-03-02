@@ -13,15 +13,18 @@ angular.module("aquaticsApp").service('RegisterService', function($http, $locati
   }
 
   // sends newUser to register route
-  ctrl.registerUser = function() {
+  this.registerUser = function(newUser) {
     console.log('creating a new user');
-
-    $http.post('/register', ctrl.newUser).then(function(response){
-      console.log(response);
-      $location.path('/home');
-    }, function(error) {
-      console.log('error registering new user', error);
-    });
+    if(newUser.facility == true) {
+        $http.post('register/facility', newUser)
+    } else {
+      $http.post('/register/user', newUser).then(function(response){
+        console.log(response);
+        $location.path('/home');
+      }).catch(function(error) {
+        console.log('error registering new user', error);
+      });
+    }
   };
 
 

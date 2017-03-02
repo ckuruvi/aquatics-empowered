@@ -1,18 +1,17 @@
-angular.module("aquaticsApp").controller('RegisterController', function($http, $location){
+angular.module("aquaticsApp").controller('RegisterController', ['RegisterService', '$http', '$location', function(RegisterService, $http, $location){
   console.log('register Ctrl is loaded');
   var ctrl = this;
 
 
-  ctrl.register = function() {
-    console.log('creating a new user');
-
-    $http.post('/register', ctrl.newUser).then(function(response){
-      console.log(response);
-      $location.path('/home');
-    }, function(error) {
-      console.log('error registering new user', error);
-    });
+  ctrl.registerUser = function(newUser) {
+    if(newUser.user) {
+      newUser.userType = "user";
+    } else {
+      newUser.userType = "facility";
+    }
+    console.log('creating a new user ', newUser);
+    RegisterService.registerUser(newUser);
   };
 
 
-}); // end register ctrl
+}]); // end register ctrl
