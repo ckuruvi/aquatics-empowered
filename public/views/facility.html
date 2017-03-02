@@ -3,7 +3,7 @@
 <div id="facilityData" ng-repeat="aquatic in facilities.facility">
   <p><img ng-src="{{aquatic.image_url}}" alt=""/></p>
   <ul id="facilityInfo">
-    <li>Contact Person: {{aquatic.contact_person}} </li>
+    <li>Name: {{aquatic.name}} </li>
     <li>Location: {{aquatic.street_address}} {{aquatic.city}}, {{aquatic.state}} {{aquatic.zip}}</li>
     <li>Description: {{aquatic.description}}</li>
     <li>Accessibility: {{aquatic.handicap_accessibility}}</li>
