@@ -7,6 +7,7 @@ var passport = require('passport');
 var connection = require('./db/connection');
 var login = require('./routes/login');
 var register = require('./routes/register');
+var home = require('./routes/home');
 
 require('./auth/setup');
 
@@ -33,6 +34,7 @@ app.use(passport.session());
 
 // no auth needed
 app.use('/login', login);
+app.use('/home', home);
 app.use('/register', register)
 app.get('/loginStatus', function(req, res){
   res.send(req.isAuthenticated());

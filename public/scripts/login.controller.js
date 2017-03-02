@@ -1,4 +1,4 @@
-angular.module('passportApp')
+angular.module('aquaticsApp')
 .controller('LoginController', LoginController);
 
 function LoginController($http, $location) {
@@ -7,6 +7,8 @@ function LoginController($http, $location) {
 
   ctrl.login = function() {
     console.log('logging in');
+    var testy = sessionStorage.getItem( 'isAdmin' );
+    console.log( 'from sessionStorage:', testy );
     $http.post('/login', {
       username: ctrl.username,
       password: ctrl.password
@@ -17,4 +19,7 @@ function LoginController($http, $location) {
       console.log('error logging in', error);
     });
   };
+
+
+
 }

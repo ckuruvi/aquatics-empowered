@@ -13,10 +13,17 @@ CREATE TABLE users(
   phone_number integer
 	);
 
+	--accessibility table
+	CREATE TABLE accessibility(
+	id SERIAL PRIMARY KEY,
+	accessibility text
+	);
+
 --facilities table:
 CREATE TABLE facilities(
 	id SERIAL PRIMARY KEY,
-  contact_person text,
+	name text,
+  users_id integer REFERENCES users,
   street_address character varying(80),
   city character varying(80),
   state character varying(2),
@@ -27,7 +34,7 @@ CREATE TABLE facilities(
   image_url text,
   cost boolean,
   approved boolean,
-  accessibility_id text
+  accessibility_id integer REFERENCES accessibility
 	);
 
 
@@ -46,10 +53,4 @@ CREATE TABLE facility_availability(
 	reservation_id integer REFERENCES users,
 	facility_availability_id integer REFERENCES facility_availability,
 	approved boolean
-	);
-
-  --accessbility table
-	CREATE TABLE accessbility(
-	id SERIAL PRIMARY KEY,
-	facility_id integer REFERENCES facilities
 	);

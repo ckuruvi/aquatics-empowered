@@ -1,6 +1,6 @@
 // routing
 angular
-  .module("passportApp")
+  .module("aquaticsApp")
   .config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
@@ -8,7 +8,7 @@ angular
       .when("/home", {
         templateUrl: "views/home.html",
         controller: "HomeController as home",
-        authRequired: true
+        //authRequired: true
       })
       .when("/newUser", {
         templateUrl: "views/register.html",

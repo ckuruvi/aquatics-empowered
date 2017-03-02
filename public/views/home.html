@@ -1,3 +1,24 @@
-<h1>Home</h1>
+<!-- <h1>Home</h1>
 
-<button ng-click="home.logout()" >Logout</button>
+<button ng-click="home.logout()" >Logout</button> -->
+
+<form name="chartsForm" class="form-inline well" ng-submit="home.getFacilities()">
+  <div class="row">
+    <div class="form-group row">
+      <label class="control-label col-xs-offset-1 col-xs-2">Zip Code:</label>
+      <div class="col-xs-8">
+        <input class="form-control" type="text" ng-model="home.zipcode">
+      </div>
+    </div>
+    <div class="col-xs-2">
+      <button type="submit" class="btn  btn-xs btn-primary" >Submit</button>
+    </div>
+  </div>
+</form>
+
+
+<ul>
+  <li ng-repeat="x in home.facilitieslist">
+    {{ x.name + ', ' + x.street_address }}
+  </li>
+</ul>

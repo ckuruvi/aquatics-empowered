@@ -1,4 +1,4 @@
-angular.module('passportApp').service('AuthService', function($http, $location){
+angular.module('aquaticsApp').service('AuthService', function($http, $location){
 
   this.checkLoginStatus = function(){
     console.log('Checking login status');

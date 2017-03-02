@@ -1,1 +1,1 @@
-angular.module('passportApp', ['ngRoute']);
+angular.module('aquaticsApp', ['ngRoute']);

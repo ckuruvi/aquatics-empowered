@@ -1,4 +1,4 @@
-angular.module('passportApp').controller('RegisterController', function($http, $location){
+angular.module('aquaticsApp').controller('RegisterController', function($http, $location){
   var ctrl = this;
 
   ctrl.register = function() {
