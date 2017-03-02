@@ -1,1 +1,1 @@
-angular.module('aquaticsApp', ['ngRoute']);
+angular.module('aquaticsApp', ['ngRoute', 'selectState']);
