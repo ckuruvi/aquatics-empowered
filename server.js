@@ -8,6 +8,7 @@ var connection = require('./db/connection');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var home = require('./routes/home');
+var admin = require('./routes/admin');
 
 require('./auth/setup');
 
