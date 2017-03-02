@@ -14,6 +14,10 @@ angular
         templateUrl: "views/register.html",
         controller: "RegisterController as register"
       })
+      .when("/facilityProfile", {
+        templateUrl: "views/facility.html",
+        controller: "FacilitiesController as facilities"
+      })
       .otherwise({
         templateUrl: "views/login.html",
         controller: "LoginController as login"
