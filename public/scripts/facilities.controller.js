@@ -4,6 +4,7 @@ console.log('FacilitiesController is loaded');
 var ctrl = this;
 ctrl.facility=[];
 
+//to get facilities info from database
 ctrl.getFacilitiesInfo = function(){
   FacilitiesService.getFacilitiesInfo().then(function (res){
     console.log('got data from facilities', res);

@@ -1,1 +1,16 @@
-<h2>Facility Profile</h2>
+<h2>Facility Profile:</h2>
+
+<div id="facilityData" ng-repeat="aquatic in facilities.facility">
+  <p><img ng-src="{{aquatic.image_url}}" alt=""/></p>
+  <ul id="facilityInfo">
+    <li>Contact Person: {{aquatic.contact_person}} </li>
+    <li>Location: {{aquatic.street_address}} {{aquatic.city}}, {{aquatic.state}} {{aquatic.zip}}</li>
+    <li>Description: {{aquatic.description}}</li>
+    <li>Accessibility: {{aquatic.handicap_accessibility}}</li>
+    <li>Level: {{aquatic.level}}</li>
+    <li>Cost: {{aquatic.cost}}</li>
+    <li>Approved: {{aquatic.approved}}</li>
+    <li>Accessibility Id: {{aquatic.accessibility_id}}</li>
+    <button ng-click="facilities.deleteFacility(item.id)" class="btn btn-danger" type="button" name="delete">Remove</button>
+  </ul>
+</div>
