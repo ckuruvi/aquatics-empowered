@@ -1,6 +1,7 @@
 angular.module('aquaticsApp').service('AdminService', function($http, $location) {
   console.log('AdminService is loaded');
 
+  //function to get facilitiesList from db
   this.getFacilitiesList = function() {
     console.log('Facilities returned');
     return $http.get('/admins').then(function(response) {
