@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="facility in admin.facilitiesList">
+        <tr ng-repeat="facility in admin.facilitiesList" ng-if>
           <td>{{facility.name}}</td>
           <td>{{facility.city}}</td>
           <td>{{facility.approved}}</td>
