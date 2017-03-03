@@ -4,6 +4,8 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   var ctrl = this;
 
+  //facilities list from db
+  ctrl.facilitiesList =[];
 
   ctrl.getFacilitiesList = function() {
     AdminService.getFacilitiesList().then(function(response) {
@@ -13,6 +15,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     });
   };
 
+  //getting facilities list on page load
   ctrl.getFacilitiesList();
 
 }); //end module
