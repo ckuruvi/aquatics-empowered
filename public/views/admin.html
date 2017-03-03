@@ -1,6 +1,6 @@
 <body>
   <header>
-    <h2>Admin</h2>
+    <span><h2>Admin</h2><button class="btn btn-primary" ng-click="admin.toggleEditState()">Edit</button></span>
   </header>
 
   <section class="adminTable">
@@ -18,10 +18,10 @@
           <td>{{facility.name}}</td>
           <td>{{facility.city}}</td>
           <td>
-            <p ng-show='facility.pending'>
-              <button>{{facility.status}}</button>
+            <p ng-show ='facility.pending'>
+              <button class="btn btn-primary">{{facility.status}}</button>
             </p>
-            <p ng-hide='facility.pending'>
+            <p ng-hide = 'facility.pending'>
               {{facility.status}}
             </p>
           </td>
