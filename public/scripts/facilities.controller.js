@@ -31,19 +31,16 @@ $interval(function setInterval() {
   // console.log('Toggling datepicker with interval of 3.5 seconds');
 }, 3500);
 
-
+//this key stores the date value is picked from the calendar
 ctrl.getSearchResults = function (key){
   console.log('loading searched date');
 
-//working on array to push to angular calendar n sync calendar format to DB format
-  SearchService.getSearchResults(key).then(function(response){
+  FacilitiesService.getSearchResults(key).then(function(response){
     ctrl.results = response;
-    console.log(ctrl.results);
-    ctrl.dateUnformatted = ngDate.split('day', 1);
-    ctrl.month = ctrl.dateUnformatted.split('/',0);
-    ctrl.date = ctrl.dateUnformatted.split('/', 1);
+    console.log('this is the fac avail', ctrl.results);
 
 
   });
 };
+
 });
