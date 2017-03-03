@@ -38,6 +38,10 @@ ctrl.getSearchResults = function (key){
   SearchService.getSearchResults(key).then(function(response){
     ctrl.results = response;
     console.log(ctrl.results);
+    ctrl.dateUnformatted = ngDate.split('day', 1);
+    ctrl.month = ctrl.dateUnformatted.split('/',0);
+    ctrl.date = ctrl.dateUnformatted.split('/', 1);
+
     //no longer need this line to post results
     // ctrl.results =  SearchService.sKey();
   });
