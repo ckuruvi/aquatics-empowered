@@ -2,7 +2,7 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
   console.log('register Ctrl is loaded');
   var ctrl = this;
 
-
+// sends newUser object (user/facility) to the registerService
   ctrl.registerUser = function(newUser) {
     if(newUser.user) {
       newUser.userType = "user";
