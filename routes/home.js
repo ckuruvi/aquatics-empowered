@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var Home = require('../models/home');
+var Home = require('../models/home.model');
 
 router.get('/:zipcode',function(req,res){
   Home.getFacilitiesList(req.params.zipcode).then(function(facilitieslist){
