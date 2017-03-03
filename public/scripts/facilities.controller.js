@@ -35,6 +35,7 @@ $interval(function setInterval() {
 ctrl.getSearchResults = function (key){
   console.log('loading searched date');
 
+//working on array to push to angular calendar n sync calendar format to DB format
   SearchService.getSearchResults(key).then(function(response){
     ctrl.results = response;
     console.log(ctrl.results);
@@ -42,8 +43,7 @@ ctrl.getSearchResults = function (key){
     ctrl.month = ctrl.dateUnformatted.split('/',0);
     ctrl.date = ctrl.dateUnformatted.split('/', 1);
 
-    //no longer need this line to post results
-    // ctrl.results =  SearchService.sKey();
+
   });
 };
 });
