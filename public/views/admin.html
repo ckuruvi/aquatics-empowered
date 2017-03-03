@@ -17,7 +17,14 @@
         <tr ng-repeat="facility in admin.facilitiesList">
           <td>{{facility.name}}</td>
           <td>{{facility.city}}</td>
-          <td>{{facility.status}}</td>
+          <td>
+            <p ng-show='facility.pending'>
+              <button>{{facility.status}}</button>
+            </p>
+            <p ng-hide='facility.pending'>
+              {{facility.status}}
+            </p>
+          </td>
         </tr>
       </tbody>
     </table>
