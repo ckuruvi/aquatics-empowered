@@ -1,6 +1,6 @@
 <body>
   <header>
-    <span><h2>Admin</h2><button class="btn btn-primary" ng-click="admin.toggleEditState()">Edit</button></span>
+    <span><h2>Admin</h2></span>
   </header>
 
   <section class="adminTable">
@@ -18,12 +18,13 @@
           <td>{{facility.name}}</td>
           <td>{{facility.city}}</td>
           <td>
-            <p ng-show ='facility.pending'>
-              <button class="btn btn-primary">{{facility.status}}</button>
-            </p>
-            <p ng-hide = 'facility.pending'>
+            <p>
               {{facility.status}}
             </p>
+          </td>
+          <td>
+          <button class="btn btn-primary">Edit</button>
+          <button class="btn btn-danger">X</button>
           </td>
         </tr>
       </tbody>
@@ -32,3 +33,11 @@
 
 
 </body>
+
+<!-- show pending button -->
+<!-- <p ng-show ='facility.pending'>
+  <button class="btn btn-primary">{{facility.status}}</button>
+</p>
+<p ng-hide = 'facility.pending'>
+  {{facility.status}}
+</p> -->

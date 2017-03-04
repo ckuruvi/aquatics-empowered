@@ -5,7 +5,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   var ctrl = this;
 
   //facilities list from db
-  ctrl.facilitiesList =[];
+  ctrl.facilitiesList = [];
 
   //grab facilitiesList and return a response
   ctrl.getFacilitiesList = function() {
@@ -36,19 +36,20 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //getting facilities list on page load
   ctrl.getFacilitiesList();
 
-  ctrl.toggleEditState = function() {
-    for (var i = 0; i < ctrl.facilitiesList.length; i++) {
-      if( ctrl.facilitiesList[i].approved ){
-        ctrl.facilitiesList[i].status = 'approved';
-        ctrl.facilitiesList[i].pending = false;
-    } else if (ctrl.facilitiesList[i].approved == null) {
-      ctrl.facilitiesList[i].status = 'pending';
-      ctrl.facilitiesList[i].pending = true;
-    } else {
-      ctrl.facilitiesList[i].status = 'denied';
-      ctrl.facilitiesList[i].pending = false;
-    }
-  }
-  }; //end toggleEditState
+  // method to toggle edit
+  // ctrl.toggleEditState = function() {
+  //   for (var i = 0; i < ctrl.facilitiesList.length; i++) {
+  //     if( ctrl.facilitiesList[i].approved ){
+  //       ctrl.facilitiesList[i].status = 'approved';
+  //       ctrl.facilitiesList[i].pending = false;
+  //   } else if (ctrl.facilitiesList[i].approved == null) {
+  //     ctrl.facilitiesList[i].status = 'pending';
+  //     ctrl.facilitiesList[i].pending = true;
+  //   } else {
+  //     ctrl.facilitiesList[i].status = 'denied';
+  //     ctrl.facilitiesList[i].pending = false;
+  //   }
+  // }
+  // }; //end toggleEditState
 
 }); //end module
