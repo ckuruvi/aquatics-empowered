@@ -16,14 +16,14 @@
   </div>
 </form> -->
 <form class=""  method="post">
-  <label>New User? <input type="checkbox" ng-model="register.newUser.user" ng-init="checked=true" ng-click="register.newUser.facility = false"/></label>
-  <label>Facility? <input type="checkbox" ng-model="register.newUser.facility" ng-init="checked=true" ng-click="register.newUser.user = false"/></label>
+  <label>New User<input type="radio" ng-model="formType" value="user" /></label>
+  <label>Facility<input type="radio" ng-model="formType" value="facility"/></label>
 </form>
 
 <br><br><br>
 
 <!-- USER FORMS -->
-<div class="userForms" ng-if="register.newUser.user">
+<div class="userForms" ng-if="formType == 'user'">
   <h1>User Registration</h1>
   <!-- email -->
   <form class=""  method="post">
@@ -129,7 +129,7 @@
 
 
 <!-- FACILITY FORMS -->
-<div class="facilityForms" ng-if="register.newUser.facility">
+<div class="facilityForms" ng-if="formType == 'facility'">
   <h1>Facility Registration</h1>
 
   <form class=""  method="post">
@@ -238,7 +238,9 @@
 <!-- handicap accessibility? -->
 <label>Is your facility Handicap Accessible? <input type="checkbox" ng-model="register.newUser.accessible"/></label>
 <!-- cost -->
-<label>Does your facility charge for access?<input type="checkbox" ng-model="register.newUser.cost"/></label>
+<form class="" method="post">
+  <label>Does your facility charge for access?<input type="checkbox" ng-model="register.newUser.cost"/></label>
+</form>
 <!-- user level -->
 <form class=""  method="post">
   <label for="lvel">what level facility are you</label>
