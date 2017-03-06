@@ -19,16 +19,22 @@
           <td>{{facility.city}}</td>
           <td>
             <!-- editable status  -->
-            <span editable-select="facility.approved" e-name="status" e-ng-options="s.value as s.text for s in status">
+            <span >
               {{facility.status}}
             </span>
+            <!-- <span>
+              <select>
+                <option></option>
+                <option></option>
+              </select>
+            </span> -->
           </td>
 
           <td>
           <!-- editable form hidden, 'save' and 'cancel' hidden on page load-->
-          <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="admin.editToggle" class="form-buttons form-inline" shown="inserted == facility">
+          <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="admin.editToggle" class="form-buttons form-inline">
             <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-default" ng-click="reset()">Cancel</button>
+            <button type="button" class="btn btn-default" ng-click="admin.editToggle = false">Cancel</button>
           </form>
           <div class="buttons" ng-show="!admin.editToggle">
             <button class="btn btn-primary" ng-click="admin.editToggle = !admin.editToggle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
@@ -43,6 +49,9 @@
 
 
 </body>
+
+<!-- was included in facility.status span element  -->
+<!-- editable-select="facility.approved" e-form="rowform" e-name="status" e-ng-options="s.value as s.text for s in status" -->
 
 <!-- show pending button -->
 <!-- <p ng-show ='facility.pending'>
