@@ -18,14 +18,24 @@
           <td>{{facility.name}}</td>
           <td>{{facility.city}}</td>
           <td>
-            <p>
+            <!-- editable status  -->
+            <span editable-select="facility.approved" e-name="status" e-form="rowform" e-ng-options="s.value as s.text for s in status">
               {{facility.status}}
-            </p>
+            </span>
           </td>
+
           <td>
-          <button class="btn btn-primary">Edit</button>
-          <button class="btn btn-danger">X</button>
+          <!-- editable form hidden on page load-->
+          <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == facility">
+            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">Save</button>
+            <button type="button" ng-disabled="rowform.$waiting" class="btn btn-default" ng-click="reset()">Cancel</button>
+          </form>
+          <div class="buttons" ng-show="!rowform.$visible">
+            <button class="btn btn-primary" ng-click="rowform.$show()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button class="btn btn-danger delete" ng-click="admin.deleteFacility(facility._id)">Del</button>
+          </div>
           </td>
+
         </tr>
       </tbody>
     </table>

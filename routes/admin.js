@@ -33,4 +33,50 @@ router.get('/', function(req, res) {
   });
 }); //end router.get
 
+// router.put('/:id', function (req,res){
+// pool.connect(function (err, client, done){
+//   if(err){
+//     console.log('Error connecting to DB', err);
+//     res.sendStatus(500);
+//     done();
+//   }else{
+//     client.query('UPDATE tasks SET completed=$2 WHERE id = $1 RETURNING *',
+//     [req.params.id,req.body.completed],
+//     function(err, result){
+//       done();
+//       if(err){
+//         console.log('Erroe updating book', err);
+//         res.sendStatus(500);
+//       }else{
+//         res.send(result.rows);
+//       }
+//     });
+//
+//   }
+// });
+//
+// })
+
+router.delete('/:id', function(req, res){
+pool.connect(function(err, client, done){
+  if (err) {
+    console.log('Error connecting to DB', err);
+    res.sendStatus(500);
+    done();
+  } else {
+    client.query('DELETE FROM facilities WHERE id = $1',
+    [req.params.id],
+    function(err, result){
+      done();
+      if (err) {
+        console.log('Error deleting facility', err);
+        res.sendStatus(500);
+      } else {
+        res.sendStatus(204);
+      }
+    });
+  }
+});
+});
+
 module.exports = router;

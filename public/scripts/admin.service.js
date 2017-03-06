@@ -12,4 +12,15 @@ angular.module('aquaticsApp').service('AdminService', function($http, $location)
     });
   };
 
+  //delete facility from db
+  this.deleteFacility = function(id) {
+    return $http.delete('/admins' + id).then(function(response) {
+      console.log('Success deleting facility', response);
+    }).catch(function(err) {
+      console.log('Error deleting person', err);
+    });
+  };
+
+
+
 }); //end module
