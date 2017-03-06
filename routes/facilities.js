@@ -87,7 +87,7 @@ router.post('/', function(req, res){
     } else {
 
       client.query('INSERT INTO facility_reservation (reservation_id, facility_availability_id, approved) VALUES ($1, $2, $3) RETURNING *;',
-      [req.body.reservation_id,req.body.facility_availability_id, req.body.approved],
+      [req.body.reservation_id,req.body.facility_id, req.body.approved],
       function(err, result){
         //waiting for database to get information back
         done();

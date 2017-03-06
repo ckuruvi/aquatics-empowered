@@ -4,3 +4,11 @@ li{
   list-style: none;
   font-size: 20px;
 }
+ul{
+  display: inline-block;
+}
+.btn-danger:hover{
+  background-color: green;
+  color: green;
+  border-color: green;
+}
