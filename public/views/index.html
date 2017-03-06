@@ -18,6 +18,7 @@
   <script src="scripts/register.controller.js" charset="utf-8"></script>
   <script src="scripts/home.controller.js" charset="utf-8"></script>
   <script src="scripts/facilities.controller.js" charset="utf-8"></script>
+  <script src="scripts/navbar.controller.js" charset="utf-8"></script>
 
 
   <script src="scripts/register.service.js" charset="utf-8"></script>
@@ -31,6 +32,29 @@
 
   <base href="/" />
 </head>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="/images/android-icon-48x48.png" alt="Aquatics Empowered"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+      <ul class="nav navbar-nav navbar-right" ng-controller="NavController as nav">
+        <li ng-show="nav.loginStatus == false"><a href="/login">Login</a></li>
+        <li ng-show="nav.loginStatus == false"><a href="/newUser">Register</a></li>
+        <li ng-show="nav.loginStatus == true"><a href="#">User Profile</a></li>
+        <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#">Logout</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 <body class="container">
   <ng-view></ng-view>
 </body>
