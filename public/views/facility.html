@@ -31,7 +31,7 @@
 <!-- {{avail.date}} -->
 <!-- will display time of selected available date -->
 <ul id="timeSlots" ng-repeat="avail in facilities.results">
-<li><button class="btn btn-danger"><time>{{avail.start_time}}</time></button></li>
+<li><button ng-click="facilities.postFacilityAvail(avail)" class="btn btn-danger"><time>{{avail.start_time}}</time></button></li>
 </ul>
 
 </div>

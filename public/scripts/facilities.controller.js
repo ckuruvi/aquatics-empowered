@@ -43,4 +43,13 @@ ctrl.getSearchResults = function (key){
   });
 };
 
+ctrl.postFacilityAvail = function (reservation){
+  console.log('this is the reservation selected', reservation);
+
+  FacilitiesService.postFacilityAvail(reservation).then(function (response){
+    ctrl.postAvail = response;
+    console.log('this is the post fac avail reservation', ctrl.postAvail);
+  });
+};
+
 });

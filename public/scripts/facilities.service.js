@@ -42,5 +42,17 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
      });
 
 };
+//when facility avail date and time appears function to post selected time to DB
+this.postFacilityAvail = function (reservation){
+  return $http.post('/facility', {
+    data: reservation
+  }).then(function (response){
+    console.log('Posting this avail data to reservation', response);
+    return response.data;
+  }).catch(function(err){
+    console.log('error posting response to facility_reservation', err);
+  });
+};
+
 
 });
