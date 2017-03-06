@@ -18,7 +18,7 @@ router.get('/', function(req, res) {
         console.log('Error connecting to DB, err');
         res.status(500).send(err);
       } else {
-        client.query('SELECT name, city, approved FROM facilities;', function(err, results) {
+        client.query('SELECT id, name, city, approved FROM facilities;', function(err, results) {
           if (err) {
             console.log('Error getting facilities', err);
             res.status(500).send(err);

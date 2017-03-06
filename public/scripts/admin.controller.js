@@ -49,7 +49,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //delete facility from facilityList and db
   ctrl.deleteFacility = function(id) {
-    console.log('In deleteFacility');
+    console.log('In deleteFacility', id);
   AdminService.deleteFacility(id).then(function(response) {
     ctrl.confirmDelete();
     console.log('Success deleting facility', response);
