@@ -60,7 +60,6 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   // confirm before deleting facility
   ctrl.confirmDelete = function() {
-    var txt;
     var selection = confirm('Press ok to delete this facility, this cannot be undone.');
     if (selection == true) {
      alert('Facility deleted');
@@ -70,6 +69,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   };
 
 
+  ctrl.editToggle = false;
 
   // method to toggle edit
   // ctrl.toggleEditState = function() {
