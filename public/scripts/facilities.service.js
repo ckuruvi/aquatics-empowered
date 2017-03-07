@@ -26,9 +26,8 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
   };
 
   this.getSearchResults = function (key){
-  console.log('this is the', key);
-  console.log('Getting search results');
-  return $http.get('scarf/search/?q=' + key).then(function (response){
+  console.log('this is the date selected', key);
+  return $http.get('/facility/search/?q=' + key).then(function (response){
 
        console.log('This is the search data: ',response.data);
 
@@ -39,8 +38,7 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
         sKey.key = key;
         return response.data;
      }).catch(function(err){
-       console.log(err);
-       console.log('Error searching database');
+       console.log('Error searching database', err);
      });
 
 };
