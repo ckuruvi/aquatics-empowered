@@ -5,7 +5,7 @@ angular
     $locationProvider.html5Mode(true);
 
     $routeProvider
-      .when("/home", {
+      .when("/", {
         templateUrl: "views/home.html",
         controller: "HomeController as home",
         //authRequired: true
@@ -18,9 +18,19 @@ angular
         templateUrl: "views/admin.html",
         controller: "AdminController as admin"
       })
-      .otherwise({
+
+      .when("/facilityProfile", {
+        templateUrl: "views/facility.html",
+        controller: "FacilitiesController as facilities"
+      })
+      .when("/login", {
+
         templateUrl: "views/login.html",
-        controller: "LoginController as login"
+      controller: "LoginController as login"
+    })
+      .when("/facilitydetails", {
+        templateUrl: "views/facilitydetails.html",
+        controller: "FacilityDetailsController as facilitydetails"
       });
   })
   .run(function($rootScope, $location, $route, AuthService) {

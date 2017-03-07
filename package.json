@@ -12,6 +12,9 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-route": "^1.5.8",
+
+    "angularjs-datepicker": "^2.1.13",
+    "angular-select-state": "0.0.5",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",

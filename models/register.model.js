@@ -41,14 +41,15 @@ exports.findAndComparePassword = function(username, password) {
   });
 };
 
-exports.create = function(username, password) {
+exports.createUser = function(email, password, userType, firstName, lastName, phone, address, city, state, zipcode) {
   return bcrypt
     .hash(password, SALT_ROUNDS)
     .then(function(hash) {
       return query(
-        "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
-        [ username, hash ]
+        "INSERT INTO users (username, password, user_type, first_name, last_name, phone_number, street_address, city, state, zip) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
+        [ email, hash, userType, firstName, lastName, phone, address, city, state, zipcode]
       ).then(function(users) {
+        console.log('users[0] is ', users[0]);
         return users[0];
       });
     })
@@ -57,6 +58,16 @@ exports.create = function(username, password) {
     });
 };
 
+exports.createFacility = function(id, name, address, city, state, zipcode, description, level, cost, image_url) {
+      return query(
+        "INSERT INTO facilities (users_id, name, street_address, city, state, zip, description, level, cost, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
+        [id, name, address, city, state, zipcode, description, level, cost, image_url]
+      ).then(function(facilities) {
+        return facilities[0];
+      }).catch(function(err) {
+      console.log("Error creating facility", err);
+    });
+};
 // exports.create('test', '1234').then(function() {
 //   console.log('Created a test user');
 // });

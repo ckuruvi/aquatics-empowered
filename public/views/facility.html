@@ -1,0 +1,40 @@
+<h2>Facility Profile:</h2>
+
+<div id="facilityData" ng-repeat="aquatic in facilities.facility">
+  <p><img ng-src="{{aquatic.image_url}}" alt=""/></p>
+  <ul id="facilityInfo">
+    <li>Name: {{aquatic.name}} </li>
+    <li>Location: {{aquatic.street_address}} {{aquatic.city}}, {{aquatic.state}} {{aquatic.zip}}</li>
+    <li>Description: {{aquatic.description}}</li>
+    <li>Accessibility: {{aquatic.handicap_accessibility}}</li>
+    <li>Level: {{aquatic.level}}</li>
+    <li>Cost: {{aquatic.cost}}</li>
+    <li>Status: {{aquatic.approved}}</li>
+    <li>Accessibility Id: {{aquatic.accessibility_id}}</li>
+
+  </ul>
+</div>
+
+
+<div id="availability" >
+
+
+<div class="calendar">
+   <!-- datepicker-show attribute, if false, datepicker is hidden, if true, datepicker is shown -->
+   <!-- date-format is the format the date will appear in DOM EEEE=day -->
+  <datepicker date-format="EEEE MM/dd/yyyy" datepicker-show="{{ctrl.visibility}}">
+    <!-- ng-change shows the facilites with the avail time depending on the date you picked.Sub for ng-click -->
+    <input ng-change="facilities.getSearchResults(facilities.date)" ng-model="facilities.date" type="text"
+     class="angular-datepicker-input fa font-fontawesome font-light radius3"  placeholder="&#xf073; Choose a date"/>
+  </datepicker>
+  You chose: {{facilities.date}}
+</div>
+<!-- {{avail.date}} -->
+<!-- will display time of selected available date -->
+<ul id="timeSlots" ng-repeat="avail in facilities.results">
+<li><button  ng-click="facilities.postFacilityAvail(avail)" class="btn btn-danger"><time>{{avail.start_time}}</time></button></li>
+</ul>
+
+</div>
+
+<!-- <button ng-click="facilities.deleteFacility(item.id)" class="btn btn-danger" type="button" name="delete">Remove</button> -->
