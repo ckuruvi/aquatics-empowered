@@ -21,9 +21,10 @@ angular.module('aquaticsApp').service('AdminService', function($http, $location)
     });
   };
 
-  this.updateFacility = function() {
-    console.log('In update facility', facility.approved);
-    $http.put('/admins/').then(function(response) {
+  //update the status of a facility
+  this.updateFacility = function(facility) {
+    console.log('In update facility');
+    return $http.put('/admins/' + facility.id, facility).then(function(response) {
       console.log('facility status is updated', response);
     }).catch(function(err) {
       console.log('Error updating facility');

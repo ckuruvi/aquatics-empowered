@@ -3,6 +3,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   console.log('AdminController is loaded');
 
   var ctrl = this;
+  var selection;
 
   //facilities list from db
   ctrl.facilitiesList = [];
@@ -37,27 +38,35 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   ctrl.getFacilitiesList();
 
 
-  var selection;
-
-  //delete facility from facilityList and db
+  //delete facility from db after confirmation of true
   ctrl.deleteFacility = function(id) {
     ctrl.confirmDelete();
     if (selection == false) {
       return;
     }
     console.log('In deleteFacility', id);
-  AdminService.deleteFacility(id).then(function(response) {
-    console.log('Success deleting facility', response);
-  ctrl.getFacilitiesList();
-  return response;
+    AdminService.deleteFacility(id).then(function(response) {
+      console.log('Success deleting facility', response);
+      ctrl.getFacilitiesList();
+      return response;
     });
   };
 
+  //update the status of a facility
+  ctrl.updateFacility = function(facility) {
+    console.log('In updateFacility', facility);
+    AdminService.updateFacility(facility).then(function(facility) {
+      console.log('Success deleting facility', facility);
+      ctrl.getFacilitiesList();
+      return facility;
+    });
+  }
+
   // confirm before deleting facility
   ctrl.confirmDelete = function() {
-   selection = confirm('Press ok to delete this facility, this cannot be undone.');
+    selection = confirm('Press ok to delete this facility, this cannot be undone.');
     if (selection == true) {
-     alert('Facility deleted');
+      alert('Facility deleted');
     } else {
       alert('Canceled Deletion.');
       return false;
@@ -68,8 +77,6 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   ctrl.editEntry = function(index) {
     $scope.hiddenEntry[index] = !$scope.hiddenEntry[index];
   };
-
-
 
   ctrl.editToggle = false;
 

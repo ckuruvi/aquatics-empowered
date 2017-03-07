@@ -41,7 +41,7 @@ pool.connect(function (err, client, done){
     done();
   }else{
     client.query('UPDATE facilities SET approved=$2 WHERE id = $1 RETURNING *',
-    [req.params.id,req.body.completed],
+    [req.params.id,req.body.approved],
     function(err, result){
       done();
       if(err){

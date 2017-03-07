@@ -34,7 +34,7 @@
           <td>
           <!-- editable form hidden, 'save' and 'cancel' hidden on page load-->
           <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="hiddenEntry[$index]" class="form-buttons form-inline">
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary" ng-click="admin.updateFacility(facility)">Save</button>
             <button type="button" class="btn btn-default" ng-click="admin.editEntry($index)">Cancel</button>
           </form>
           <div class="buttons" ng-show="!hiddenEntry[$index]">
