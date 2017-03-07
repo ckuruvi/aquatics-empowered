@@ -5,7 +5,7 @@ var FacilityDetails = require('../models/facility.details.model.js');
 
 router.get('/gettimeslots', function(req, res) {
     console.log("date ::", req.query.date);
-    FacilityDetails.getFacilityId(2)  //user id hard coded for now. need to pull from the session
+    FacilityDetails.getFacilityId(1)  //user id hard coded for now. need to pull from the session
         .then(function(facilityId) {
             FacilityDetails.getTimeSlots(new Date(req.query.date), facilityId).then(function(timeSlotlist) {
                 res.send(timeSlotlist);
@@ -18,7 +18,7 @@ router.get('/gettimeslots', function(req, res) {
 
 router.post('/', function(req, res) {
     console.log('formdata', req.body);
-    FacilityDetails.getFacilityId(2) //user id hard coded for now. need to pull from the session
+    FacilityDetails.getFacilityId(1) //user id hard coded for now. need to pull from the session
         .then(function(facilityId) {
             setTimeSlots(req.body, facilityId).then(function(response) {
                 res.sendStatus(201);
