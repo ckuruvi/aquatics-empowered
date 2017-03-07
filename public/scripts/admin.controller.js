@@ -36,15 +36,15 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //getting facilities list on page load
   ctrl.getFacilitiesList();
 
-  // status options
-  // ctrl.status = [
-  //   {value: 1, text: 'approve'},
-  //   {value: 2, text: 'deny'}
-  // ];
+
+  var selection;
 
   //delete facility from facilityList and db
   ctrl.deleteFacility = function(id) {
     ctrl.confirmDelete();
+    if (selection == false) {
+      return;
+    }
     console.log('In deleteFacility', id);
   AdminService.deleteFacility(id).then(function(response) {
     console.log('Success deleting facility', response);
@@ -55,11 +55,12 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   // confirm before deleting facility
   ctrl.confirmDelete = function() {
-    var selection = confirm('Press ok to delete this facility, this cannot be undone.');
-    if (selection === true) {
+   selection = confirm('Press ok to delete this facility, this cannot be undone.');
+    if (selection == true) {
      alert('Facility deleted');
     } else {
       alert('Canceled Deletion.');
+      return false;
     }
   };
 
@@ -94,5 +95,5 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
 
 //NOTES
-//logic to check to see if confirmDelete selection == true, then delete. Bug deletes no matter what selection
+
 //target editToggle by row/facility id

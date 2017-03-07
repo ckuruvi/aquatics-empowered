@@ -23,12 +23,12 @@
               <p ng-show="!hiddenEntry[$index]">
                 {{facility.status}}
               </p>
-              <select ng-show="hiddenEntry[$index]" >
-                <option value="1">Approve</option>
-                <option value="0">Deny</option>
+              <select ng-show="hiddenEntry[$index]" ng-model="facility.approved">
+                <!-- <option value="default"></option> -->
+                <option value="true">Approve</option>
+                <option value="false">Deny</option>
               </select>
             </span>
-
           </td>
 
           <td>

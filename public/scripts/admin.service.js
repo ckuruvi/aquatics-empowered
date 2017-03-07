@@ -21,14 +21,14 @@ angular.module('aquaticsApp').service('AdminService', function($http, $location)
     });
   };
 
-  // this.updateFacility = function() {
-  //   console.log('In update facility', facility.approved);
-  //   $http.put('/admins/').then(function(response) {
-  //     console.log('facility status is updated', response);
-  //   }).catch(function(err) {
-  //     console.log('Error updating facility');
-  //   });
-  // };
+  this.updateFacility = function() {
+    console.log('In update facility', facility.approved);
+    $http.put('/admins/').then(function(response) {
+      console.log('facility status is updated', response);
+    }).catch(function(err) {
+      console.log('Error updating facility');
+    });
+  };
 
 
 }); //end module
