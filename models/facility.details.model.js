@@ -15,7 +15,7 @@ exports.getFacilityId = function(userId) {
 
 exports.getTimeSlots = function(date, facilityId) {
     return query(
-            "SELECT * FROM facility_availability where facility_id=$2 and date=$1;", [date, facilityId]
+            "SELECT * FROM facility_availability where facility_id=$2 and date=$1 order by start_time;", [date, facilityId]
         ).then(function(timeSlotList) {
             return timeSlotList;
         })
