@@ -48,7 +48,7 @@ ctrl.postFacilityAvail = function (reservation){
 
   FacilitiesService.postFacilityAvail(reservation).then(function (response){
 // console.log('this is the response', response);
-    response[0].facility_availability_id = reservation.facility_id;
+    // response[0].facility_availability_id = reservation.id;
     ctrl.postAvail = response;
     console.log('this is the post fac avail reservation', ctrl.postAvail);
   });
