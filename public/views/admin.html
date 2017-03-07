@@ -20,24 +20,25 @@
           <td>
             <!-- editable status  -->
             <span >
-              {{facility.status}}
-            </span>
-            <!-- <span>
-              <select>
-                <option></option>
-                <option></option>
+              <p ng-show="!hiddenEntry[$index]">
+                {{facility.status}}
+              </p>
+              <select ng-show="hiddenEntry[$index]" >
+                <option value="1">Approve</option>
+                <option value="0">Deny</option>
               </select>
-            </span> -->
+            </span>
+
           </td>
 
           <td>
           <!-- editable form hidden, 'save' and 'cancel' hidden on page load-->
-          <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="admin.editToggle" class="form-buttons form-inline">
+          <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="hiddenEntry[$index]" class="form-buttons form-inline">
             <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-default" ng-click="admin.editToggle = false">Cancel</button>
+            <button type="button" class="btn btn-default" ng-click="admin.editEntry($index)">Cancel</button>
           </form>
-          <div class="buttons" ng-show="!admin.editToggle">
-            <button class="btn btn-primary" ng-click="admin.editToggle = !admin.editToggle"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+          <div class="buttons" ng-show="!hiddenEntry[$index]">
+            <button class="btn btn-primary" ng-click="admin.editEntry($index)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
             <button class="btn btn-danger delete" ng-click="admin.deleteFacility(facility.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> Del</button>
           </div>
           </td>
@@ -49,7 +50,7 @@
 
 
 </body>
-
+<!-- ng-click="admin.editToggle = !admin.editToggle()" -->
 <!-- was included in facility.status span element  -->
 <!-- editable-select="facility.approved" e-form="rowform" e-name="status" e-ng-options="s.value as s.text for s in status" -->
 

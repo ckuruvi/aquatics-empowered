@@ -1,13 +1,8 @@
-angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService) {
+angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService, $scope) {
 
   console.log('AdminController is loaded');
 
   var ctrl = this;
-
-  // set a theme for editable rows (not working, throwing error in console)
-  // app.run(function(editableOptions) {
-  //   editableOptions.them = 'bs3';
-  // });
 
   //facilities list from db
   ctrl.facilitiesList = [];
@@ -49,9 +44,9 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //delete facility from facilityList and db
   ctrl.deleteFacility = function(id) {
+    ctrl.confirmDelete();
     console.log('In deleteFacility', id);
   AdminService.deleteFacility(id).then(function(response) {
-    ctrl.confirmDelete();
     console.log('Success deleting facility', response);
   ctrl.getFacilitiesList();
   return response;
@@ -61,12 +56,18 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   // confirm before deleting facility
   ctrl.confirmDelete = function() {
     var selection = confirm('Press ok to delete this facility, this cannot be undone.');
-    if (selection == true) {
+    if (selection === true) {
      alert('Facility deleted');
     } else {
       alert('Canceled Deletion.');
     }
   };
+
+  $scope.hiddenEntry = [];
+  ctrl.editEntry = function(index) {
+    $scope.hiddenEntry[index] = !$scope.hiddenEntry[index];
+  };
+
 
 
   ctrl.editToggle = false;
@@ -88,3 +89,10 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   // }; //end toggleEditState
 
 }); //end module
+
+
+
+
+//NOTES
+//logic to check to see if confirmDelete selection == true, then delete. Bug deletes no matter what selection
+//target editToggle by row/facility id

@@ -33,29 +33,29 @@ router.get('/', function(req, res) {
   });
 }); //end router.get
 
-// router.put('/:id', function (req,res){
-// pool.connect(function (err, client, done){
-//   if(err){
-//     console.log('Error connecting to DB', err);
-//     res.sendStatus(500);
-//     done();
-//   }else{
-//     client.query('UPDATE tasks SET completed=$2 WHERE id = $1 RETURNING *',
-//     [req.params.id,req.body.completed],
-//     function(err, result){
-//       done();
-//       if(err){
-//         console.log('Erroe updating book', err);
-//         res.sendStatus(500);
-//       }else{
-//         res.send(result.rows);
-//       }
-//     });
-//
-//   }
-// });
-//
-// })
+router.put('/:id', function (req,res){
+pool.connect(function (err, client, done){
+  if(err){
+    console.log('Error connecting to DB', err);
+    res.sendStatus(500);
+    done();
+  }else{
+    client.query('UPDATE facilities SET approved=$2 WHERE id = $1 RETURNING *',
+    [req.params.id,req.body.completed],
+    function(err, result){
+      done();
+      if(err){
+        console.log('Error updating facility status', err);
+        res.sendStatus(500);
+      }else{
+        res.send(result.rows);
+      }
+    });
+
+  }
+});
+
+})
 
 router.delete('/:id', function(req, res){
 pool.connect(function(err, client, done){
