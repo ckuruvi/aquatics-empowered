@@ -9,6 +9,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var home = require('./routes/home');
 var facilities = require('./routes/facilities');
+var facilityDetails = require('./routes/facilitydetails');
 
 require('./auth/setup');
 
@@ -38,6 +39,7 @@ app.use('/login', login);
 app.use('/home', home);
 app.use('/register', register);
 app.use('/facility', facilities);
+app.use('/facilitydetails', facilityDetails);
 app.get('/loginStatus', function(req, res){
   res.send(req.isAuthenticated());
 })

@@ -1,4 +1,4 @@
-angular.module("aquaticsApp").service('RegisterService', function($http, $location){
+angular.module("aquaticsApp").service('RegisterService', function($http, $location, $rootScope){
 
 
   this.checkLoginStatus = function(){
@@ -19,8 +19,10 @@ angular.module("aquaticsApp").service('RegisterService', function($http, $locati
     if(newUser.facility == true) {
         $http.post('register/facility', newUser).then(function(response){
           console.log(response);
+          // broadcasts login event for navbar
+          $rootScope.$broadcast('userLoggedIn');
           //sends the user back to home page after logging in
-          $location.path('/home');
+          $location.path('/');
         }).catch(function(error) {
           console.log('error registering new user', error);
         });
@@ -28,8 +30,10 @@ angular.module("aquaticsApp").service('RegisterService', function($http, $locati
       // if user, sends newUser to register/user route
       $http.post('/register/user', newUser).then(function(response){
         console.log(response);
+        // broadcasts login event for navbar
+        $rootScope.$broadcast('userLoggedIn');
         //sends the user back to home page after logging in
-        $location.path('/home');
+        $location.path('/');
       }).catch(function(error) {
         console.log('error registering new user', error);
       });

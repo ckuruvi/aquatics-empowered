@@ -1,7 +1,7 @@
 angular.module('aquaticsApp')
 .controller('LoginController', LoginController);
 
-function LoginController($http, $location) {
+function LoginController($http, $location, $rootScope) {
   console.log('LoginController loaded');
   var ctrl = this;
 
@@ -14,11 +14,14 @@ function LoginController($http, $location) {
       password: ctrl.password
     }).then(function(response){
       console.log(response);
-      $location.path('/home');
+      // broadcasts login event for navbar
+      $rootScope.$broadcast('userLoggedIn');
+      $location.path('/');
     }, function(error) {
       console.log('error logging in', error);
     });
   };
+
 
 
 
