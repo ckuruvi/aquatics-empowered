@@ -3,25 +3,25 @@ var FacilityDetails = require('../models/facility.details.model.js');
 
 
 
-router.get('/gettimeslots',function(req,res){
-  console.log("date ::",req.query.date);
-  FacilityDetails.getFacilityId(1)
-      .then(function(facilityId) {
-        FacilityDetails.getTimeSlots(new Date(req.query.date),facilityId).then(function(timeSlotlist){
-          res.send(timeSlotlist);
-          });
-  }).catch(function(err){
-    console.log('Error fetching  time slot list');
-    res.sendStatus(500);
-  });
+router.get('/gettimeslots', function(req, res) {
+    console.log("date ::", req.query.date);
+    FacilityDetails.getFacilityId(1)  //user id hard coded for now. need to pull from the session
+        .then(function(facilityId) {
+            FacilityDetails.getTimeSlots(new Date(req.query.date), facilityId).then(function(timeSlotlist) {
+                res.send(timeSlotlist);
+            });
+        }).catch(function(err) {
+            console.log('Error fetching  time slot list');
+            res.sendStatus(500);
+        });
 });
 
 router.post('/', function(req, res) {
-    console.log('formdata',req.body);
-    FacilityDetails.getFacilityId(1)
+    console.log('formdata', req.body);
+    FacilityDetails.getFacilityId(1) //user id hard coded for now. need to pull from the session
         .then(function(facilityId) {
-            setTimeSlots(req.body,facilityId).then(function(response){
-              res.sendStatus(201);
+            setTimeSlots(req.body, facilityId).then(function(response) {
+                res.sendStatus(201);
             });
         }).catch(function(err) {
             console.log('Error creating timeslots');
@@ -30,24 +30,24 @@ router.post('/', function(req, res) {
 });
 
 
-function setTimeSlots(formdata,facilityId) {
+function setTimeSlots(formdata, facilityId) {
     return new Promise(function(resolve, reject) {
-        var startTime=parseInt(formdata.startTime);
-        var endTime=parseInt(formdata.endTime);
-        var count=endTime - startTime;
-          console.log("count::",count,facilityId);
-        for(var i=0;i<count;i++){
-            var date=new Date(formdata.date);
-          FacilityDetails.setTimeSlots(facilityId,date,startTime+':00',(startTime+1)+':00');
-               startTime+=1;
-               console.log("starttime & endtime",startTime,endTime);
-               if (startTime == endTime) {
-                 console.log("inside resolve");
-                     resolve();
-                 }
+        var startTime = parseInt(formdata.startTime);
+        var endTime = parseInt(formdata.endTime);
+        var count = endTime - startTime;
+        console.log("count::", count, facilityId);
+        for (var i = 0; i < count; i++) {
+            var date = new Date(formdata.date);
+            FacilityDetails.setTimeSlots(facilityId, date, startTime + ':00', (startTime + 1) + ':00');
+            startTime += 1;
+            console.log("starttime & endtime", startTime, endTime);
+            if (startTime == endTime) {
+                console.log("inside resolve");
+                resolve();
+            }
         }
 
-            });
+    });
 } // end of setTimeSlots function
 
 

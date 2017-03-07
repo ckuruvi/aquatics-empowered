@@ -1,62 +1,59 @@
 <h2>Facility details</h2>
 
-<div id="availability" >
+<div id="availability">
 
-<form ng-submit="facilitydetails.setTimeSlots(facilitydetails.formdata)">
-<div class="calendar">
-  <datepicker date-format="EEEE MM/dd/yyyy" >
-    <input ng-change="facilitydetails.getTimeSlots(facilitydetails.formdata.date)"  ng-model="facilitydetails.formdata.date"
-    type="text" class="angular-datepicker-input fa font-fontawesome font-light radius3"  placeholder="&#xf073; Choose a date"/>
-  </datepicker>
-</div>
-
-<div class="form-group row">
-        <label class="control-label col-xs-offset-1 col-xs-2">From:</label>
-        <div class="col-xs-8">
-            <select class="form-control" ng-model="facilitydetails.formdata.startTime"
-            ng-options="x for x in facilitydetails.timeSelectionArray"></select>
-        </div>
-</div>
-<div class="form-group row">
-        <label class="control-label col-xs-offset-1 col-xs-2">To:</label>
-        <div class="col-xs-8">
-            <select class="form-control" ng-model="facilitydetails.formdata.endTime"
-            ng-options="x for x in facilitydetails.timeSelectionArray"></select>
-        </div>
-</div>
-
-<div class="form-group row ">
-        <div class="col-sm-4 col-sm-offset-3">
-            <button type="submit" class="btn  btn-sm btn-primary">Add Slots</button>
+    <form ng-submit="facilitydetails.setTimeSlots(facilitydetails.formdata)">
+        <div class="calendar">
+            <datepicker date-format="EEEE MM/dd/yyyy">
+                <input ng-change="facilitydetails.getTimeSlots(facilitydetails.formdata.date)" ng-model="facilitydetails.formdata.date" type="text" class="angular-datepicker-input fa font-fontawesome font-light radius3" placeholder="&#xf073; Choose a date" />
+            </datepicker>
         </div>
 
-</div>
-
-</form>
-
-
-<div id="slotsAvailable">
-    <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <h4>Available Slots</h4>
+        <div class="form-group row">
+            <label class="control-label col-xs-offset-1 col-xs-2">From:</label>
+            <div class="col-xs-8">
+                <select class="form-control" ng-model="facilitydetails.formdata.startTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
+            </div>
         </div>
-    </div>
-    <table class="table table-striped" id="table_id">
-        <thead>
-            <tr class="active">
-                <th>start time</th>
-                <th>end time</th>
-                <th>Status</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
+        <div class="form-group row">
+            <label class="control-label col-xs-offset-1 col-xs-2">To:</label>
+            <div class="col-xs-8">
+                <select class="form-control" ng-model="facilitydetails.formdata.endTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
+            </div>
+        </div>
+
+        <div class="form-group row ">
+            <div class="col-sm-4 col-sm-offset-3">
+                <button type="submit" class="btn  btn-sm btn-primary">Add Slots</button>
+            </div>
+
+        </div>
+
+    </form>
+
+
+    <div id="slotsAvailable">
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <h4>Available Slots</h4>
+            </div>
+        </div>
+        <table class="table table-striped" id="table_id">
+            <thead>
+                <tr class="active">
+                    <th>start time</th>
+                    <th>end time</th>
+                    <th>Status</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
                 <tr ng-repeat=" obj in facilitydetails.timeSlotList">
                     <td>{{obj.start_time}}</td>
                     <td>{{obj.end_time}}</td>
                     <td>{{obj.status}}</td>
                     <td><button class="btn btn-xs btn-info" ng-click="facilitydetails.deleteTimeSlot(obj.id)" type="submit">Delete</button></td>
                 </tr>
-          </tBody>
+            </tBody>
         </table>
-</div>
+    </div>
