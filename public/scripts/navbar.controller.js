@@ -1,9 +1,13 @@
-angular.module("aquaticsApp").controller('NavController', ['AuthService', '$http', '$location', '$rootScope', function(AuthService, $http, $location, $rootScope){
+angular.module("aquaticsApp").controller('NavController', ['AuthService', 'UserProfileService', '$http', '$location', '$rootScope',
+ function(AuthService, UserProfileService, $http, $location, $rootScope) {
 console.log('navctrl loaded');
   var ctrl = this;
 
   //boolean checking if user is logged in or ngRoute
   ctrl.loginStatus = false;
+
+  //stores the logged in username in the navbar as profile link
+  ctrl.userName;
 
 //checks login status
   ctrl.checkLoginStatus = function() {
@@ -11,6 +15,9 @@ console.log('navctrl loaded');
       console.log('login check returned: ', response);
       if (response == true) {
         ctrl.loginStatus = true;
+        UserProfileService.getUser().then(function(response) {
+          ctrl.userName = response.first_name;
+        });
       } else {
         ctrl.loginStatus = false;
       }

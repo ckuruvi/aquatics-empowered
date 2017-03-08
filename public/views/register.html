@@ -16,14 +16,14 @@
   </div>
 </form> -->
 <form class=""  method="post">
-  <label>New User<input type="radio" ng-model="formType" value="user" /></label>
-  <label>Facility<input type="radio" ng-model="formType" value="facility"/></label>
+  <label>New User<input type="radio" ng-model="register.newUser.userType" value="user" /></label>
+  <label>Facility<input type="radio" ng-model="register.newUser.userType" value="facility"/></label>
 </form>
 
 <br><br><br>
 
 <!-- USER FORMS -->
-<div class="userForms" ng-if="formType == 'user'">
+<div class="userForms" ng-if="register.newUser.userType == 'user'">
   <h1>Register as a User</h1>
   <!-- email -->
   <form class=""  method="post">
@@ -129,7 +129,7 @@
 
 
 <!-- FACILITY FORMS -->
-<div class="facilityForms" ng-if="formType == 'facility'">
+<div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
   <h1>Register as a Facility</h1>
 
   <form class=""  method="post">

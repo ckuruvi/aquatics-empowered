@@ -58,6 +58,19 @@ exports.createUser = function(email, password, userType, firstName, lastName, ph
     });
 };
 
+// updates user info in the db
+exports.updateUser = function(user) {
+  return query(
+    "UPDATE users SET username=$2, first_name=$3, last_name=$4, street_address=$5, city=$6, state=$7, phone_number=$8 WHERE id = $1 RETURNING *",
+    [user.id, user.username, user.first_name, user.last_name, user.street_address, user.city, user.state, user.phone_number]
+  ).then(function(user) {
+    console.log('user returned from DB after update ', user[0]);
+    return user[0];
+  }).catch(function(err) {
+    console.log('error updating user in the DB ', err);
+  });
+}
+
 exports.createFacility = function(id, name, address, city, state, zipcode, description, level, cost, image_url) {
       return query(
         "INSERT INTO facilities (users_id, name, street_address, city, state, zip, description, level, cost, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
@@ -68,6 +81,8 @@ exports.createFacility = function(id, name, address, city, state, zipcode, descr
       console.log("Error creating facility", err);
     });
 };
+
+
 // exports.create('test', '1234').then(function() {
 //   console.log('Created a test user');
 // });
