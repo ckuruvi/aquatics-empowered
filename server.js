@@ -13,6 +13,7 @@ var admin = require('./routes/admin');
 
 var facilities = require('./routes/facilities');
 var facilityDetails = require('./routes/facilitydetails');
+var emails = require('.routes/emails')
 
 
 require('./auth/setup');
@@ -45,6 +46,7 @@ app.use('/register', register);
 app.use('/admins', admin);
 app.use('/facility', facilities);
 app.use('/facilitydetails', facilityDetails);
+app.use('/emails', emails);
 app.get('/loginStatus', function(req, res){
   res.send(req.isAuthenticated());
 })
