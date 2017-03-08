@@ -97,10 +97,3 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   // }; //end toggleEditState
 
 }); //end module
-
-
-
-
-//NOTES
-
-//target editToggle by row/facility id
