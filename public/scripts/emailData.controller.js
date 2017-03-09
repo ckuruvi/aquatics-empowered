@@ -16,7 +16,7 @@ ctrl.sendEmail = function () {
     level: ctrl.level,
     cost: ctrl.cost,
 
-    photo: ctrl.image_url,
+    photo: ctrl.image,
     // contacts: ctrl.contactList,
   };
 
@@ -27,7 +27,7 @@ ctrl.sendEmail = function () {
     console.log('back from emails.' , response.data);
 
   }).then(function() {
-    $location.path('/home')
+    $location.path('/')
   });
 
 };
@@ -59,7 +59,8 @@ ctrl.getFacilityData = function () {
     ctrl.description = response.data[0].description;
     ctrl.level = response.data[0].level;
     ctrl.cost = response.data[0].cost;
-    ctrl.handicap_accessibility = response.data[0].handicap_accessibility
+    ctrl.handicap_accessibility = response.data[0].handicap_accessibility;
+    ctrl.image = response.data[0].image_url
 
 
     }).catch(function(err){

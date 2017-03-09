@@ -2,6 +2,7 @@ var nodemailer = require("nodemailer");
 var express = require("express");
 var router = express.Router();
 var dotenv = require('dotenv').config();
+var path = require("path");
 
 
 
@@ -9,6 +10,7 @@ router.post('/', function (req, res) {
   console.log('new email',req.body, req.user); // see below
 
     var mailData = req.body;
+    console.log('this is the mailData', mailData);
     // var contactsArray = [req.user.username];
 //taking user and adding their name to contact name
 
@@ -34,7 +36,7 @@ router.post('/', function (req, res) {
     var htmlEmail = "<div align='center' style='border: 1px solid black;padding:5px 5px; margin: auto auto;'>"
     htmlEmail += "<h1 align=center> hello world <h1>"
     // "<h1 align='center'>" + mailData.babyName +  " </h1>";
-    htmlEmail += "<h2> hellow world </h2>"
+    htmlEmail += "<h2> hello world </h2>"
     // "<h2>" + mailData.months + mailData.monthsText + "</h2>";
 
 
@@ -54,12 +56,12 @@ router.post('/', function (req, res) {
       to: "rukia.sm.23@gmail.com",
 
       subject: 'New Facility registered '+ req.body.facilityName  + ' via Aquatics Empowered', //subject line
-      text: 'The following facility just registered with Aquatics Empowered ' + req.body.facilityName, //textEmail, // plain text
-      html: 'The following facility just registered with Aquatics Empowered ' + req.body.facilityName, //htmlEmail, //html
-      // attachments: [{   // use URL as an attachment
-      //       filename: mailData.photo.picture_originalname,
-      //       path: mailData.photo.picture_url
-      //   }]
+      text: 'The following facility just registered with Aquatics Empowered, ' + req.body.facilityName, //textEmail, // plain text
+      html: 'The following facility just registered with Aquatics Empowered, ' + req.body.facilityName, //htmlEmail, //html
+      attachments: [{   // use URL as an attachment
+            filename: mailData.photo,
+            path: path.join(__dirname,'/../public/', mailData.photo )
+        }]
     }; // end mailOptions object
 
     console.log(mailOptions.attachments);
