@@ -9,13 +9,13 @@ router.post('/', function (req, res) {
   console.log('new email',req.body, req.user); // see below
 
     var mailData = req.body;
-    var contactsArray = [req.user.username];
+    // var contactsArray = [req.user.username];
 //taking user and adding their name to contact name
 
     //
-    mailData.contacts.forEach(function (aContact) {
-      contactsArray.push('"'+ aContact.contactname +'" <' +aContact.contactemail+'>');
-    });
+    // mailData.contacts.forEach(function (aContact) {
+    //   contactsArray.push('"'+ aContact.contactname +'" <' +aContact.contactemail+'>');
+    // });
     //  console.log(contactsArray);
 
 
@@ -29,18 +29,20 @@ router.post('/', function (req, res) {
     }); // end createTransport
 
     //building up the body of the email
-    var textEmail = mailData.babyName + " is " + mailData.months + mailData.monthsText + "!\n";
-
+    var textEmail = "hello World"
+// mailData.babyName + " is " + mailData.months + mailData.monthsText + "!\n";
     var htmlEmail = "<div align='center' style='border: 1px solid black;padding:5px 5px; margin: auto auto;'>"
-    htmlEmail += "<h1 align='center'>" + mailData.babyName +  " </h1>";
-    htmlEmail += "<h2>" + mailData.months + mailData.monthsText + "</h2>";
+    htmlEmail += "<h1 align=center> hello world <h1>"
+    // "<h1 align='center'>" + mailData.babyName +  " </h1>";
+    htmlEmail += "<h2> hellow world </h2>"
+    // "<h2>" + mailData.months + mailData.monthsText + "</h2>";
 
 
-    mailData.aches.forEach( function (indivAch) {
-      textEmail += indivAch.achievement_completed_date_string + " -- " + indivAch.achievement_completed_text + " -- " + indivAch.achievement_completed_comment;
-
-      htmlEmail += "<p style='font-size:1.5em;'>" + indivAch.achievement_completed_date_string + " -- " + indivAch.achievement_completed_text + " -- " + indivAch.achievement_completed_comment + "</p>";
-    });
+    // mailData.aches.forEach( function (indivAch) {
+    //   textEmail += indivAch.achievement_completed_date_string + " -- " + indivAch.achievement_completed_text + " -- " + indivAch.achievement_completed_comment;
+    //
+    //   htmlEmail += "<p style='font-size:1.5em;'>" + indivAch.achievement_completed_date_string + " -- " + indivAch.achievement_completed_text + " -- " + indivAch.achievement_completed_comment + "</p>";
+    // });
 
 
 
@@ -51,13 +53,13 @@ router.post('/', function (req, res) {
       // to: contactsArray, //receiver
       to: "rukia.sm.23@gmail.com",
 
-      subject: 'Update from '+ req.user.user_fullname  + ' via Aquatics Empowered', //subject line
-      text: textEmail, // plain text
-      html: htmlEmail, //html
-      attachments: [{   // use URL as an attachment
-            filename: mailData.photo.picture_originalname,
-            path: mailData.photo.picture_url
-        }]
+      subject: 'New Facility registered '+ req.body.facilityName  + ' via Aquatics Empowered', //subject line
+      text: 'The following facility just registered with Aquatics Empowered ' + req.body.facilityName, //textEmail, // plain text
+      html: 'The following facility just registered with Aquatics Empowered ' + req.body.facilityName, //htmlEmail, //html
+      // attachments: [{   // use URL as an attachment
+      //       filename: mailData.photo.picture_originalname,
+      //       path: mailData.photo.picture_url
+      //   }]
     }; // end mailOptions object
 
     console.log(mailOptions.attachments);

@@ -13,7 +13,7 @@ var admin = require('./routes/admin');
 
 var facilities = require('./routes/facilities');
 var facilityDetails = require('./routes/facilitydetails');
-var emails = require('.routes/emails')
+var emails = require('./routes/emails')
 
 
 require('./auth/setup');

@@ -24,10 +24,13 @@ angular
         controller: "FacilitiesController as facilities"
       })
       .when("/login", {
-
         templateUrl: "views/login.html",
-      controller: "LoginController as login"
+        controller: "LoginController as login"
     })
+      .when("/emailData", {
+        templateUrl: "views/emailData.html",
+        controller: "EmailDataController as email"
+      })
       .when("/facilitydetails", {
         templateUrl: "views/facilitydetails.html",
         controller: "FacilityDetailsController as facilitydetails"
