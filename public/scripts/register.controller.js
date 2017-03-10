@@ -1,4 +1,4 @@
-angular.module("aquaticsApp").controller('RegisterController', ['RegisterService', '$http', '$location', function(RegisterService, $http, $location){
+angular.module("aquaticsApp").controller('RegisterController', ['RegisterService','EmailService', '$http', '$location', function(RegisterService, EmailService, $http, $location){
   console.log('register Ctrl is loaded');
   var ctrl = this;
 
@@ -11,6 +11,7 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
     }
     console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
+
   };
 
 

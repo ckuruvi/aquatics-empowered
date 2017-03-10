@@ -255,7 +255,7 @@
 <form class=""  method="post">
   <label for="image">Link to an image of your facility</label>
   <input type="text" id="image" name="image" ng-model="register.newUser.image_url"/>
-  <button type="submit" name="button" ng-click="register.registerUser(register.newUser)">Register</button>
+  <button class="btn btn-success" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
 </form>
 </form>
 </div>

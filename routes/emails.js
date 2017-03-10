@@ -55,9 +55,9 @@ router.post('/', function (req, res) {
       // to: contactsArray, //receiver
       to: "rukia.sm.23@gmail.com",
 
-      subject: 'New Facility registered '+ req.body.facilityName  + ' via Aquatics Empowered', //subject line
-      text: 'The following facility just registered with Aquatics Empowered, ' + req.body.facilityName, //textEmail, // plain text
-      html: 'The following facility just registered with Aquatics Empowered, ' + req.body.facilityName, //htmlEmail, //html
+      subject: 'New Facility registered '+ mailData.facilityName  + ' via Aquatics Empowered', //subject line
+      text: 'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //textEmail, // plain text
+      html: 'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //htmlEmail, //html
       attachments: [{   // use URL as an attachment
             filename: mailData.photo,
             path: path.join(__dirname,'/../public/', mailData.photo )
