@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService, UserProfileService) {
+angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService, UserProfileService, $uibModal) {
     console.log('FacilityDetailsController is loaded');
 
     var ctrl = this;
@@ -86,7 +86,26 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
       });
     }
 
-
+    ctrl.openModal=function(id){
+      console.log('inside openModal',id);
+      FacilityDetailsService.getUserDetails(id).then(function(res) {
+          console.log('userdetails', res);
+          ctrl.userDetails = res;
+          var modalInstance = $uibModal.open({
+              ariaLabelledBy: 'User Details',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: '/views/userprofilemodal.html',
+              controller: 'UserProfileModalController',
+              controllerAs: '$ctrl',
+              size: 'lg',
+              resolve: {
+                userDetails: function () {
+                  return ctrl.userDetails;
+                    }
+                  }
+                });
+        });
+    }
 
 
 });

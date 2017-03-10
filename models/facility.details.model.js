@@ -26,9 +26,22 @@ exports.getFacilityInfo = function(userId) {
 
 
 
+exports.getUserDetails = function(userId) {
+    return query(
+            "SELECT * FROM users where id=$1 ;", [userId]
+        ).then(function(facilityId) {
+            return facilityId[0];
+        })
+        .catch(function(err) {
+            console.log("Error getting user details", err);
+        });
+}
+
 exports.getTimeSlots = function(date, facilityId) {
     return query(
-            "SELECT * FROM facility_availability where facility_id=$2 and date=$1 order by start_time;", [date, facilityId]
+      "SELECT fa.id facility_availability_id,fa.date,fa.start_time,fa.end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
+"FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.date=$1 and fa.facility_id=$2;",
+             [date, facilityId]
         ).then(function(timeSlotList) {
             return timeSlotList;
         })
