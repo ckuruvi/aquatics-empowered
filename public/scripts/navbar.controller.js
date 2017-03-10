@@ -41,6 +41,9 @@ function(AuthService, UserProfileService, FacilityDetailsService, $http, $locati
       console.log('Successfully logged out!');
       sessionStorage.setItem( 'isAdmin', 'yay I am here...' );
       ctrl.loginStatus = false;
+      ctrl.facilityInfo = {};
+      ctrl.userToDisplay = {};
+      ctrl.currentUser = {};
       $location.path('/');
     }).catch(function(err){
       console.log('Error logging out');

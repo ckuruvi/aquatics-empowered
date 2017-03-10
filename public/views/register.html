@@ -132,16 +132,16 @@
 <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
   <h1>Register as a Facility</h1>
 
-  <form class=""  method="post">
+  <form class="">
     <!-- Facility Name -->
-    <form class=""  method="post">
+    <form class=""  >
       <label for="facilityName">Name of Facility</label>
       <input type="text" id="facility" name="facility" ng-model="register.newUser.name"/>
     </form>
   <!-- email -->
   <form class=""  method="post">
     <label for="email">Email</label>
-    <input type="text" id="email" name="email" ng-model="register.newUser.email" placeholder="example@example.com"/>
+    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="example@example.com"/>
   </form>
   <!-- password -->
   <form class=""  method="post">
