@@ -8,11 +8,10 @@ var connection = require('./db/connection');
 var login = require('./routes/login');
 var register = require('./routes/register');
 var home = require('./routes/home');
-
 var admin = require('./routes/admin');
-
 var facilities = require('./routes/facilities');
 var facilityDetails = require('./routes/facilitydetails');
+var userProfile = require('./routes/userProfile');
 
 
 require('./auth/setup');
@@ -45,6 +44,7 @@ app.use('/register', register);
 app.use('/admins', admin);
 app.use('/facility', facilities);
 app.use('/facilitydetails', facilityDetails);
+app.use('/userProfile', userProfile)
 app.get('/loginStatus', function(req, res){
   res.send(req.isAuthenticated());
 })

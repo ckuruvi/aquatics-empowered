@@ -18,19 +18,21 @@ angular
         templateUrl: "views/admin.html",
         controller: "AdminController as admin"
       })
-
       .when("/facilityProfile", {
         templateUrl: "views/facility.html",
         controller: "FacilitiesController as facilities"
       })
       .when("/login", {
-
         templateUrl: "views/login.html",
       controller: "LoginController as login"
     })
       .when("/facilitydetails", {
         templateUrl: "views/facilitydetails.html",
         controller: "FacilityDetailsController as facilitydetails"
+      })
+      .when("/profile", {
+        templateUrl: "views/profileView.html",
+        controller: "userProfileController as user"
       });
   })
   .run(function($rootScope, $location, $route, AuthService) {

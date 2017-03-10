@@ -7,17 +7,24 @@
 
   <title>Aquatics Empowered</title>
 
+<!-- Base Dependencies] -->
   <script src="https://use.fontawesome.com/0f3b48bd8b.js"></script>
   <link rel="stylesheet" href="vendors/bootstrap.min.css" media="screen" title="no title">
   <link href="vendors/angular-datepicker.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="css/styles.css">
   <script src="vendors/angular.min.js" charset="utf-8"></script>
   <script src="vendors/angular-route.min.js" charset="utf-8"></script>
+
+
+<!-- Feature Modules -->
   <script src="vendors/angular-datepicker.js"></script>
   <script src="vendors/angular-select-state.js" charset="utf-8"></script>
   <script src="" charset="utf-8"></script>
-  <script src="vendors/ui-bootstrap.min.js" charset="utf-8"></script>
+  <script src="vendors/ui-bootstrap.js" charset="utf-8"></script>
+  <script src="vendors/ui-bootstrap-tpls.js"></script>
 
+
+<!-- Controllers -->
   <script src="scripts/app.module.js" charset="utf-8"></script>
   <script src="scripts/login.controller.js" charset="utf-8"></script>
   <script src="scripts/app.config.js" charset="utf-8"></script>
@@ -27,14 +34,19 @@
   <script src="scripts/facilities.controller.js" charset="utf-8"></script>
   <script src="scripts/navbar.controller.js" charset="utf-8"></script>
   <script src="scripts/facility.details.controller.js" charset="utf-8"></script>
+  <script src="scripts/userProfile.controller.js" charset="utf-8"></script>
+  <script src="scripts/user.profile.modal.controller.js" charset="utf-8"></script>
 
+<!-- Services -->
   <script src="scripts/admin.service.js" charset="utf-8"></script>
   <script src="scripts/register.service.js" charset="utf-8"></script>
   <script src="scripts/auth.service.js" charset="utf-8"></script>
   <script src="scripts/home.service.js" charset="utf-8"></script>
   <script src="scripts/facilities.service.js" charset="utf-8"></script>
   <script src="scripts/facility.details.service.js" charset="utf-8"></script>
+  <script src="scripts/userProfile.service.js" charset="utf-8"></script>
 
+<!-- Styling -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -59,7 +71,7 @@
       <ul class="nav navbar-nav navbar-right" ng-controller="NavController as nav">
         <li ng-show="nav.loginStatus == false"><a href="/login">Login</a></li>
         <li ng-show="nav.loginStatus == false"><a href="/newUser">Register</a></li>
-        <li ng-show="nav.loginStatus == true"><a href="#">User Profile</a></li>
+        <li ng-show="nav.loginStatus == true"><a href="/profile">{{nav.userName}}</a></li>
         <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

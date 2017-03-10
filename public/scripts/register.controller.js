@@ -4,11 +4,6 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
 
 // sends newUser object (user/facility) to the registerService
   ctrl.registerUser = function(newUser) {
-    if(newUser.user) {
-      newUser.userType = "user";
-    } else {
-      newUser.userType = "facility";
-    }
     console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
   };
