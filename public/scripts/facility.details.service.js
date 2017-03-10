@@ -26,5 +26,16 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
         });
     }
 
+   this.getUserDetails=function(id){
+     console.log('inside getUserDetails', id);
+     return $http.get('/facilitydetails/getuserdetails?userId=' + id).then(function(response) {
+         console.log('user details: ', response);
+         return response.data;
+     }).catch(function(err) {
+         console.log('error getting user details :', err);
+     });
+
+
+   }
 
 });

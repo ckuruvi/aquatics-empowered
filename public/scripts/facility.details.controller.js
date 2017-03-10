@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService) {
+angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService,$uibModal) {
     console.log('FacilityDetailsController is loaded');
 
     var ctrl = this;
@@ -34,6 +34,27 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
             ctrl.getTimeSlots(ctrl.formdata.date);
         });
     };
+
+    ctrl.openModal=function(id){
+      console.log('inside openModal',id);
+      FacilityDetailsService.getUserDetails(id).then(function(res) {
+          console.log('userdetails', res);
+          ctrl.userDetails = res;
+          var modalInstance = $uibModal.open({
+              ariaLabelledBy: 'User Details',
+              ariaDescribedBy: 'modal-body',
+              templateUrl: '/views/userprofilemodal.html',
+              controller: 'UserProfileModalController',
+              controllerAs: '$ctrl',
+              size: 'lg',
+              resolve: {
+                userDetails: function () {
+                  return ctrl.userDetails;
+                    }
+                  }
+                });
+        });
+    }
 
     ctrl.timeSelectionArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 

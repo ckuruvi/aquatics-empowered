@@ -51,7 +51,10 @@
                 <tr ng-repeat=" obj in facilitydetails.timeSlotList">
                     <td>{{obj.start_time}}</td>
                     <td>{{obj.end_time}}</td>
-                    <td>{{obj.status}}</td>
+                    <td><div ng-switch="obj.approved">
+                      <div ng-switch-when="true"><button class="btn btn-xs btn-info" ng-click="facilitydetails.openModal(obj.user_id)" type="submit">Booked</button></div>
+                      <div ng-switch-default>{{obj.approved}}</div>
+                    </div></td>
                     <td><button class="btn btn-xs btn-info" ng-click="facilitydetails.deleteTimeSlot(obj.id)" type="submit">Delete</button></td>
                 </tr>
             </tBody>
