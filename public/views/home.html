@@ -2,6 +2,9 @@
 
 <button ng-click="home.logout()" >Logout</button> -->
 
+<!-- Find a faciliy nearby form  -->
+
+<!-- <section> -->
 <form name="chartsForm" class="form-inline well" ng-submit="home.getFacilities()">
   <div class="row">
     <div class="form-group row">
@@ -11,15 +14,31 @@
       </div>
     </div>
     <div class="col-xs-2">
-      <button type="submit" class="btn  btn-xs btn-primary" >Submit</button>
+      <button type="submit" class="btn  btn-xs btn-primary">Submit</button>
     </div>
   </div>
 </form>
+<!-- </section> -->
 
-<button class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+<!-- Aquatic levels information modal -->
+<!-- <section>
+<button ng-click="home.open()" class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+<div class="modal-header">
+  <h3>Levels Information</h3>
+</div>
+<div class="modal-body">
+  This is a test!
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" type="button" ng-click="close()">OK</button>
+</div>
+</section> -->
 
+<!-- Facilities List -->
+<!-- <section> -->
 <ul>
   <li ng-repeat="x in home.facilitieslist">
     {{ x.name + ', ' + x.street_address }}
   </li>
 </ul>
+<!-- </section> -->

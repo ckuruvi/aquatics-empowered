@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('HomeController', function($http, $location,HomeService){
+angular.module('aquaticsApp').controller('HomeController', function($http, $location, HomeService){
 
 
   var ctrl=this;
@@ -18,4 +18,19 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
       ctrl.facilitieslist=list;
     });
   }
+
+  // //open modal
+  // ctrl.open = function() {
+  //   console.log('Opening pop up modal');
+  //   var modalInstance = $uibModal.open({
+  //     templateUrl: 'home.html',
+  //     controller: 'HomeController',
+  //   });
+  // };
+  //
+  // //close modal
+  // ctrl.close = function() {
+  //   $modalInstance.dismiss('cancel');
+  // };
+
 });
