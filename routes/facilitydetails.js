@@ -5,7 +5,7 @@ var FacilityDetails = require('../models/facility.details.model.js');
 
 router.get('/gettimeslots', function(req, res) {
     console.log("date ::", req.query.date);
-    FacilityDetails.getFacilityId(5)  //user id hard coded for now. need to pull from the session
+    FacilityDetails.getFacilityId(req.user.id)
         .then(function(facilityId) {
             FacilityDetails.getTimeSlots(new Date(req.query.date), facilityId).then(function(timeSlotlist) {
                 res.send(timeSlotlist);
@@ -18,7 +18,7 @@ router.get('/gettimeslots', function(req, res) {
 
 router.post('/', function(req, res) {
     console.log('formdata', req.body);
-    FacilityDetails.getFacilityId(5) //user id hard coded for now. need to pull from the session
+    FacilityDetails.getFacilityId(req.user.id)
         .then(function(facilityId) {
             setTimeSlots(req.body, facilityId).then(function(response) {
                 res.sendStatus(201);
@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
         });
 });
 
-
+  // setting availability
 function setTimeSlots(formdata, facilityId) {
     return new Promise(function(resolve, reject) {
         var startTime = parseInt(formdata.startTime);
@@ -50,7 +50,7 @@ function setTimeSlots(formdata, facilityId) {
     });
 } // end of setTimeSlots function
 
-
+  //delete time slot
 router.delete('/:id', function(req, res) {
     FacilityDetails.deleteTimeSlot(req.params.id).then(function() {
         res.sendStatus(204);
@@ -59,6 +59,28 @@ router.delete('/:id', function(req, res) {
         res.sendStatus(500);
     });
 });
+
+//GETting a facility
+router.get('/:id', function(req, res) {
+  console.log('attempting to get facility');
+  FacilityDetails.getFacilityInfo(req.params.id).then(function(facility) {
+    console.log('returned from model with facility: ', facility);
+    res.status(200).send(facility)
+  }).catch(function(err) {
+    console.log('error getting facility', err);
+  })
+}); // end GET
+
+  // updates facility info
+  router.put('/:id', function(req, res) {
+    console.log('attempting to update facility ', req.body.name);
+    FacilityDetails.updateFacility(req.body).then(function(facility) {
+      res.status(204).send(facility);
+    }).catch(function(err) {
+      console.log('err updating facility', err);
+      res.sendStatus(500);
+    });
+  }); // end PUT 
 
 
 module.exports = router;

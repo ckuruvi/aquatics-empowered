@@ -1,0 +1,21 @@
+Give option to set up recurring reservation.
+
+populate the calendar with available dates
+
+availability is the most important function. distance is like 3rd.
+  - filter by "i am available tuesdays, thursdays, and sundays." - these are the facilities that have
+  availability on those dates. then order by distance, which matters much less than getting all your sessions in.
+
+- Facilities should add a description of steps when a user arrives. Do they talk to the front desk? call the contact? etc.
+
+- needs to be on search page (in order of importance):
+      - level
+      - date range
+      - cost
+      - distance
+
+ - in admin view, make 'approved' or 'pending' different colors and/or add an icon. sorting too.
+
+
+**** get Ali to use the app and just watch. ask questions about what shes trying to do if shes stuck.
+      ** ask her to talk aloud and walk me through her thought process.

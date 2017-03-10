@@ -1,9 +1,12 @@
-angular.module('aquaticsApp').controller('FacilitiesController', function ($http, $location,$interval, FacilitiesService){
+angular.module('aquaticsApp').controller('FacilitiesController', function ($http, $location,$interval, FacilitiesService, UserProfileService){
 console.log('FacilitiesController is loaded');
 
 var ctrl = this;
 ctrl.facility=[];
 ctrl.facilityAvail=[];
+
+//store current user info here
+ctrl.currentUser = {};
 
 //to get facilities info from database
 ctrl.getFacilitiesInfo = function(){
@@ -44,6 +47,10 @@ ctrl.getSearchResults = function (key){
 };
 
 ctrl.postFacilityAvail = function (reservation){
+  if (ctrl.currentUser.user_type == 'facility') {
+    console.log('facilites cant book a reservation');
+    return;
+  }
   console.log('this is the reservation selected', reservation);
 
   FacilitiesService.postFacilityAvail(reservation).then(function (response){
@@ -53,5 +60,11 @@ ctrl.postFacilityAvail = function (reservation){
     console.log('this is the post fac avail reservation', ctrl.postAvail);
   });
 };
+
+ctrl.getUser = function () {
+  UserProfileService.getUser().then(function(response) {
+    ctrl.currentUser = response;
+  });
+}
 
 });

@@ -1,7 +1,8 @@
-angular.module('aquaticsApp').controller('HomeController', function($http, $location,HomeService){
+angular.module('aquaticsApp').controller('HomeController', function($http, $location, HomeService){
 
 
   var ctrl=this;
+
   ctrl.logout = function() {
     $http.delete('/login').then(function(){
       console.log('Successfully logged out!');
@@ -19,3 +20,8 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
     });
   }
 });
+
+//  TODO stores the clicked facility in service to grab on next page.
+// ctrl.storeFacChoice = function (facility) {
+//
+// }

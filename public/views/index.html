@@ -49,6 +49,7 @@
   <base href="/" />
 
 </head>
+  <!-- NAVBAR -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -66,7 +67,8 @@
       <ul class="nav navbar-nav navbar-right" ng-controller="NavController as nav">
         <li ng-show="nav.loginStatus == false"><a href="/login">Login</a></li>
         <li ng-show="nav.loginStatus == false"><a href="/newUser">Register</a></li>
-        <li ng-show="nav.loginStatus == true"><a href="/profile">{{nav.userName}}</a></li>
+        <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'user'"><a href="/profile">{{nav.userToDisplay.first_name}}</a></li>
+        <li ng-show="nav.loginStatus == true && nav.facilityInfo.name"><a href="/facilitydetails">{{nav.facilityInfo.name}}</a></li>
         <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
