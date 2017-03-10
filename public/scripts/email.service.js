@@ -17,6 +17,7 @@ this.sendEmail = function (newUser) {
 
     photo: newUser.image_url,
     contacts: newUser.email,
+    contactPerson: newUser.firstName + ' ' + newUser.lastName + ' ' + newUser.phone,
   };
   console.log('the emailDataObject is', emailDataObject);
 
