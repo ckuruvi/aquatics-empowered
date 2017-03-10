@@ -45,11 +45,8 @@ app.use('/register', register);
 app.use('/admins', admin);
 app.use('/facility', facilities);
 app.use('/facilitydetails', facilityDetails);
-<<<<<<< HEAD
 app.use('/userProfile', userProfile)
-=======
 app.use('/emails', emails);
->>>>>>> email_setup
 app.get('/loginStatus', function(req, res){
   res.send(req.isAuthenticated());
 })
