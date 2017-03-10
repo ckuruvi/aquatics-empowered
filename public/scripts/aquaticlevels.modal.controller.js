@@ -4,8 +4,6 @@ angular.module('aquaticsApp').controller('AquaticLevelsModalController', functio
     var ctrl = this;
 
 
-
-
     ctrl.cancel = function () {
       $uibModalInstance.dismiss('cancel');
     };

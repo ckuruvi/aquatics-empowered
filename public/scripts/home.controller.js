@@ -15,9 +15,11 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
   ctrl.openModal = function() {
     console.log('Opening pop up modal');
   var modalInstance = $uibModal.open({
+    ariaLabelledBy: 'Aquatic levels homepage modals',
     templateUrl: '/views/aquaticlevelsinfo.modal.html',
     controller: 'AquaticLevelsModalController',
     controllerAs: 'levels',
+    animation: 'true',
     size: 'lg'
     });
   };
