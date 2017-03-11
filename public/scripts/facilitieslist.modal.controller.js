@@ -1,39 +1,20 @@
-angular.module('aquaticsApp').controller('FacilitiesListModalController', function($uibModal) {
+angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance) {
+  console.log('Facilities List Modal Controller loaded');
 
   var ctrl = this;
 
-  ctrl.openModal = function(id) {
-    console.log('Inside list modal', id);
-  }
+  ctrl.ok = function() {
+    $uibModalInstance.close('ok');
+  };
+
+  ctrl.cancel = function() {
+    $uibModalInstance.dismiss('cancel');
+  };
+
+
 
 
 }); //end module
-
-
-// ctrl.openModal = function(id){
-//   console.log('inside openModal',id);
-//   FacilityDetailsService.getUserDetails(id).then(function(res) {
-//       console.log('userdetails', res);
-//       ctrl.userDetails = res;
-//       var modalInstance = $uibModal.open({
-//           ariaLabelledBy: 'User Details',
-//           ariaDescribedBy: 'modal-body',
-//           templateUrl: '/views/userprofilemodal.html',
-//           controller: 'UserProfileModalController',
-//           controllerAs: '$ctrl',
-//           size: 'lg',
-//           resolve: {
-//             userDetails: function () {
-//               return ctrl.userDetails;
-//                 }
-//               }
-//             });
-//     });
-// }
-
-
-// angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService,$uibModal) {
-//     console.log('FacilityDetailsController is loaded');
 
 // angular.module('aquaticsApp').controller('UserProfileModalController', function($scope,$uibModalInstance, userDetails) {
 //     console.log('UserProfileModalController is loaded', userDetails);

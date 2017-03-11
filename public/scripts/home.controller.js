@@ -1,7 +1,7 @@
 angular.module('aquaticsApp').controller('HomeController', function($http, $location, HomeService,$uibModal){
 
 
-  var ctrl=this;
+  var ctrl = this;
   ctrl.logout = function() {
     $http.delete('/login').then(function(){
       console.log('Successfully logged out!');
@@ -12,7 +12,8 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
     });
   }
 
-  ctrl.openModal = function() {
+  //modal for aquatic levels
+  ctrl.openInfoModal = function() {
     console.log('Opening pop up modal');
   var modalInstance = $uibModal.open({
     ariaLabelledBy: 'Aquatic levels homepage modals',
@@ -24,9 +25,48 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
     });
   };
 
-  ctrl.getFacilities=function(){
+  //modal for <li> in facilities list on home page
+  ctrl.openListModal = function(id) {
+    console.log('Inside list modal', id);
+    HomeService.getFacilitiesList(id).then(function(res) {
+      console.log('facilities list in modal', res);
+    var modalInstance = $uibModal.open({
+      ariaLabelledBy: 'List of Facilities',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: '/views/facilitieslist.modal.html',
+      controller: 'FacilitiesListModalController',
+      controllerAs: 'list',
+      size: 'lg,'
+    });
+    });
+  };
+
+
+  // ctrl.openModal = function(id){
+  //   console.log('inside openModal',id);
+  //   FacilityDetailsService.getUserDetails(id).then(function(res) {
+  //       console.log('userdetails', res);
+  //       ctrl.userDetails = res;
+  //       var modalInstance = $uibModal.open({
+  //           ariaLabelledBy: 'User Details',
+  //           ariaDescribedBy: 'modal-body',
+  //           templateUrl: '/views/userprofilemodal.html',
+  //           controller: 'UserProfileModalController',
+  //           controllerAs: '$ctrl',
+  //           size: 'lg',
+  //           resolve: {
+  //             userDetails: function () {
+  //               return ctrl.userDetails;
+  //                 }
+  //               }
+  //             });
+  //     });
+  // }
+
+
+  ctrl.getFacilities = function(){
     HomeService.getFacilitiesList(ctrl.zipcode).then(function(list){
-      ctrl.facilitieslist=list;
+      ctrl.facilitieslist = list;
     });
   }
 

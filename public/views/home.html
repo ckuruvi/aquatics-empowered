@@ -19,13 +19,13 @@
 </form>
 </section>
 
-<button ng-click="home.openModal()" class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+<button ng-click="home.openInfoModal()" class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
 
 <!-- Facilities List -->
 <section class="homeFacilitiesSection">
 <ul class="homeFacilitiesList">
   <li ng-repeat="x in home.facilitieslist">
-    <a href="#">{{ x.name + ' - ' + x.city }}</a>
+    <a href="#" ng-click="home.openListModal()">{{ x.name + ' - ' + x.city }}</a>
   </li>
 </ul>
 </section>

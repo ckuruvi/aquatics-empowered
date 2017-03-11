@@ -5,16 +5,18 @@ on click on link, modal pops up with
 facility name, street address, city, zipcode, description, level, cost, image  -->
 <section>
   <div class="modal-header">
-    <h2>{{facility name}}</h2>
+    <h2>Your Facility Here</h2>
   </div>
 
   <div class="modal-body">
-
+    <p>
+      if this modal text shows up, then you may proceed to the next step!
+    </p>
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-warning" type="button">OK</button>
-    <button class="btn btn-primary" type="button"></button>
+    <button class="btn btn-warning" type="button" ng-click="list.ok()">OK</button>
+    <button class="btn btn-primary" type="button" ng-click="list.cancel()">Cancel</button>
   </div>
 </section>
 
@@ -34,3 +36,16 @@ facility name, street address, city, zipcode, description, level, cost, image  -
 <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
 <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Close</button>
 </div> -->
+
+<!-- !Information to put in modal! -->
+<!--
+city
+cost
+description
+image_url
+level
+name
+state
+street_address
+zip
+-->
