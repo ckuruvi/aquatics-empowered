@@ -1,7 +1,7 @@
 angular.module('aquaticsApp').service('HomeService', function($http){
 
 
-  this.getFacilitiesList=function(zipcode){
+  this.getFacilitiesList = function(zipcode){
     return $http.get("/home/"+zipcode).then(function(response){
       console.log("response data from server",response.data);
       return response.data;

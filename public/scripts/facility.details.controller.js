@@ -35,7 +35,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
         });
     };
 
-    ctrl.openModal=function(id){
+    ctrl.openModal = function(id){
       console.log('inside openModal',id);
       FacilityDetailsService.getUserDetails(id).then(function(res) {
           console.log('userdetails', res);
