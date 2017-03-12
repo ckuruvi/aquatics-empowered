@@ -5,11 +5,20 @@
 facility name, street address, city, zipcode, description, level, cost, image  -->
 <section>
   <div class="modal-header">
-    <h2>{{list.facilityInfo.name}}</h2>
+    <h2>{{list.facilityInfo.name}} - {{list.facilityInfo.city}}</h2>
   </div>
 
   <div class="modal-body">
-    <p>{{list.}}</p>
+  <ul>
+    <li>Location: {{list.facilityInfo.street_address}} {{list.facilityInfo.city}}, {{list.facilityInfo.state}} {{list.facilityInfo.zip}}</li>
+    <li>Description: {{list.facilityInfo.description}}</li>
+    <li>Accessibility: {{list.facilityInfo.handicap_accessibility}}</li>
+    <li>Level: {{list.facilityInfo.level}}</li>
+    <li>Cost: {{list.facilityInfo.cost}}</li>
+    <li>Status: {{list.facilityInfo.approved}}</li>
+    <li>Accessibility Id: {{list.facilityInfo.accessibility_id}}</li>
+    <li> <img ng-src="{{list.facilityInfo.image_url}}" alt=""/></li>
+  </ul>
   </div>
 
   <div class="modal-footer">

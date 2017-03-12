@@ -49,28 +49,6 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
   };
 
 
-  // ctrl.openModal = function(id){
-  //   console.log('inside openModal',id);
-  //   FacilityDetailsService.getUserDetails(id).then(function(res) {
-  //       console.log('userdetails', res);
-  //       ctrl.userDetails = res;
-  //       var modalInstance = $uibModal.open({
-  //           ariaLabelledBy: 'User Details',
-  //           ariaDescribedBy: 'modal-body',
-  //           templateUrl: '/views/userprofilemodal.html',
-  //           controller: 'UserProfileModalController',
-  //           controllerAs: '$ctrl',
-  //           size: 'lg',
-  //           resolve: {
-  //             userDetails: function () {
-  //               return ctrl.userDetails;
-  //                 }
-  //               }
-  //             });
-  //     });
-  // }
-
-
   ctrl.getFacilities = function(){
     HomeService.getFacilitiesList(ctrl.zipcode).then(function(list){
       ctrl.facilitieslist = list;
