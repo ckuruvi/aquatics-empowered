@@ -63,7 +63,23 @@ exports.setTimeSlots = function(facilityId, date, startTime, endTime) {
 }
 
 
-exports.deleteTimeSlot = function(id) {
+
+exports.deleteTimeSlotReservation = function(id) {
+  console.log("inside deleteTimeSlotReservation",id);
+    return query(
+            "DELETE from facility_reservation where facility_availability_id=$1 RETURNING *", [id]
+        ).then(function(users) {
+          console.log("inside deleteTimeSlotReservation",users);
+            return users[0];
+        })
+        .catch(function(err) {
+            console.log("Error deleting  timeslots", err);
+        });
+};
+
+
+exports.deleteTimeSlotAvailibility = function(id) {
+  console.log("inside deleteTimeSlotAvailibility",id);
     return query(
             "DELETE from facility_availability where id=$1 RETURNING *", [id]
         ).then(function(users) {

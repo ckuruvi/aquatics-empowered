@@ -63,15 +63,32 @@ function setTimeSlots(formdata, facilityId) {
     });
 } // end of setTimeSlots function
 
-  //delete time slot
+//   //delete time slot
+// router.delete('/:id', function(req, res) {
+//     FacilityDetails.deleteTimeSlot(req.params.id).then(function() {
+//         res.sendStatus(204);
+//     }).catch(function(err) {
+//         console.log('Error deleting timeslot');
+//         res.sendStatus(500);
+//     });
+// });
+
+
+//delete time slot
 router.delete('/:id', function(req, res) {
-    FacilityDetails.deleteTimeSlot(req.params.id).then(function() {
-        res.sendStatus(204);
-    }).catch(function(err) {
-        console.log('Error deleting timeslot');
-        res.sendStatus(500);
+
+  FacilityDetails.deleteTimeSlotReservation(req.params.id).then(function() {
+
+    FacilityDetails.deleteTimeSlotAvailibility(req.params.id).then(function() {
+      res.sendStatus(204);
     });
+  }).catch(function(err) {
+      console.log('Error deleting timeslot');
+      res.sendStatus(500);
+  });
 });
+
+
 
 //GETting a facility
 router.get('/:id', function(req, res) {
