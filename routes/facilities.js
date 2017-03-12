@@ -1,32 +1,17 @@
 var router = require('express').Router();
 var pool = require('../db/connection');
+var FacilityDetails = require('../models/facility.details.model')
 
 
-
-
-router.get("/", function(req, res) {
-
-  pool.connect(function(err, client, done) {
-    if (err) {
-      console.log("Error connecting to DB", err);
-      res.sendStatus(500);
-      done();
-    } else {
-
-      client.query("SELECT * FROM facilities;", function(err, result) {
-        done();
-        if (err) {
-          console.log("Error querying DB", err);
-          res.sendStatus(500);
-        } else {
-          console.log("Got facilities from DB", result.rows);
-          res.send(result.rows)
-
-        }
-      });
-    }
+router.get("/:id", function(req, res) {
+  FacilityDetails.getFacility(req.params.id).then(function(facility) {
+  console.log('Getting facility info from db', facility);
+  res.status(200).send(facility);
+}).catch(function(err) {
+  console.log('Error logging facility', err);
   });
 });
+
 
 router.get("/availability", function(req, res) {
 
@@ -88,7 +73,7 @@ router.post('/', function(req, res){
     } else {
 
       client.query('INSERT INTO facility_reservation (reservation_id, facility_availability_id, approved) VALUES ($1, $2, $3) RETURNING *;',
-      [req.body.data.reservation_id,req.body.data.id, true],
+      [req.user.id, req.body.data.id, true],
       function(err, result){
         //waiting for database to get information back
         done();

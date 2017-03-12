@@ -2,6 +2,9 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
 
     console.log('FacilityDetailsService is loaded');
 
+    // single facility stored here to display on facilityDetails page.
+    var storedFacility;
+
     this.setTimeSlots = function(formdata) {
         return $http.post("/facilitydetails", formdata).catch(function(err) {
             console.log("Error saving timeslots", err);
@@ -25,6 +28,16 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
             console.log("Error deleting  expense from list", err);
         });
     }
+    
+    // sends facilityInfo to navCtrl
+    this.getFacilityInfo = function(id) {
+      return $http.get('/facilitydetails/' + id).then(function(response) {
+        storedFacility = response.data;
+        return response.data;
+      }).catch(function(err) {
+        console.log('error getting facility info', err);
+      });
+    }
 
    this.getUserDetails=function(id){
      console.log('inside getUserDetails', id);
@@ -34,8 +47,6 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
      }).catch(function(err) {
          console.log('error getting user details :', err);
      });
-
-
    }
 
 });

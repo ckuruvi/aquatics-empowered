@@ -1,7 +1,8 @@
-angular.module('aquaticsApp').controller('HomeController', function($http, $location, HomeService,$uibModal){
+angular.module('aquaticsApp').controller('HomeController', function($http, $location, HomeService, FacilitiesService, $uibModal){
 
 
   var ctrl = this;
+
   ctrl.logout = function() {
     $http.delete('/login').then(function(){
       console.log('Successfully logged out!');
@@ -27,16 +28,22 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
 
   //modal for <li> in facilities list on home page
   ctrl.openListModal = function(id) {
-    console.log('Inside list modal', id);
-    HomeService.getFacilitiesList(id).then(function(res) {
-      console.log('facilities list in modal', res);
+    FacilitiesService.getFacilitiesInfo(id).then(function(res) {
+    //   console.log('facilities list in modal', res);
+      ctrl.facility = res;
     var modalInstance = $uibModal.open({
       ariaLabelledBy: 'List of Facilities',
       ariaDescribedBy: 'modal-body',
       templateUrl: '/views/facilitieslist.modal.html',
       controller: 'FacilitiesListModalController',
       controllerAs: 'list',
-      size: 'lg,'
+      size: 'lg,',
+      resolve: {
+        facilityInfo: function() {
+          console.log('logging facility', ctrl.facility);
+        return ctrl.facility;
+        }
+      }
     });
     });
   };
@@ -71,3 +78,8 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
   }
 
 });
+
+//  TODO stores the clicked facility in service to grab on next page.
+// ctrl.storeFacChoice = function (facility) {
+//
+// }

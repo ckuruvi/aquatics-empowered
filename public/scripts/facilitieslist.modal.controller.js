@@ -1,7 +1,13 @@
-angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance) {
-  console.log('Facilities List Modal Controller loaded');
+angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance, facilityInfo, FacilitiesService) {
+  console.log('Facilities List Modal Controller loaded', facilityInfo);
 
   var ctrl = this;
+
+  ctrl.facilityInfo = facilityInfo;
+
+  console.log('Loggin facilityInfo', facilityInfo);
+
+
 
   ctrl.ok = function() {
     $uibModalInstance.close('ok');

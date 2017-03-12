@@ -24,7 +24,7 @@ angular
       })
       .when("/login", {
         templateUrl: "views/login.html",
-      controller: "LoginController as login"
+        controller: "LoginController as login"
     })
       .when("/facilitydetails", {
         templateUrl: "views/facilitydetails.html",

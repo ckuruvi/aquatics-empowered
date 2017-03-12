@@ -1,4 +1,4 @@
-angular.module("aquaticsApp").service('RegisterService', function($http, $location, $rootScope){
+angular.module("aquaticsApp").service('RegisterService', function(EmailService, $http, $location, $rootScope){
 
 
   this.checkLoginStatus = function(){
@@ -19,6 +19,7 @@ angular.module("aquaticsApp").service('RegisterService', function($http, $locati
     if(newUser.userType == 'facility') {
         $http.post('register/facility', newUser).then(function(response){
           console.log(response);
+          EmailService.sendEmail(newUser);
           // broadcasts login event for navbar
           $rootScope.$broadcast('userLoggedIn');
           //sends the user back to home page after logging in

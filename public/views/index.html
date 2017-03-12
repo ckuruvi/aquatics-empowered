@@ -32,10 +32,13 @@
   <script src="scripts/facilities.controller.js" charset="utf-8"></script>
   <script src="scripts/navbar.controller.js" charset="utf-8"></script>
   <script src="scripts/facility.details.controller.js" charset="utf-8"></script>
+
   <script src="scripts/userProfile.controller.js" charset="utf-8"></script>
   <script src="scripts/user.profile.modal.controller.js" charset="utf-8"></script>
   <script src="scripts/aquaticlevels.modal.controller.js" charset="utf-8"></script>
   <script src="scripts/facilitieslist.modal.controller.js" charset="utf-8"></script>
+
+
 
 <!-- Services -->
   <script src="scripts/admin.service.js" charset="utf-8"></script>
@@ -45,6 +48,8 @@
   <script src="scripts/facilities.service.js" charset="utf-8"></script>
   <script src="scripts/facility.details.service.js" charset="utf-8"></script>
   <script src="scripts/userProfile.service.js" charset="utf-8"></script>
+  <script src="scripts/email.service.js" charset="utf-8"></script>
+
 
 <!-- Styling -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,6 +59,7 @@
   <base href="/" />
 
 </head>
+  <!-- NAVBAR -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -71,7 +77,8 @@
       <ul class="nav navbar-nav navbar-right" ng-controller="NavController as nav">
         <li ng-show="nav.loginStatus == false"><a href="/login">Login</a></li>
         <li ng-show="nav.loginStatus == false"><a href="/newUser">Register</a></li>
-        <li ng-show="nav.loginStatus == true"><a href="/profile">{{nav.userName}}</a></li>
+        <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'user'"><a href="/profile">{{nav.userToDisplay.first_name}}</a></li>
+        <li ng-show="nav.loginStatus == true && nav.facilityInfo.name"><a href="/facilitydetails">{{nav.facilityInfo.name}}</a></li>
         <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->

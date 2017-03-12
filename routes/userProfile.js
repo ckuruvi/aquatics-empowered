@@ -14,16 +14,15 @@ router.get('/', function(req, res) {
 
 router.put('/:id', function(req, res) {
   console.log('in update userProfile route');
-  if(req.body.user_type == 'user') {
     User.updateUser(req.body).then(function(user) {
-      res.status(200).send(user);
+      res.status(204).send(user);
     }).catch(function(err) {
       console.log('error updating user', err);
       res.sendStatus(500);
 
   });
 
-  } // if statement ends
+
 
 });
 

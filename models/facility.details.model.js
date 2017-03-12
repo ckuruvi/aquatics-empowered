@@ -10,7 +10,33 @@ exports.getFacilityId = function(userId) {
             console.log("Error getting facility Id", err);
         });
 }
+//get facility by userid
+exports.getFacilityInfo = function(userId) {
+  console.log('userId passed to model is: ', userId);
+    return query(
+            "SELECT * FROM facilities where users_id=$1;", [userId]
+        ).then(function(facility) {
+          console.log('facility[0] is', facility[0]);
+            return facility[0];
+        })
+        .catch(function(err) {
+            console.log("Error getting facility Id", err);
+        });
+}
 
+// get facility info by facility id
+exports.getFacility = function(id) {
+console.log('id passed to model is: ', id);
+ return query(
+         "SELECT * FROM facilities where id=$1;", [id]
+     ).then(function(facility) {
+       console.log('facility[0] is', facility[0]);
+         return facility[0];
+     })
+     .catch(function(err) {
+         console.log("Error getting facility Id", err);
+     });
+}
 
 
 exports.getUserDetails = function(userId) {
@@ -60,6 +86,19 @@ exports.deleteTimeSlot = function(id) {
             console.log("Error deleting  timeslots", err);
         });
 };
+
+//updates facility
+exports.updateFacility = function (fac) {
+  return query(
+    "UPDATE facilities SET name=$2, street_address=$3, city=$4, state=$5, zip=$6, description=$7, level=$8, image_url=$9, cost=$10 WHERE id = $1 RETURNING *",
+    [fac.id, fac.name, fac.street_address, fac.city, fac.state, fac.zip, fac.description, fac.level, fac.image_url, fac.cost]
+  ).then(function(facility) {
+    console.log('facility returned from db after update ', facility[0]);
+    return facility[0];
+  }).catch(function(err) {
+    console.log('error updating facilities', err);
+  })
+}
 
 function query(sqlString, data) {
     return new Promise(function(resolve, reject) {

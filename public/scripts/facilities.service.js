@@ -5,8 +5,8 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
       results: []
   };
 //to get facilities info from database
-  this.getFacilitiesInfo = function (){
-    return $http.get('/facility').then(function(response) {
+  this.getFacilitiesInfo = function (id){
+    return $http.get('/facility/' + id).then(function(response) {
      console.log('This is the facility data: ', response);
      return response.data;
    }).catch(function(err) {
@@ -30,7 +30,6 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
   return $http.get('/facility/search/?q=' + key).then(function (response){
 
        console.log('This is the search data: ',response.data);
-
 
         //reference the array inside the object
         sKey.results = response.data;

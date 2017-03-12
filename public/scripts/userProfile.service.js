@@ -8,10 +8,18 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
     });
   }
   // sends user information to update to the '/userProfile route', returns updated info to the userProfileCtrl
-  this.updateUser = function (user) {
-    return $http.put('/userProfile/' + user.id, user).then(function (response) {
-      return response.data;
-    })
+  this.updateUser = function (info) {
+    if(info.user_type){ // checks if info is contact, if not its a facility and does the else statement
+      return $http.put('/userProfile/' + info.id, info).then(function (response) {
+        console.log('contact updated is ', response.data.first_name);
+        return response.data;
+      });
+    } else { // if info is a facility, sends to facilitydetails route
+      return $http.put('/facilitydetails/' + info.id, info).then(function (response) {
+        console.log('facility updated is', response.name);
+        return response.data;
+      });
+    }
   }
 
 
