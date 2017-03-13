@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance, facilityInfo, $interval, FacilitiesService, AuthService) {
+angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance, facilityInfo, $interval, FacilitiesService, AuthService, UserProfileService) {
   console.log('Facilities List Modal Controller loaded', facilityInfo);
 
   var ctrl = this;
@@ -73,11 +73,6 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
     });
   };
 
-  ctrl.getUser = function () {
-    UserProfileService.getUser().then(function(response) {
-      ctrl.currentUser = response;
-    });
-  }
 
   //to get facilities availability
   ctrl.getFacilitiesAvail = function(id){
