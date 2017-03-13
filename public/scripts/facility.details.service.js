@@ -28,7 +28,7 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
             console.log("Error deleting  expense from list", err);
         });
     }
-    
+
     // sends facilityInfo to navCtrl
     this.getFacilityInfo = function(id) {
       return $http.get('/facilitydetails/' + id).then(function(response) {
@@ -48,5 +48,16 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
          console.log('error getting user details :', err);
      });
    }
+
+   this.getFacilityTimeSlots = function(facilityId) {
+       console.log('inside getFacilityTimeSlots',facilityId);
+       return $http.get('/facilitydetails/facilityslots/'+facilityId).then(function(response) {
+           console.log('facility timeslots list: ', response);
+           return response.data;
+       }).catch(function(err) {
+           console.log('error getting facility timeslots :', err);
+       });
+
+   };
 
 });

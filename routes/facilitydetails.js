@@ -113,4 +113,14 @@ router.get('/:id', function(req, res) {
   }); // end PUT
 
 
+router.get('/facilityslots/:Id', function(req, res) {
+    FacilityDetails.getFacilityTimeSlots(req.params.Id).then(function(facilityTimeSlotlist) {
+                res.send(facilityTimeSlotlist);
+        }).catch(function(err) {
+            console.log('Error fetching facility time slot list');
+            res.sendStatus(500);
+        });
+});
+
+
 module.exports = router;
