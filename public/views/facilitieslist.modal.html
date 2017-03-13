@@ -17,15 +17,15 @@ facility name, street address, city, zipcode, description, level, cost, image  -
        <!-- date-format is the format the date will appear in DOM EEEE=day -->
       <datepicker date-format="EEEE MM/dd/yyyy" datepicker-show="{{ctrl.visibility}}">
         <!-- ng-change shows the facilites with the avail time depending on the date you picked.Sub for ng-click -->
-        <input ng-change="list.getSearchResults(facilities.date)" ng-model="list.date" type="text"
+        <input ng-change="list.getSearchResults(list.date, list.facilityInfo.id)" ng-model="list.date" type="text"
          class="angular-datepicker-input fa font-fontawesome font-light radius3"  placeholder="&#xf073; Choose a date"/>
       </datepicker>
-      You chose: {{facilities.date}}
+      You chose: {{list.date}}
     </div>
     <!-- {{avail.date}} -->
     <!-- will display time of selected available date -->
-    <ul id="timeSlots" ng-repeat="avail in facilities.results">
-    <li><button  ng-click="facilities.postFacilityAvail(avail)" class="btn btn-danger"><time>{{avail.start_time}}</time></button></li>
+    <ul id="timeSlots">
+    <li ng-repeat="slot in list.results"><button  ng-click="list.postFacilityAvail(slot)" class="btn btn-danger"><time>{{slot.start_time}}</time></button></li>
     </ul>
 
     </div>

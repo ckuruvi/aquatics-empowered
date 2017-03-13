@@ -25,9 +25,9 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
 
   };
 
-  this.getSearchResults = function (key){
+  this.getSearchResults = function (key, id){
   console.log('this is the date selected', key);
-  return $http.get('/facility/search/?q=' + key).then(function (response){
+  return $http.get('/facility/' + id  + '/search/?q=' + key).then(function (response){
 
        console.log('This is the search data: ',response.data);
 

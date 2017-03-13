@@ -46,7 +46,8 @@ router.get("/availability/:id", function(req, res) {
 //   });
 // });
 
-router.get('/search', function (req, res, next) {
+router.get('/:id/search', function (req, res, next) {
+  console.log('id to search availability: ', req.params.id);
 // console.log("this is the result", req.query.q);
   pool.connect(function (err, client, done) {
     if (err) {
@@ -57,7 +58,7 @@ router.get('/search', function (req, res, next) {
     }
     //SQL querry to select matching date a setting date in SQL date type using new Date
     client.query('SELECT * FROM facility_availability ' +
-    'WHERE date = $1;', [new Date(req.query.q)], function (err, result) {
+    'WHERE date = $1 AND facility_id = $2 ;', [new Date(req.query.q), req.params.id], function (err, result) {
       done();
       if (err) {
         console.log('Error querying the DB', err);
