@@ -1,10 +1,43 @@
 <h2>Facility details</h2>
 
 <form class=""  method="post">
+  <label>All Slots<input type="radio" checked ng-model="facilitydetails.view" value="allslots" /></label>
   <label>Availability<input type="radio" ng-model="facilitydetails.view" value="availability" /></label>
   <label>Facility Info<input type="radio" ng-model="facilitydetails.view" value="facility"/></label>
   <label>Contact Info<input type="radio" ng-model="facilitydetails.view" value="contact"/></label>
 </form>
+
+<div id="slotsAvailable" ng-show="facilitydetails.view == 'allslots'">
+    <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+            <h4>Available Slots</h4>
+        </div>
+    </div>
+    <table class="table table-striped" id="table_id">
+        <thead>
+            <tr class="active">
+                <th>Date</th>
+                <th>start time</th>
+                <th>end time</th>
+                <th>Status</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat=" obj in facilitydetails.facilityTimeSlotList">
+                <td>{{obj.date}}</td>
+                <td>{{obj.start_time}}</td>
+                <td>{{obj.end_time}}</td>
+                <td><div ng-switch="obj.approved">
+                  <div ng-switch-when="true"><button class="btn btn-xs btn-info" ng-click="facilitydetails.openModal(obj.user_id)" type="submit">Booked</button></div>
+                  <div ng-switch-default>{{obj.approved}}</div>
+                </div></td>
+                <td><button class="btn btn-xs btn-info" ng-click="facilitydetails.deleteTimeSlot(obj.facility_availability_id)" type="submit">Delete</button></td>
+            </tr>
+        </tBody>
+    </table>
+</div>
+
 
 
 <div id="availability" ng-show="facilitydetails.view == 'availability'">
