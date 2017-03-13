@@ -74,8 +74,11 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
     ctrl.deleteTimeSlot = function(id) {
         console.log("inside deleteTimeSlot::", id);
         FacilityDetailsService.deleteTimeSlot(id).then(function(res) {
-            //console.log(res);
+            if(ctrl.formdata != undefined){
             ctrl.getTimeSlots(ctrl.formdata.date);
+          } else {
+            ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
+          }
         });
     };
 
