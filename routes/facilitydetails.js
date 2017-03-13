@@ -63,15 +63,32 @@ function setTimeSlots(formdata, facilityId) {
     });
 } // end of setTimeSlots function
 
-  //delete time slot
+//   //delete time slot
+// router.delete('/:id', function(req, res) {
+//     FacilityDetails.deleteTimeSlot(req.params.id).then(function() {
+//         res.sendStatus(204);
+//     }).catch(function(err) {
+//         console.log('Error deleting timeslot');
+//         res.sendStatus(500);
+//     });
+// });
+
+
+//delete time slot
 router.delete('/:id', function(req, res) {
-    FacilityDetails.deleteTimeSlot(req.params.id).then(function() {
-        res.sendStatus(204);
-    }).catch(function(err) {
-        console.log('Error deleting timeslot');
-        res.sendStatus(500);
+
+  FacilityDetails.deleteTimeSlotReservation(req.params.id).then(function() {
+
+    FacilityDetails.deleteTimeSlotAvailibility(req.params.id).then(function() {
+      res.sendStatus(204);
     });
+  }).catch(function(err) {
+      console.log('Error deleting timeslot');
+      res.sendStatus(500);
+  });
 });
+
+
 
 //GETting a facility
 router.get('/:id', function(req, res) {
@@ -94,6 +111,16 @@ router.get('/:id', function(req, res) {
       res.sendStatus(500);
     });
   }); // end PUT
+
+
+router.get('/facilityslots/:Id', function(req, res) {
+    FacilityDetails.getFacilityTimeSlots(req.params.Id).then(function(facilityTimeSlotlist) {
+                res.send(facilityTimeSlotlist);
+        }).catch(function(err) {
+            console.log('Error fetching facility time slot list');
+            res.sendStatus(500);
+        });
+});
 
 
 module.exports = router;
