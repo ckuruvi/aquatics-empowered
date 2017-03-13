@@ -42,7 +42,7 @@ router.post('/facility', function(req, res){
       usrToLogin=user;
 
       console.log("usrToLogin :: ",usrToLogin);
-      return User.createFacility(user.id, req.body.name, req.body.address, req.body.city, req.body.state, req.body.zipcode, req.body.description, req.body.level,
+      return User.createFacility(user.id, req.body.name, req.body.address, req.body.city, req.body.state, req.body.zip, req.body.description, req.body.accessible, req.body.level,
         req.body.cost, req.body.image_url).then(function(facility){
           console.log('Created new facility ', facility);
           //logs in contact user after creation of user and facility in DB

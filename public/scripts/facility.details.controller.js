@@ -84,6 +84,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
       FacilityDetailsService.getFacilityInfo(ctrl.contactInfo.id).then(function(response) {
         console.log('facility stored is ', response);
         ctrl.facilityInfo = response;
+        ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
       });
     }
 
@@ -107,6 +108,15 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
                 });
         });
     }
+
+    ctrl.getFacilityTimeSlots = function(facilityId) {
+        console.log("inside getFacilityTimeSlots::");
+            FacilityDetailsService.getFacilityTimeSlots(facilityId).then(function(res) {
+                console.log('facility timeslots', res);
+                ctrl.facilityTimeSlotList = res;
+            });
+    };
+
 
 
 });
