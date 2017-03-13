@@ -76,7 +76,7 @@ function setTimeSlots(formdata, facilityId) {
 
 //delete time slot
 router.delete('/:id', function(req, res) {
-
+console.log('delete function in server');
   FacilityDetails.deleteTimeSlotReservation(req.params.id).then(function() {
 
     FacilityDetails.deleteTimeSlotAvailibility(req.params.id).then(function() {

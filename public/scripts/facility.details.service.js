@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').service('FacilityDetailsService', function($http) {
+angular.module('aquaticsApp').service('FacilityDetailsService', function(EmailService, $http) {
 
     console.log('FacilityDetailsService is loaded');
 
@@ -23,8 +23,13 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function($http) 
 
     };
 
-    this.deleteTimeSlot = function(id) {
-        return $http.delete("/facilitydetails/" + id).catch(function(err) {
+    this.deleteTimeSlot = function(dateObj,facilityInfo) {
+      console.log('this is the facility info', facilityInfo);
+      console.log('this is the date object', dateObj);
+        return $http.delete("/facilitydetails/" + dateObj.facility_availability_id).then(function(response){
+          console.log(response);
+          EmailService.sendCancelEmail(dateObj,facilityInfo);
+      }).catch(function(err) {
             console.log("Error deleting  expense from list", err);
         });
     }
