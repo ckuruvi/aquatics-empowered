@@ -11,12 +11,8 @@ exports.getFacilityId = function(userId) {
             console.log("Error getting facility Id", err);
         });
 }
-<<<<<<< HEAD
-//get facility by userid
-=======
 
   // get facility info by users_id
->>>>>>> master
 exports.getFacilityInfo = function(userId) {
   console.log('userId passed to model is: ', userId);
     return query(
