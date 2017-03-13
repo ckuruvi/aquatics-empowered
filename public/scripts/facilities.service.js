@@ -15,8 +15,8 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
 
   };
 
-  this.getFacilitiesAvail = function (id){
-    return $http.get('/facility/availability/' + id).then(function(response) {
+  this.getFacilitiesAvail = function (id, date){
+    return $http.get('/facility/availability/' + id +'/search/?q=' + date).then(function(response) {
      console.log('This is the facility avail data: ', response);
      return response.data;
    }).catch(function(err) {
@@ -25,16 +25,16 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
 
   };
 
-  this.getSearchResults = function (key, id){
-  console.log('this is the date selected', key);
-  return $http.get('/facility/' + id  + '/search/?q=' + key).then(function (response){
+  this.getSearchResults = function (date, id){
+  console.log('this is the date selected', date);
+  return $http.get('/facility/' + id  + '/search/?q=' + date).then(function (response){
 
-       console.log('This is the search data: ',response.data);
+       console.log('This is the search data: ', response.data);
 
         //reference the array inside the object
         sKey.results = response.data;
         //set key to reference it on search.html
-        sKey.key = key;
+        sKey.key = date;
         return response.data;
      }).catch(function(err){
        console.log('Error searching database', err);

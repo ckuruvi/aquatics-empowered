@@ -25,7 +25,12 @@ facility name, street address, city, zipcode, description, level, cost, image  -
     <!-- {{avail.date}} -->
     <!-- will display time of selected available date -->
     <ul id="timeSlots">
-    <li ng-repeat="slot in list.results"><button  ng-click="list.postFacilityAvail(slot)" class="btn btn-danger"><time>{{slot.start_time}}</time></button></li>
+      <li ng-repeat="slot in list.results">
+          <div ng-switch="slot.approved">
+            <button ng-switch-when="true" style="text-decoration: line-through; color: black; background-color: grey; border: grey" class="btn btn-danger" ng-click="list.alreadyBooked(slot)"><time>{{slot.start_time}}</time></button>
+            <button ng-switch-default ng-click="list.postFacilityAvail(slot)" class="btn btn-danger"><time>{{slot.start_time}}</time></button>
+          </div>
+        </li>
     </ul>
 
     </div>
@@ -36,7 +41,7 @@ facility name, street address, city, zipcode, description, level, cost, image  -
     <li>Description: {{list.facilityInfo.description}}</li>
     <li>Accessibility: {{list.facilityInfo.handicap_accessibility}}</li>
     <li>Level: {{list.facilityInfo.level}}</li>
-    <li>Cost: {{list.facilityInfo.cost}}</li>
+    <li ng-if="list.facilityInfo.cost == true">This facility charges a fee for access.</li>
     <li>Status: {{list.facilityInfo.approved}}</li>
     <li>Accessibility Id: {{list.facilityInfo.accessibility_id}}</li>
     <li> <img ng-src="{{list.facilityInfo.image_url}}" alt=""/></li>

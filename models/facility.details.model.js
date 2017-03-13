@@ -38,19 +38,7 @@ console.log('id passed to model is: ', id);
      });
 }
 
-//get facilityAvail by id
-exports.getFacilityAvail = function(id) {
-console.log('id passed to model is: ', id);
- return query(
-         "SELECT * FROM facility_availability WHERE facility_id=$1;", [id]
-     ).then(function(facilityAvail) {
-       console.log('facilityAvail[0] is', facilityAvail[0]);
-         return facilityAvail[0];
-     })
-     .catch(function(err) {
-         console.log("Error getting facility Id", err);
-     });
-}
+
 
 
 exports.getUserDetails = function(userId) {
@@ -65,6 +53,7 @@ exports.getUserDetails = function(userId) {
 }
 
 exports.getTimeSlots = function(date, facilityId) {
+  console.log('*********date is ', date);
     return query(
       "SELECT fa.id facility_availability_id,fa.date,fa.start_time,fa.end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
 "FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.date=$1 and fa.facility_id=$2;",

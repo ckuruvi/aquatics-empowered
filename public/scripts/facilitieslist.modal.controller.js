@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance, facilityInfo, $interval, FacilitiesService, AuthService, UserProfileService) {
+angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance, facilityInfo, $filter, $interval, FacilitiesService, AuthService, UserProfileService) {
   console.log('Facilities List Modal Controller loaded', facilityInfo);
 
   var ctrl = this;
@@ -27,6 +27,12 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
     $uibModalInstance.dismiss('cancel');
   };
 
+  //stores selected date to grab reservations
+  ctrl.selectedDate;
+
+  // stores the alert boolean to cancel or continue functions.
+  var selection;
+
   //checks login status
   ctrl.checkLoginStatus = function() {
     AuthService.checkLoginStatus().then(function(response) {
@@ -45,24 +51,34 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
   // checks loginStatus on page load
   ctrl.checkLoginStatus();
 
+  // alerts on attempting to book an already reserved slots
+  ctrl.alreadyBooked = function (slot) {
+    alert('Sorry, the slot at ' + slot.start_time + ' is already reserved. Please choose a different time slot.')
+  }
 
-  //this key stores the date value is picked from the calendar
-  ctrl.getSearchResults = function (key, id){
+  //this gets the time slots for a facility on selected date
+  ctrl.getSearchResults = function (date, id){
+    ctrl.selectedDate = date;
     console.log('loading searched date');
-    FacilitiesService.getSearchResults(key, id).then(function(response){
+    FacilitiesService.getSearchResults(date, id).then(function(response){
       ctrl.results = response;
-      console.log('this is the fac avail', ctrl.results);
     });
   };
 
   //reserve a spot in facility reservations
   ctrl.postFacilityAvail = function (reservation){
+    console.log('reservation object is ', reservation );
     if (ctrl.currentUser.user_type == 'facility') {
       console.log('facilites cant book a reservation');
       return;
     } else if (ctrl.loginStatus == false) {
       console.log('Cannot book reservation without logging in');
-      alert('You must be logged in to book a reservation');
+      alert('You must be logged in to book a reservation' );
+      return;
+    }
+    ctrl.confirmBooking(reservation);
+    if(selection == false) {
+      return;
     }
     console.log('this is the reservation selected', reservation);
     FacilitiesService.postFacilityAvail(reservation).then(function (response){
@@ -70,19 +86,34 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
       // response[0].facility_availability_id = reservation.id;
       ctrl.postAvail = response;
       console.log('this is the post fac avail reservation', ctrl.postAvail);
+      ctrl.getSearchResults(ctrl.selectedDate, ctrl.facilityInfo.id);
     });
+
+  };
+
+
+  // alert confirm on book
+  ctrl.confirmBooking = function(reservation) {
+    selection = confirm('Are you sure you want to reserve this time slot?');
+    if (selection == true) {
+      alert('Reserved time slot on ' + new Date(reservation.date) + 'from ' + reservation.start_time + ' to ' + reservation.end_time + '.\n'
+    + 'You can cancel your reservations from the profile view at any time.');
+    } else {
+      alert('Reservation was not booked.');
+      return false;
+    }
   };
 
 
   //to get facilities availability
-  ctrl.getFacilitiesAvail = function(id){
+  ctrl.getFacilitiesAvail = function(id, date){
+    console.log('date to get avail is ', date);
     console.log('id to get availability is ', id);
-    FacilitiesService.getFacilitiesAvail(id).then(function (res){
+    FacilitiesService.getFacilitiesAvail(id, date).then(function (res){
       console.log('got data from facilities availability', res);
       ctrl.facilityAvail = res;
     })
   };
-  ctrl.getFacilitiesAvail(ctrl.facilityInfo.id);
 
   ctrl.visibility = true;
 
