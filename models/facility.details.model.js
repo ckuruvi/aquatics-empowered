@@ -38,6 +38,20 @@ console.log('id passed to model is: ', id);
      });
 }
 
+//get facilityAvail by id
+exports.getFacilityAvail = function(id) {
+console.log('id passed to model is: ', id);
+ return query(
+         "SELECT * FROM facility_availability WHERE facility_id=$1;", [id]
+     ).then(function(facilityAvail) {
+       console.log('facilityAvail[0] is', facilityAvail[0]);
+         return facilityAvail[0];
+     })
+     .catch(function(err) {
+         console.log("Error getting facility Id", err);
+     });
+}
+
 
 exports.getUserDetails = function(userId) {
     return query(

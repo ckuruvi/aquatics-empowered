@@ -2,7 +2,7 @@ var router = require('express').Router();
 var pool = require('../db/connection');
 var FacilityDetails = require('../models/facility.details.model')
 
-
+//connected with facility.details.model.js
 router.get("/:id", function(req, res) {
   FacilityDetails.getFacility(req.params.id).then(function(facility) {
   console.log('Getting facility info from db', facility);
@@ -12,30 +12,39 @@ router.get("/:id", function(req, res) {
   });
 });
 
-
-router.get("/availability", function(req, res) {
-
-  pool.connect(function(err, client, done) {
-    if (err) {
-      console.log("Error connecting to DB", err);
-      res.sendStatus(500);
-      done();
-    } else {
-
-      client.query("SELECT * FROM facility_availability;", function(err, result) {
-        done();
-        if (err) {
-          console.log("Error querying DB", err);
-          res.sendStatus(500);
-        } else {
-          console.log("Got facility availability from DB", result.rows);
-          res.send(result.rows)
-
-        }
-      });
-    }
+router.get("/availability/:id", function(req, res) {
+  FacilityDetails.getFacilityAvail(req.params.id).then(function(facilityAvail) {
+  console.log('Getting facility availability info from db', facilityAvail);
+  res.status(200).send(facilityAvail);
+}).catch(function(err) {
+  console.log('Error logging facility', err);
   });
 });
+
+
+// router.get("/availability", function(req, res) {
+//
+//   pool.connect(function(err, client, done) {
+//     if (err) {
+//       console.log("Error connecting to DB", err);
+//       res.sendStatus(500);
+//       done();
+//     } else {
+//
+//       client.query("SELECT * FROM facility_availability;", function(err, result) {
+//         done();
+//         if (err) {
+//           console.log("Error querying DB", err);
+//           res.sendStatus(500);
+//         } else {
+//           console.log("Got facility availability from DB", result.rows);
+//           res.send(result.rows)
+//
+//         }
+//       });
+//     }
+//   });
+// });
 
 router.get('/search', function (req, res, next) {
 // console.log("this is the result", req.query.q);

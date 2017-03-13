@@ -9,6 +9,28 @@ facility name, street address, city, zipcode, description, level, cost, image  -
   </div>
 
   <div class="modal-body">
+    <div id="availability" >
+
+
+    <div class="calendar">
+       <!-- datepicker-show attribute, if false, datepicker is hidden, if true, datepicker is shown -->
+       <!-- date-format is the format the date will appear in DOM EEEE=day -->
+      <datepicker date-format="EEEE MM/dd/yyyy" datepicker-show="{{ctrl.visibility}}">
+        <!-- ng-change shows the facilites with the avail time depending on the date you picked.Sub for ng-click -->
+        <input ng-change="list.getSearchResults(facilities.date)" ng-model="list.date" type="text"
+         class="angular-datepicker-input fa font-fontawesome font-light radius3"  placeholder="&#xf073; Choose a date"/>
+      </datepicker>
+      You chose: {{facilities.date}}
+    </div>
+    <!-- {{avail.date}} -->
+    <!-- will display time of selected available date -->
+    <ul id="timeSlots" ng-repeat="avail in facilities.results">
+    <li><button  ng-click="facilities.postFacilityAvail(avail)" class="btn btn-danger"><time>{{avail.start_time}}</time></button></li>
+    </ul>
+
+    </div>
+
+  <section class="facilityInfo">
   <ul>
     <li>Location: {{list.facilityInfo.street_address}} {{list.facilityInfo.city}}, {{list.facilityInfo.state}} {{list.facilityInfo.zip}}</li>
     <li>Description: {{list.facilityInfo.description}}</li>
@@ -19,6 +41,7 @@ facility name, street address, city, zipcode, description, level, cost, image  -
     <li>Accessibility Id: {{list.facilityInfo.accessibility_id}}</li>
     <li> <img ng-src="{{list.facilityInfo.image_url}}" alt=""/></li>
   </ul>
+    </section>
   </div>
 
   <div class="modal-footer">
@@ -26,17 +49,3 @@ facility name, street address, city, zipcode, description, level, cost, image  -
     <button class="btn btn-primary" type="button" ng-click="list.cancel()">Cancel</button>
   </div>
 </section>
-
-
-<!-- !Information to put in modal! -->
-<!--
-city
-cost
-description
-image_url
-level
-name
-state
-street_address
-zip
--->

@@ -15,8 +15,8 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
 
   };
 
-  this.getFacilitiesAvail = function (){
-    return $http.get('/facility/availability').then(function(response) {
+  this.getFacilitiesAvail = function (id){
+    return $http.get('/facility/availability/' + id).then(function(response) {
      console.log('This is the facility avail data: ', response);
      return response.data;
    }).catch(function(err) {
