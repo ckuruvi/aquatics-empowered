@@ -24,6 +24,29 @@ exports.findById = function(id) {
     });
 };
 
+exports.getTimeSlots=function(id) {
+  return query(
+    "SELECT f.name ,f.street_address,fa.date,fa.start_time,fa.end_time,fr.id reservation_id from facility_availability fa "+
+    "JOIN facility_reservation fr on fa.id=fr.facility_availability_id  join  facilities f on fa.facility_id=f.id "+
+    "where fr.reservation_id=$1",
+    [ id ])
+    .then(function(timeslots) {
+      return timeslots;
+    })
+    .catch(function(err) {
+      console.log("Error finding time slots by user id", err);
+    });
+};
+
+exports.deleteBookedTimeSlot= function(id) {
+  return query("DELETE FROM facility_reservation WHERE id=$1 RETURNING *", [ id ])
+    .then(function(users) {
+      return users[0];
+    })
+    .catch(function(err) {
+      console.log("Error deleting time slot", err);
+    });
+};
 // compare password
 // takes a username and a password, looks up the user by the given username
 // and returns promise which resolves to a boolean indicating whether the

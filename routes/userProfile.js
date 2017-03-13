@@ -21,9 +21,26 @@ router.put('/:id', function(req, res) {
       res.sendStatus(500);
 
   });
+});
 
 
+router.get('/gettimeslots', function(req, res) {
+  console.log('user id ', req.user.id);
+  User.getTimeSlots(req.user.id).then(function(timeslots) {
+    res.status(200).send(timeslots);
+  }).catch(function(err) {
+    console.log('error retreiving user from db', err);
+    res.sendStatus(500);
+  })
+}); // end GET
 
+router.delete('/:id', function(req, res) {
+    User.deleteBookedTimeSlot(req.params.id).then(function() {
+      res.sendStatus(204);
+  }).catch(function(err) {
+      console.log('Error deleting booked timeslot');
+      res.sendStatus(500);
+  });
 });
 
 module.exports = router;
