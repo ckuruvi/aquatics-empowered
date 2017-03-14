@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService, $scope) {
+angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService, AuthService, UserProfileService, $scope) {
 
   console.log('AdminController is loaded');
 
@@ -8,8 +8,44 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //facilities list from db
   ctrl.facilitiesList = [];
 
+  //boolean checking if user is logged in or ngRoute
+  ctrl.loginStatus = false;
+
+  //stores current user
+  ctrl.currentUser;
+
+
+  //checks login status
+  ctrl.checkLoginStatus = function() {
+    AuthService.checkLoginStatus().then(function(response) {
+      console.log('login check returned: ', response);
+      if (response == false) {
+        ctrl.loginStatus = false;
+        $location.path('/');
+        return;
+      } else {
+        ctrl.loginStatus = true;
+      }
+        UserProfileService.getUser().then(function(response) {
+          ctrl.currentUser = response;
+          if(ctrl.currentUser.user_type != "admin") {
+            $location.path('/');
+          }
+          //getting facilities list on page load
+          ctrl.getFacilitiesList();
+        });
+    })
+  }
+  //checks loginstatus on pageload
+  ctrl.checkLoginStatus();
+
   //grab facilitiesList and return a response
   ctrl.getFacilitiesList = function() {
+    console.log('current user is', ctrl.currentUser);
+    if (ctrl.currentUser.user_type != "admin") {
+      console.log('user is not an admin');
+      return;
+    }
     AdminService.getFacilitiesList().then(function(response) {
       console.log('Displaying facilities', response);
 
@@ -34,8 +70,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     });
   }; //end getFacilitiesList
 
-  //getting facilities list on page load
-  ctrl.getFacilitiesList();
+
 
 
   //delete facility from db after confirmation of true

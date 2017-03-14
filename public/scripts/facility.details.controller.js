@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityDetailsService','EmailService','UserProfileService','$uibModal', function(FacilityDetailsService, EmailService, UserProfileService, $uibModal) {
+angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityDetailsService','EmailService','UserProfileService', 'AuthService', '$uibModal', '$location', function(FacilityDetailsService, EmailService, UserProfileService, AuthService, $uibModal, $location) {
     console.log('FacilityDetailsController is loaded');
 
     var ctrl = this;
@@ -15,6 +15,34 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
     ctrl.editToggle = false;
 
 
+    //boolean checking if user is logged in or ngRoute
+    ctrl.loginStatus = false;
+
+    //stores current user
+    ctrl.currentUser;
+
+
+    //checks login status
+    ctrl.checkLoginStatus = function() {
+      AuthService.checkLoginStatus().then(function(response) {
+        console.log('login check returned: ', response);
+        if (response == false) {
+          ctrl.loginStatus = false;
+          $location.path('/');
+          return;
+        } else {
+          ctrl.loginStatus = true;
+        }
+          UserProfileService.getUser().then(function(response) {
+            ctrl.currentUser = response;
+            if(ctrl.currentUser.user_type != 'facility') {
+              $location.path('/');
+            }
+          });
+      })
+    }
+    //checks loginstatus on pageload
+    ctrl.checkLoginStatus();
 
     //changes ctrl.editToggle to true or false to allow editing.
     ctrl.edit = function () {
