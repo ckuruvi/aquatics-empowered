@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService, UserProfileService, $uibModal) {
+angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityDetailsService','EmailService','UserProfileService','$uibModal', function(FacilityDetailsService, EmailService, UserProfileService, $uibModal) {
     console.log('FacilityDetailsController is loaded');
 
     var ctrl = this;
@@ -71,11 +71,16 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
         }
     };
 
-    ctrl.deleteTimeSlot = function(id) {
-        console.log("inside deleteTimeSlot::", id);
-        FacilityDetailsService.deleteTimeSlot(id).then(function(res) {
-            //console.log(res);
+
+    ctrl.deleteTimeSlot = function(dateObj) {
+        console.log("inside deleteTimeSlot::", dateObj);
+        FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo).then(function(res) {
+          console.log("line 78",ctrl.formdata);
+          if(ctrl.formdata != undefined){
             ctrl.getTimeSlots(ctrl.formdata.date);
+          } else {
+            ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
+          }
         });
     };
 
@@ -84,6 +89,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
       FacilityDetailsService.getFacilityInfo(ctrl.contactInfo.id).then(function(response) {
         console.log('facility stored is ', response);
         ctrl.facilityInfo = response;
+        ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
       });
     }
 
@@ -108,5 +114,14 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
         });
     }
 
+    ctrl.getFacilityTimeSlots = function(facilityId) {
+        console.log("inside getFacilityTimeSlots::");
+            FacilityDetailsService.getFacilityTimeSlots(facilityId).then(function(res) {
+                console.log('facility timeslots', res);
+                ctrl.facilityTimeSlotList = res;
+            });
+    };
 
-});
+
+
+}]);

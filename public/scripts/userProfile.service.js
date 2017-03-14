@@ -3,6 +3,7 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
 
 // gets user data  from /userProfile and returns response
   this.getUser = function () {
+    console.log('in userProfile service');
     return $http.get('/userProfile').then(function (response) {
       return response.data;
     });
@@ -22,5 +23,18 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
     }
   }
 
+  this.getBookedTimeSlots=function () {
+    return $http.get('/userProfile/gettimeslots').then(function (response) {
+      return response.data;
+    });
+  }
+
+  this.deleteBookedTimeSlot = function(id) {
+    console.log("id###",id);
+      return $http.delete("/userProfile/" + id).catch(function(err) {
+          console.log("Error deleting  booked timeslots", err);
+      });
+
+  }
 
 }); // end userProfileService

@@ -1,3 +1,4 @@
+
 <!-- <form class="form-horizontal col-xs-12 col-md-6 col-md-offset-3 well" ng-submit="register.register()">
   <div class="form-group row">
     <label class="control-label col-xs-offset-1 col-xs-2">Username:</label>
@@ -26,6 +27,7 @@
   <h1>Register as a User</h1>
   <!-- email -->
   <form class=""  method="post">
+<<<<<<< HEAD
     <input type="text" id="email" name="email" ng-model="register.newUser.email" placeholder="Email: example@example.com"/>
   </form>
   <!-- password -->
@@ -35,6 +37,24 @@
   <!-- first name  -->
   <form class=""  method="post">
     <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="First Name"/>
+=======
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Enter a valid email address" required/><p style="color: red; display: inline">*</p>
+  </form>
+  <!-- password -->
+  <form class=""  method="post">
+    <label for="password">Password</label>
+    <input type="password" id="password1" name="password" ng-model="register.newUser.password" required/><p style="color: red; display: inline">*</p>
+  </form>
+  <form>
+    <label for="password">Confirm password</label>
+    <input type="password" id="password2" name="password" ng-model="register.newUser.password1" required/><p style="color: red; display: inline">*</p>
+  </form>
+  <!-- first name  -->
+  <form class=""  method="post">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" required/><p style="color: red; display: inline">*</p>
+>>>>>>> master
   </form>
   <!-- lastName -->
   <form class=""  method="post">
@@ -129,15 +149,23 @@
     </form>
   <!-- email -->
   <form class=""  method="post">
-    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Email:example@example.com"/>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="example@example.com" required/><p style="color: red; display: inline">*</p>
   </form>
   <!-- password -->
   <form class=""  method="post">
-    <input type="text" id="password" name="password" ng-model="register.newUser.password" placeholder="Password"/>
+    <label for="password">Password</label>
+    <input type="password" id="password1" name="password" ng-model="register.newUser.password" required/><p style="color: red; display: inline">*</p>
+  </form>
+  <form>
+    <label for="password">Confirm password</label>
+    <input type="password" id="password2" name="password" ng-model="register.newUser.password1" required/><p style="color: red; display: inline">*</p>
   </form>
   <!-- first name  -->
   <form class=""  method="post">
-    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="Contact First Name"/>
+    <label for="firstName">Contact First Name:</label>
+    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" required/><p style="color: red; display: inline">*</p>
+
   </form>
   <!-- last name  -->
   <form class=""  method="post">

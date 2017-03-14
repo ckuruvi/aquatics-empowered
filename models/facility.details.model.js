@@ -1,6 +1,7 @@
 var pool = require("../db/connection");
 
 exports.getFacilityId = function(userId) {
+    console.log("***inside getFacilityId******");
     return query(
             "SELECT id FROM facilities where users_id=$1 ;", [userId]
         ).then(function(facilityId) {
@@ -10,7 +11,8 @@ exports.getFacilityId = function(userId) {
             console.log("Error getting facility Id", err);
         });
 }
-//get facility by userid
+
+  // get facility info by users_id
 exports.getFacilityInfo = function(userId) {
   console.log('userId passed to model is: ', userId);
     return query(
@@ -38,19 +40,8 @@ console.log('id passed to model is: ', id);
      });
 }
 
-//get facilityAvail by id
-exports.getFacilityAvail = function(id) {
-console.log('id passed to model is: ', id);
- return query(
-         "SELECT * FROM facility_availability WHERE facility_id=$1;", [id]
-     ).then(function(facilityAvail) {
-       console.log('facilityAvail[0] is', facilityAvail[0]);
-         return facilityAvail[0];
-     })
-     .catch(function(err) {
-         console.log("Error getting facility Id", err);
-     });
-}
+
+
 
 
 exports.getUserDetails = function(userId) {
@@ -65,6 +56,7 @@ exports.getUserDetails = function(userId) {
 }
 
 exports.getTimeSlots = function(date, facilityId) {
+  console.log('*********date is ', date);
     return query(
       "SELECT fa.id facility_availability_id,fa.date,fa.start_time,fa.end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
 "FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.date=$1 and fa.facility_id=$2;",
@@ -90,7 +82,23 @@ exports.setTimeSlots = function(facilityId, date, startTime, endTime) {
 }
 
 
-exports.deleteTimeSlot = function(id) {
+
+exports.deleteTimeSlotReservation = function(id) {
+  console.log("inside deleteTimeSlotReservation",id);
+    return query(
+            "DELETE from facility_reservation where facility_availability_id=$1 RETURNING *", [id]
+        ).then(function(users) {
+          console.log("inside deleteTimeSlotReservation",users);
+            return users[0];
+        })
+        .catch(function(err) {
+            console.log("Error deleting  timeslots", err);
+        });
+};
+
+
+exports.deleteTimeSlotAvailibility = function(id) {
+  console.log("inside deleteTimeSlotAvailibility",id);
     return query(
             "DELETE from facility_availability where id=$1 RETURNING *", [id]
         ).then(function(users) {
@@ -100,6 +108,22 @@ exports.deleteTimeSlot = function(id) {
             console.log("Error deleting  timeslots", err);
         });
 };
+
+
+
+exports.getFacilityTimeSlots = function(facilityId) {
+  console.log("*****inside getFacilityTimeSlots*******",facilityId);
+    return query(
+      "SELECT fa.id facility_availability_id,fa.date,fa.start_time,fa.end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
+"FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.facility_id=$1;",
+             [facilityId]
+        ).then(function(facilityTimeSlotList) {
+            return facilityTimeSlotList;
+        })
+        .catch(function(err) {
+            console.log("Error getting facility time slot list", err);
+        });
+}
 
 //updates facility
 exports.updateFacility = function (fac) {

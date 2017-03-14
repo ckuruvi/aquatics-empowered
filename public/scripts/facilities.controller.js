@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilitiesController', function ($http, $location,$interval, FacilitiesService, UserProfileService){
+angular.module('aquaticsApp').controller('FacilitiesController', function ($http, $location, $interval, FacilitiesService, UserProfileService){
 console.log('FacilitiesController is loaded');
 
 var ctrl = this;
