@@ -32,7 +32,7 @@
                   <div ng-switch-when="true"><button class="btn btn-xs btn-info" ng-click="facilitydetails.openModal(obj.user_id)" type="submit">Booked</button></div>
                   <div ng-switch-default>{{obj.approved}}</div>
                 </div></td>
-                <td><button class="btn btn-xs btn-info" ng-click="facilitydetails.deleteTimeSlot(obj.facility_availability_id)" type="submit">Delete</button></td>
+                <td><button class="btn btn-xs btn-info" ng-click="facilitydetails.deleteTimeSlot(obj)" type="submit">Delete</button></td>
             </tr>
         </tBody>
     </table>
