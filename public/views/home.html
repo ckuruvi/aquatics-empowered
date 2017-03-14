@@ -5,11 +5,12 @@
 <!-- Find a faciliy nearby form  -->
 
 <button ng-click="home.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
-
+<br>
 <section class="searchDiv">
 <form name="chartForm" ng-submit="home.getFacilities()">
       <div>
         <input type="text" ng-model="home.zipcode" placeholder="Zip Code" class="zipcodeInput">
+
       </div>
     <div class="col-xs-2">
       <button type="submit" class="submitZipButton btn btn-xs btn-primary">Search</button>
