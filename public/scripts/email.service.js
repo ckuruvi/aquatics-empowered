@@ -42,4 +42,33 @@ return $http.get('/user').then(function(response) {
 ctrl.getEmails();
 
 
+
+
+this.sendCancelEmail = function (dateObj, facilityInfo) {
+
+  var sendingEmail = true;
+
+  var emailDataObject = {
+    id: dateObj.facility_availibility_id,
+    cancelledDate: dateObj.date,
+    startTime: dateObj.start_time,
+
+    facilityName: facilityInfo.name,
+    facilityAddress: facilityInfo.street_address + ' ' + facilityInfo.city +', ' + facilityInfo.state + ' '+ facilityInfo.zip,
+
+    // contacts: newUser.email,
+    // contactPerson: newUser.firstName + ' ' + newUser.lastName + ' ' + newUser.phone,
+  };
+  console.log('the emailDataObject is', emailDataObject);
+
+
+  return $http.post('/emails/cancel', emailDataObject).then(function(response) {
+    console.log('back from emails.' , response.data);
+
+  }).then(function() {
+    $location.path('/')
+  });
+
+};
+
 });

@@ -94,10 +94,11 @@ exports.updateUser = function(user) {
   });
 }
 
-exports.createFacility = function(id, name, address, city, state, zipcode, description, level, cost, image_url) {
+exports.createFacility = function(id, name, address, city, state, zip, description, accessible, level, cost, image_url) {
+  console.log('accessibility is ', accessible);
       return query(
-        "INSERT INTO facilities (users_id, name, street_address, city, state, zip, description, level, cost, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *",
-        [id, name, address, city, state, zipcode, description, level, cost, image_url]
+        "INSERT INTO facilities (users_id, name, street_address, city, state, zip, description, handicap_accessibility, level, cost, image_url) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *",
+        [id, name, address, city, state, zip, description, accessible, level, cost, image_url]
       ).then(function(facilities) {
         return facilities[0];
       }).catch(function(err) {

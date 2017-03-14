@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('FacilityDetailsController', function(FacilityDetailsService, UserProfileService, $uibModal) {
+angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityDetailsService','EmailService','UserProfileService','$uibModal', function(FacilityDetailsService, EmailService, UserProfileService, $uibModal) {
     console.log('FacilityDetailsController is loaded');
 
     var ctrl = this;
@@ -71,16 +71,18 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
         }
     };
 
-    ctrl.deleteTimeSlot = function(id) {
-        console.log("inside deleteTimeSlot::", id);
-        FacilityDetailsService.deleteTimeSlot(id).then(function(res) {
-            if(ctrl.formdata != undefined){
+
+    ctrl.deleteTimeSlot = function(dateObj) {
+        console.log("inside deleteTimeSlot::", dateObj);
+        FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo).then(function(res) {
+            //console.log(res);
             ctrl.getTimeSlots(ctrl.formdata.date);
           } else {
             ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
           }
         });
     };
+
 
     ctrl.getFacility = function() {
       FacilityDetailsService.getFacilityInfo(ctrl.contactInfo.id).then(function(response) {
@@ -121,4 +123,4 @@ angular.module('aquaticsApp').controller('FacilityDetailsController', function(F
 
 
 
-});
+}]);

@@ -1,5 +1,5 @@
-angular.module('aquaticsApp').controller('UserProfileModalController', function($scope,$uibModalInstance,userDetails) {
-    console.log('UserProfileModalController is loaded',userDetails);
+angular.module('aquaticsApp').controller('UserProfileModalController', function($scope,$uibModalInstance, userDetails) {
+    console.log('UserProfileModalController is loaded', userDetails);
     var $ctrl = this;
       $ctrl.userDetails = userDetails;
       // $ctrl.selected = {

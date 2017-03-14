@@ -2,6 +2,8 @@
 
 <button ng-click="home.logout()" >Logout</button> -->
 
+<!-- Find a facility nearby form  -->
+<section>
 <form name="chartsForm" class="form-inline well" ng-submit="home.getFacilities()">
   <div class="row">
     <div class="form-group row">
@@ -11,14 +13,21 @@
       </div>
     </div>
     <div class="col-xs-2">
-      <button type="submit" class="btn  btn-xs btn-primary" >Submit</button>
+      <button type="submit" class="btn  btn-xs btn-primary">Submit</button>
     </div>
   </div>
 </form>
+</section>
+
+<button ng-click="home.openInfoModal()" class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
 
 
-<ul>
+<!-- Facilities List -->
+<section class="homeFacilitiesSection">
+<ul class="homeFacilitiesList">
   <li ng-repeat="result in home.facilitieslist">
-    <a href="/facilityProfile">{{ result.name + ', ' + result.street_address }}</a>
+    <a href="#" ng-click="home.openListModal(result.id)">{{ result.name + ' - ' + result.city }}</a>
+
   </li>
 </ul>
+</section>
