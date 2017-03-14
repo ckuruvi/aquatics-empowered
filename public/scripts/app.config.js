@@ -5,11 +5,6 @@ angular
     $locationProvider.html5Mode(true);
 
     $routeProvider
-      .when("/", {
-        templateUrl: "views/home.html",
-        controller: "HomeController as home",
-        //authRequired: true
-      })
       .when("/newUser", {
         templateUrl: "views/register.html",
         controller: "RegisterController as register"
@@ -17,10 +12,6 @@ angular
       .when("/admin", {
         templateUrl: "views/admin.html",
         controller: "AdminController as admin"
-      })
-      .when("/facilityProfile", {
-        templateUrl: "views/facility.html",
-        controller: "FacilitiesController as facilities"
       })
       .when("/login", {
         templateUrl: "views/login.html",
@@ -33,7 +24,12 @@ angular
       .when("/profile", {
         templateUrl: "views/profileView.html",
         controller: "userProfileController as user"
-      });
+      })
+      .otherwise( {
+        templateUrl: "views/home.html",
+        controller: "HomeController as home",
+        //authRequired: true
+      })
   })
   .run(function($rootScope, $location, $route, AuthService) {
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
