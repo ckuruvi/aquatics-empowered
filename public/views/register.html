@@ -15,50 +15,42 @@
     <button type="submit" class="btn btn-primary" >Register</button>
   </div>
 </form> -->
-<form class=""  method="post">
+<form class="chooseUserReg"  method="post">
   <label>New User<input type="radio" ng-model="register.newUser.userType" value="user" /></label>
   <label>Facility<input type="radio" ng-model="register.newUser.userType" value="facility"/></label>
 </form>
 
-<br><br><br>
 
 <!-- USER FORMS -->
 <div class="userForms" ng-if="register.newUser.userType == 'user'">
   <h1>Register as a User</h1>
   <!-- email -->
   <form class=""  method="post">
-    <label for="email">Email</label>
-    <input type="text" id="email" name="email" ng-model="register.newUser.email" placeholder="example@example.com"/>
+    <input type="text" id="email" name="email" ng-model="register.newUser.email" placeholder="Email: example@example.com"/>
   </form>
   <!-- password -->
   <form class=""  method="post">
-    <label for="password">password</label>
-    <input type="text" id="password" name="password" ng-model="register.newUser.password"/>
+    <input type="text" id="password" name="password" ng-model="register.newUser.password" placeholder="Password"/>
   </form>
   <!-- first name  -->
   <form class=""  method="post">
-    <label for="firstName">First Name:</label>
-    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName"/>
+    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="First Name"/>
   </form>
   <!-- lastName -->
   <form class=""  method="post">
-    <label for="lastName">Last Name:</label>
-    <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName"/>
+    <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName" placeholder="Last Name"/>
   </form>
   <!-- address -->
   <form class=""  method="post">
-    <label for="address">Street Address:</label>
-    <input type="text" id="address" name="address" ng-model="register.newUser.address"/>
+    <input type="text" id="address" name="address" ng-model="register.newUser.address" placeholder="Street Address"/>
   </form>
   <!-- city -->
   <form class=""  method="post">
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" ng-model="register.newUser.city"/>
+    <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
   </form>
   <!-- state -->
   <form class=""  method="post">
-    <label for="state">State:</label>
-    <select name="state" ng-model="register.newUser.state">
+    <select name="state" ng-model="register.newUser.state" placeholder="State">
   <option value="AL">Alabama</option>
   <option value="AK">Alaska</option>
   <option value="AZ">Arizona</option>
@@ -114,13 +106,11 @@
   </form>
   <!-- zipcode -->
   <form class=""  method="post">
-    <label for="zipcode">Zipcode:</label>
     <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zipcode" placeholder="five digit zipcode"/>
   </form>
   <!-- phone # -->
   <form class=""  method="post">
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="(123)-555-5478"/>
+    <input type="tel" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
     <button type="submit" name="button" ng-click="register.registerUser(register.newUser)">Register</button>
   </form>
 </div>
@@ -135,47 +125,38 @@
   <form class="">
     <!-- Facility Name -->
     <form class=""  >
-      <label for="facilityName">Name of Facility</label>
-      <input type="text" id="facility" name="facility" ng-model="register.newUser.name"/>
+      <input type="text" id="facility" name="facility" ng-model="register.newUser.name" placeholder="Name of Facility"/>
     </form>
   <!-- email -->
   <form class=""  method="post">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="example@example.com"/>
+    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Email:example@example.com"/>
   </form>
   <!-- password -->
   <form class=""  method="post">
-    <label for="password">Password</label>
-    <input type="text" id="password" name="password" ng-model="register.newUser.password"/>
+    <input type="text" id="password" name="password" ng-model="register.newUser.password" placeholder="Password"/>
   </form>
   <!-- first name  -->
   <form class=""  method="post">
-    <label for="firstName">Contact First Name:</label>
-    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName"/>
+    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="Contact First Name"/>
   </form>
   <!-- last name  -->
   <form class=""  method="post">
-    <label for="lastName">Contact Last Name:</label>
-    <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName"/>
+    <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName" placeholder="Contact Last Name"/>
   </form>
   <!-- phone # -->
   <form class=""  method="post">
-    <label for="phone">Phone Number:</label>
-    <input type="text" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="(123)-555-5478"/>
+    <input type="text" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
   </form>
   <!-- address -->
   <form class=""  method="post">
-    <label for="address">Street Address:</label>
-    <input type="text" id="address" name="address" ng-model="register.newUser.address"/>
+    <input type="text" id="address" name="address" ng-model="register.newUser.address" placeholder="Street Address"/>
   </form>
   <!-- city -->
   <form class=""  method="post">
-    <label for="city">City:</label>
-    <input type="text" id="city" name="city" ng-model="register.newUser.city"/>
+    <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
   </form>
   <!-- state -->
   <form class=""  method="post">
-    <label for="state">State:</label>
     <select name="state" ng-model="register.newUser.state">
 	<option value="AL">Alabama</option>
 	<option value="AK">Alaska</option>
@@ -232,7 +213,6 @@
   </form>
   <!-- zipcode -->
   <form class=""  method="post">
-    <label for="zipcode">Zipcode:</label>
     <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zip" placeholder="five digit zipcode"/>
   </form>
 <!-- handicap accessibility? -->
@@ -243,7 +223,7 @@
 </form>
 <!-- user level -->
 <form class=""  method="post">
-  <label for="level">what level of user ability can you accomodate?</label>
+  <label for="level">What level of user ability can you accomodate?</label>
   <input type="text" id="level" name="level" ng-model="register.newUser.level"/>
 </form>
 <!-- facility description -->
@@ -255,6 +235,7 @@
 <form class=""  method="post">
   <label for="image">Link to an image of your facility</label>
   <input type="text" id="image" name="image" ng-model="register.newUser.image_url"/>
+  <br>
   <button class="btn btn-success" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
 </form>
 </form>

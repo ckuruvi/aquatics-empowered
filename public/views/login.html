@@ -1,21 +1,16 @@
-<form class="form-horizontal col-xs-12 col-md-6 col-md-offset-3 well" ng-submit="login.login()">
-  <div class="form-group row">
-    <label class="control-label col-xs-offset-1 col-xs-2">Username:</label>
-    <div class="col-xs-8">
-      <input class="form-control" type="text" ng-model="login.username">
-    </div>
+<form ng-submit="login.login()">
+
+  <div class="loginInput">
+      <input type="text" ng-model="login.username" placeholder="Username/Email">
+      <input type="password" ng-model="login.password" placeholder="Password">
   </div>
-  <div class="form-group row">
-    <label class="control-label col-xs-offset-1 col-xs-2">Password:</label>
-    <div class="col-xs-8">
-      <input class="form-control" type="password" ng-model="login.password">
-    </div>
-  </div>
-  <div class="col-xs-offset-1 col-xs-12">
+
+  <div class="registerLink">
     <p><a href="/newUser">Register</a> to become a member of Aquatics Empowered</p>
   </div>
-  <div class="col-xs-offset-3 col-xs-10">
-    <button type="submit" class="btn btn-primary" >Login</button><br>
+
+  <div>
+    <button type="submit" class="loginButton btn btn-primary">Login</button>
   </div>
 
 </form>

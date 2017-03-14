@@ -1,0 +1,40 @@
+$font-stack: 'Catamaran', 'Slabo', 'sans-serif';
+
+body {
+  font-family: $font-stack;
+}
+
+.searchDiv {
+  margin: 50px 50px 50px 50px;
+}
+
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid #4e5055;
+  text-align: center;
+}
+
+.submitZipButton {
+  margin: 20px 20px 20px 20px;
+
+}
+
+.infoButton {
+  margin: 20px 20px 20px 20px;
+  float: right;
+}
+
+li{
+  list-style: none;
+  font-size: 20px;
+}
+
+ul{
+  display: inline-block;
+}
+
+.btn-danger:hover{
+  background-color: green;
+  color: green;
+  border-color: green;
+}
