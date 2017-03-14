@@ -7,7 +7,7 @@
 
   <title>Aquatics Empowered</title>
 
-<!-- Base Dependencies] -->
+<!-- Base Dependencies -->
   <script src="https://use.fontawesome.com/0f3b48bd8b.js"></script>
   <script src="vendors/angular.min.js" charset="utf-8"></script>
   <script src="vendors/angular-route.min.js" charset="utf-8"></script>
@@ -65,22 +65,29 @@
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><img src="/images/android-icon-48x48.png" alt="Aquatics Empowered"></a>
+      </button> -->
+      <a class="navbar-brand" href="/"><img src="/images/android-icon-48x48.png" alt="Aquatics Empowered"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
       <ul class="nav navbar-nav navbar-right" ng-controller="NavController as nav">
         <li ng-show="nav.loginStatus == false"><a href="/login">Login</a></li>
         <li ng-show="nav.loginStatus == false"><a href="/newUser">Register</a></li>
-        <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'user'"><a href="/profile">{{nav.userToDisplay.first_name}}</a></li>
-        <li ng-show="nav.loginStatus == true && nav.facilityInfo.name"><a href="/facilitydetails">{{nav.facilityInfo.name}}</a></li>
-        <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#">Logout</a></li>
+        <li class="dropdown">
+          <a ng-show="nav.loginStatus == true && nav.userToDisplay.user_type !='facility'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{nav.userToDisplay.first_name}}<span class="caret"></span></a>
+          <a ng-show="nav.loginStatus == true && nav.userToDisplay.user_type =='facility'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{nav.facilityInfo.name}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'user'"><a href="/profile">My Profile</a></li>
+            <li ng-show="nav.loginStatus == true && nav.facilityInfo.name"><a href="/facilitydetails">My Profile</a></li>
+            <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'admin'"><a href="/admin">Admin</a></li>
+            <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#">Logout</a></li>
+          </ul>
+        </li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

@@ -26,7 +26,8 @@ this.sendEmail = function (newUser) {
     console.log('back from emails.' , response.data);
 
   }).then(function() {
-    // $location.path('/')
+    //TODO this needs to do a conditional for new registered user or be removed. It reroutes home when a facility deletes a timeslot.
+    // $location.path('/');
   });
 
 };
@@ -66,7 +67,8 @@ this.sendCancelEmail = function (dateObj, facilityInfo) {
     console.log('back from emails.' , response.data);
 
   }).then(function() {
-    // $location.path('/')
+    //TODO this needs to do a conditional for new registered user or be removed. It reroutes home when a facility deletes a timeslot.
+    // $location.path('/');
   });
 
 };
