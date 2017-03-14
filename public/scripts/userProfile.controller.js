@@ -29,6 +29,7 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
       }
         UserProfileService.getUser().then(function(response) {
           ctrl.currentUser = response;
+          ctrl.userToDisplay = response;
           if(ctrl.currentUser.user_type != 'user') {
             $location.path('/');
           }

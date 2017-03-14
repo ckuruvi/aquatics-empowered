@@ -28,9 +28,11 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
       }
         UserProfileService.getUser().then(function(response) {
           ctrl.currentUser = response;
-          if(ctrl.currentUser.user_type != 'admin') {
+          if(ctrl.currentUser.user_type != "admin") {
             $location.path('/');
           }
+          //getting facilities list on page load
+          ctrl.getFacilitiesList();
         });
     })
   }
@@ -39,6 +41,11 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //grab facilitiesList and return a response
   ctrl.getFacilitiesList = function() {
+    console.log('current user is', ctrl.currentUser);
+    if (ctrl.currentUser.user_type != "admin") {
+      console.log('user is not an admin');
+      return;
+    }
     AdminService.getFacilitiesList().then(function(response) {
       console.log('Displaying facilities', response);
 
@@ -63,8 +70,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     });
   }; //end getFacilitiesList
 
-  //getting facilities list on page load
-  ctrl.getFacilitiesList();
+
 
 
   //delete facility from db after confirmation of true
