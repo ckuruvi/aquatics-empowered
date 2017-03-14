@@ -1,6 +1,28 @@
-angular.module("aquaticsApp").controller('RegisterController', ['RegisterService','EmailService', '$http', '$location', function(RegisterService, EmailService, $http, $location){
+angular.module("aquaticsApp").controller('RegisterController', ['RegisterService', 'EmailService', '$http', '$location', 'AuthService', function(RegisterService, EmailService, $http, $location, AuthService){
   console.log('register Ctrl is loaded');
   var ctrl = this;
+
+
+  //stores boolean of login status
+  ctrl.loginStatus = false;
+
+  //stores current user
+  ctrl.currentUser;
+
+
+  //checks login status
+  ctrl.checkLoginStatus = function() {
+    AuthService.checkLoginStatus().then(function(response) {
+      console.log('login check returned: ', response);
+      if (response == true) {
+        ctrl.loginStatus = true;
+        $location.path('/');
+      }
+    });
+  }
+
+  //checks loginstatus on pageload
+  ctrl.checkLoginStatus();
 
 // sends newUser object (user/facility) to the registerService
   ctrl.registerUser = function(newUser) {

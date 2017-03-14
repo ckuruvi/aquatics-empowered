@@ -12,21 +12,30 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
   //stores boolean of login status
   ctrl.loginStatus = false;
 
-  //checks login status
-    ctrl.checkLoginStatus = function() {
-      AuthService.checkLoginStatus().then(function(response) {
-        console.log('login check returned: ', response);
-        if (response == true) {
-          ctrl.loginStatus = true;
-        } else {
-          ctrl.loginStatus = false;
-        }
-        //calls getUser on page load
-        ctrl.getUser();
-      });
-  }
+  //stores current user
+  ctrl.currentUser;
 
-  //checks loginStatus on page load.
+
+  //checks login status
+  ctrl.checkLoginStatus = function() {
+    AuthService.checkLoginStatus().then(function(response) {
+      console.log('login check returned: ', response);
+      if (response == false) {
+        ctrl.loginStatus = false;
+        $location.path('/');
+        return;
+      } else {
+        ctrl.loginStatus = true;
+      }
+        UserProfileService.getUser().then(function(response) {
+          ctrl.currentUser = response;
+          if(ctrl.currentUser.user_type != 'user') {
+            $location.path('/');
+          }
+        });
+    })
+  }
+  //checks loginstatus on pageload
   ctrl.checkLoginStatus();
 
   // gets user profile data
