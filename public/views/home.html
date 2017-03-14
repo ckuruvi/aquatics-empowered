@@ -2,32 +2,27 @@
 
 <button ng-click="home.logout()" >Logout</button> -->
 
-<!-- Find a facility nearby form  -->
-<section>
-<form name="chartsForm" class="form-inline well" ng-submit="home.getFacilities()">
-  <div class="row">
-    <div class="form-group row">
-      <label class="control-label col-xs-offset-1 col-xs-2">Zip Code:</label>
-      <div class="col-xs-8">
-        <input class="form-control" type="text" ng-model="home.zipcode">
+<!-- Find a faciliy nearby form  -->
+
+<button ng-click="home.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+<br>
+<section class="searchDiv">
+<form name="chartForm" ng-submit="home.getFacilities()">
+      <div>
+        <input type="text" ng-model="home.zipcode" placeholder="Zip Code" class="zipcodeInput">
+
       </div>
-    </div>
     <div class="col-xs-2">
-      <button type="submit" class="btn  btn-xs btn-primary">Submit</button>
+      <button type="submit" class="submitZipButton btn btn-xs btn-primary">Search</button>
     </div>
-  </div>
 </form>
 </section>
-
-<button ng-click="home.openInfoModal()" class="btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
-
 
 <!-- Facilities List -->
 <section class="homeFacilitiesSection">
 <ul class="homeFacilitiesList">
   <li ng-repeat="result in home.facilitieslist">
     <a href="#" ng-click="home.openListModal(result.id)">{{ result.name + ' - ' + result.city }}</a>
-
   </li>
 </ul>
 </section>

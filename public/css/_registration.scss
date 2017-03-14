@@ -1,0 +1,24 @@
+.userForms {
+
+}
+
+.facilityForms {
+
+}
+
+input[type=radio]:checked~.check {
+  border: 5px solid #0DFF92;
+}
+
+input[type=radio]:checked~.check::before {
+  background: #0DFF92;
+}
+
+input[type=radio]:checked~ label {
+  color: #0DFF92;
+}
+
+.chooseUserReg {
+  padding: 0px 150px 0px 150px;
+  border: 2px solid;
+}

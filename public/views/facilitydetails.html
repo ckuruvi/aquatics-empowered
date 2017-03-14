@@ -206,7 +206,7 @@
       <!-- image url -->
       <form class="">
         <label for="image">Link to an image of your facility</label><br>
-        <img src="{{facilitydetails.facilityInfo.image_url}}" alt="" ng-show="!facilitydetails.editToggle">
+        <img ng-src="{{facilitydetails.facilityInfo.image_url}}" alt="" ng-show="!facilitydetails.editToggle">
         <input type="text" id="image" name="image" ng-model="facilitydetails.facilityInfo.image_url" value="{{facilitydetails.facilityInfo.image_url}}" ng-show="facilitydetails.editToggle"/>
       </form>
 

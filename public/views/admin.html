@@ -4,7 +4,7 @@
   </header>
 
   <section class="adminTable">
-    <table class="table table-hover">
+    <table class="table table-hover .table-responsive">
       <thead>
         <tr>
           <th>Name</th>
@@ -39,7 +39,7 @@
           </form>
           <div class="buttons" ng-show="!hiddenEntry[$index]">
             <button class="btn btn-primary" ng-click="admin.editEntry($index)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button class="btn btn-danger delete" ng-click="admin.deleteFacility(facility.id)"><i class="fa fa-trash-o" aria-hidden="true"></i> Del</button>
+            <button class="btn btn-danger delete" ng-click="admin.deleteFacility(facility.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
           </div>
           </td>
 
