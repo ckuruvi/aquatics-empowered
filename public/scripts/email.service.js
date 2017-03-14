@@ -26,7 +26,6 @@ this.sendEmail = function (newUser) {
     console.log('back from emails.' , response.data);
 
   }).then(function() {
-
     //TODO this needs to do a conditional for new registered user or be removed. It reroutes home when a facility deletes a timeslot.
     // $location.path('/');
   });
