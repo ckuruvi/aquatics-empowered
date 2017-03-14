@@ -22,5 +22,18 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
     }
   }
 
+  this.getBookedTimeSlots=function () {
+    return $http.get('/userProfile/gettimeslots').then(function (response) {
+      return response.data;
+    });
+  }
+
+  this.deleteBookedTimeSlot = function(id) {
+    console.log("id###",id);
+      return $http.delete("/userProfile/" + id).catch(function(err) {
+          console.log("Error deleting  booked timeslots", err);
+      });
+      
+  }
 
 }); // end userProfileService

@@ -59,4 +59,18 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
     })
   }
 
+
+  ctrl.getBookedTimeSlots = function () {
+      UserProfileService.getBookedTimeSlots().then(function(response) {
+        console.log("Booked time slots",response);
+        ctrl.userBookedTimeSlots = response;
+      });
+    }
+   ctrl.getBookedTimeSlots();
+
+   ctrl.deleteBookedTimeSlot = function (id) {
+       UserProfileService.deleteBookedTimeSlot(id).then(function(response) {
+         ctrl.getBookedTimeSlots();
+       });
+     }
 }]); //end userProfileController
