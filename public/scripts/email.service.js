@@ -26,7 +26,7 @@ this.sendEmail = function (newUser) {
     console.log('back from emails.' , response.data);
 
   }).then(function() {
-    $location.path('/')
+    // $location.path('/')
   });
 
 };
@@ -66,7 +66,7 @@ this.sendCancelEmail = function (dateObj, facilityInfo) {
     console.log('back from emails.' , response.data);
 
   }).then(function() {
-    $location.path('/')
+    // $location.path('/')
   });
 
 };
