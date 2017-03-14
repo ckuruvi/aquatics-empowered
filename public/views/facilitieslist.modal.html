@@ -42,6 +42,8 @@ facility name, street address, city, zipcode, description, level, cost, image  -
     <li>Accessibility: {{list.facilityInfo.handicap_accessibility}}</li>
     <li>Level: {{list.facilityInfo.level}}</li>
     <li ng-if="list.facilityInfo.cost == true">This facility charges a fee for access.</li>
+    <li>Status: {{list.facilityInfo.approved}}</li>
+    <li>Accessibility Id: {{list.facilityInfo.accessibility_id}}</li>
     <li> <img ng-src="{{list.facilityInfo.image_url}}" alt=""/></li>
   </ul>
     </section>
