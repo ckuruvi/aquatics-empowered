@@ -14,6 +14,9 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //stores current user
   ctrl.currentUser;
 
+  //stores list of all users
+  ctrl.userList;
+
 
   //checks login status
   ctrl.checkLoginStatus = function() {
@@ -33,6 +36,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
           }
           //getting facilities list on page load
           ctrl.getFacilitiesList();
+          ctrl.getAllUsers();
         });
     })
   }
@@ -99,9 +103,9 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   // confirm before deleting facility
   ctrl.confirmDelete = function() {
-    selection = confirm('Press ok to delete this facility, this cannot be undone.');
+    selection = confirm('Press ok to delete this entry, this cannot be undone.');
     if (selection == true) {
-      alert('Facility deleted');
+      alert('entry deleted');
     } else {
       alert('Canceled Deletion.');
       return false;
@@ -130,5 +134,31 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //   }
   // }
   // }; //end toggleEditState
+
+  // gets list of all users
+  ctrl.getAllUsers = function () {
+    AdminService.getAllUsers().then(function(users) {
+      console.log('received ', users.length, ' users from DB');
+      console.log('users are ', users);
+      ctrl.userList = users;
+      console.log('userLIst is ', ctrl.userList);
+    }).catch(function(err) {
+      console.log('error getting userList', err);
+    });
+  }
+
+  //deletes a specific user
+  ctrl.deleteUser = function (userId) {
+    ctrl.confirmDelete();
+    if (selection == false) {
+      return;
+    }
+    AdminService.deleteUser(userId).then(function(response) {
+      console.log('successfully deleted user');
+      ctrl.getAllUsers();
+    }).catch(function(err) {
+      console.log('error deleting user');
+    });
+  }
 
 }); //end module

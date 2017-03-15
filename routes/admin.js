@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var path = require('path');
 var bodyParser = require('body-parser');
+var User = require('../models/register.model');
 
 var pg = require('pg');
 
@@ -58,25 +59,46 @@ pool.connect(function (err, client, done){
 })
 
 router.delete('/:id', function(req, res){
-pool.connect(function(err, client, done){
-  if (err) {
-    console.log('Error connecting to DB', err);
-    res.sendStatus(500);
-    done();
-  } else {
-    client.query('DELETE FROM facilities WHERE id = $1',
-    [req.params.id],
-    function(err, result){
+  pool.connect(function(err, client, done){
+    if (err) {
+      console.log('Error connecting to DB', err);
+      res.sendStatus(500);
       done();
-      if (err) {
-        console.log('Error deleting facility', err);
-        res.sendStatus(500);
-      } else {
-        res.sendStatus(204);
-      }
-    });
-  }
+    } else {
+      client.query('DELETE FROM facilities WHERE id = $1',
+      [req.params.id],
+      function(err, result){
+        done();
+        if (err) {
+          console.log('Error deleting facility', err);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(204);
+        }
+      });
+    }
+  });
 });
+
+//GET all users
+router.get('/users', function(req, res) {
+  User.getAllUsers().then(function(users) {
+    console.log('users received from DB ', users);
+    res.status(200).send(users);
+  }).catch(function(err) {
+    console.log('error getting users from DB in ROUTE', err);
+    res.sendStatus(500);
+  });
 });
+
+router.delete('/users/:id', function(req, res) {
+  User.deleteUser(req.params.id).then(function(response) {
+    console.log('success deleting user on ROUTE');
+    res.sendStatus(204);
+  }).catch(function(err) {
+    console.log('error deleting user on ROUTE');
+    res.sendStatus(500);
+  })
+})
 
 module.exports = router;
