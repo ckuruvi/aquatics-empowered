@@ -88,13 +88,14 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
     };
 
 
-
+ // get timeslots  for a single date
     ctrl.getTimeSlots = function(date) {
         console.log("inside getTimeSlots::", date);
         if (date != undefined) {
             FacilityDetailsService.getTimeSlots(date).then(function(res) {
                 console.log('timeslots', res);
                 ctrl.timeSlotList = res;
+                ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
             });
         }
     };
@@ -106,9 +107,8 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
           console.log("line 78",ctrl.formdata);
           if(ctrl.formdata != undefined){
             ctrl.getTimeSlots(ctrl.formdata.date);
-          } else {
-            ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
           }
+            ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
         });
     };
 
@@ -121,6 +121,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
       });
     }
 
+  // modal  call to display user infomation for booked timeslots
     ctrl.openModal=function(id){
       console.log('inside openModal',id);
       FacilityDetailsService.getUserDetails(id).then(function(res) {
@@ -141,7 +142,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
                 });
         });
     }
-
+ // get all timeslots available for the facility
     ctrl.getFacilityTimeSlots = function(facilityId) {
         console.log("inside getFacilityTimeSlots::");
             FacilityDetailsService.getFacilityTimeSlots(facilityId).then(function(res) {
