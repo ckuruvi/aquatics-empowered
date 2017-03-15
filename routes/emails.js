@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
     htmlEmail += "<h2>" + mailData.facilityName + " Level: " + mailData.level + "</h2>";
     htmlEmail += "<h4> Description: " + mailData.facilityDescription + " Located: " + mailData.facilityAddress + "</h4>";
     htmlEmail += "<h5> Contact person: " + mailData.contactPerson + " " + mailData.contacts + "</h5>";
-    htmlEmail += "<img src= " + mailData.photo + "/>";
+    htmlEmail += "<img src= '" + mailData.photo + "'/>";
     // "<h2>" + mailData.months + mailData.monthsText + "</h2>";
 
 
