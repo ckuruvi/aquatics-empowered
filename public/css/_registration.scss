@@ -1,5 +1,17 @@
 .userForms {
   margin: 0 auto 0 auto;
+    input {
+      border-bottom: 2px solid #44C4D2;
+      display: inline-block;
+      cursor: pointer;
+      color: black;
+      font-size: 14px;
+      margin: 10px 20px 10px 20px;
+      text-decoration: none;
+      width: 200px;
+      height: 40px;
+      text-align: center;
+    }
 }
 
 .facilityForms {
