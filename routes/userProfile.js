@@ -24,7 +24,8 @@ router.get('/', function(req, res) {
 router.put('/:id', function(req, res) {
   console.log('in update userProfile route');
     User.updateUser(req.body).then(function(user) {
-      res.status(204).send(user);
+      console.log('**user returned after update on ROUTE', user);
+      res.send(user);
     }).catch(function(err) {
       console.log('error updating user', err);
       res.sendStatus(500);
