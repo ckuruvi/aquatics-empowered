@@ -43,15 +43,27 @@ return $http.get('/user').then(function(response) {
 ctrl.getEmails();
 
 
+function formatDate(dt) {
+  console.log('this is the dt', dt);
+      var dt = new Date(dt);
+       var month = dt.getMonth() + 1;
+       if (month.length = 1) {
+           month = '0' + month;
+       }
+       var year = dt.getFullYear();
+       var date = dt.getDate();
 
+       return month + '-' + date + '-' + year;
+   }
 
 this.sendCancelEmail = function (dateObj, facilityInfo) {
-
+  var date = formatDate(dateObj.date);
+  console.log('this is the new formatted date', date);
   var sendingEmail = true;
 
   var emailDataObject = {
     id: dateObj.facility_availibility_id,
-    cancelledDate: dateObj.date,
+    cancelledDate: date,
     startTime: dateObj.start_time,
 
     facilityName: facilityInfo.name,

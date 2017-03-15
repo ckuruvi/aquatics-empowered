@@ -28,7 +28,9 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function(EmailSe
       console.log('this is the date object', dateObj);
         return $http.delete("/facilitydetails/" + dateObj.facility_availability_id).then(function(response){
           console.log(response);
+          if(dateObj.approved==true){
           EmailService.sendCancelEmail(dateObj,facilityInfo);
+        }
       }).catch(function(err) {
             console.log("Error deleting  expense from list", err);
         });
