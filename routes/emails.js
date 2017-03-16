@@ -40,7 +40,7 @@ router.post('/', function (req, res) {
     htmlEmail += "<h2>" + mailData.facilityName + " Level: " + mailData.level + "</h2>";
     htmlEmail += "<h4> Description: " + mailData.facilityDescription + " Located: " + mailData.facilityAddress + "</h4>";
     htmlEmail += "<h5> Contact person: " + mailData.contactPerson + " " + mailData.contacts + "</h5>";
-    htmlEmail += "<img src= " + mailData.photo + "/>";
+    htmlEmail += "<img src= '" + mailData.photo + "'/>";
     // "<h2>" + mailData.months + mailData.monthsText + "</h2>";
 
 
@@ -57,7 +57,7 @@ router.post('/', function (req, res) {
     var mailOptions = {
       from: "Aquatics Empowered <aquaticsempowered@gmail.com>", // sender address
       // to: contactsArray, //receiver
-      to: "rukia.sm.23@gmail.com",
+      to: "staff.aquatics.empowered@gmail.com",
 
       subject: 'New Facility registered '+ mailData.facilityName  + ' via Aquatics Empowered', //subject line
       text: textEmail, //'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //textEmail, // plain text
@@ -121,7 +121,7 @@ router.post('/cancel', function (req, res) {
     htmlEmail += "<h3>" + mailData.facilityName + " Located at : " + mailData.facilityAddress + "</h3>";
 
     // htmlEmail += "<h4> Description: " + mailData.facilityDescription + " Located: " + mailData.facilityAddress + "</h4>";
-    htmlEmail += "<h5> Please contact person: "  + " for more information." + "</h5>";
+    htmlEmail += "<h4> Please contact: "  + mailData.contactPerson + " " + mailData.contacts + " for more information." + "</h4>";
     // + mailData.contactPerson + " " + mailData.contacts +
     // "<h2>" + mailData.months + mailData.monthsText + "</h2>";
 
@@ -139,7 +139,7 @@ router.post('/cancel', function (req, res) {
     var mailOptions = {
       from: "Aquatics Empowered <aquaticsempowered@gmail.com>", // sender address
       // to: contactsArray, //receiver
-      to: "rukia.sm.23@gmail.com",
+      to: "staff.aquatics.empowered@gmail.com",
 
       subject: mailData.facilityName  + ' Cancelled your booking on ' + mailData.cancelledDate +  ' via Aquatics Empowered at ' + mailData.startTime, //subject line
       text: textEmail, //'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //textEmail, // plain text

@@ -27,9 +27,27 @@ angular.module('aquaticsApp').service('AdminService', function($http, $location)
     return $http.put('/admins/' + facility.id, facility).then(function(response) {
       console.log('facility status is updated', response);
     }).catch(function(err) {
-      console.log('Error updating facility');
+      console.log('Error updating facility ', err);
     });
   };
+
+  //gets complete list of users
+  this.getAllUsers = function() {
+    console.log('in getAllUsers in service');
+    return $http.get('/admins/users').then(function(response) {
+      return response.data;
+    }).catch(function(err) {
+      console.log('Error getting all users ', err);
+    });
+  }
+
+  this.deleteUser = function(userId) {
+    return $http.delete('admins/users/' + userId).then(function (response) {
+      return response;
+    }).catch(function(err) {
+      console.log('error deleting user', err);
+    })
+  }
 
 
 }); //end module

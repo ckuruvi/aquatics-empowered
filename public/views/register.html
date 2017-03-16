@@ -116,10 +116,11 @@
 
 
 
+
   <!-- FACILITY FORMS -->
   <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
     <h2>Register as a Facility</h2>
-
+    <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
     <form >
       <!-- Facility Name -->
       <input type="text" id="facility" name="facility" ng-model="register.newUser.name" placeholder="Name of Facility"/>

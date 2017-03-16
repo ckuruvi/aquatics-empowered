@@ -1,4 +1,4 @@
-angular.module("aquaticsApp").controller('RegisterController', ['RegisterService', 'EmailService', '$http', '$location', 'AuthService', function(RegisterService, EmailService, $http, $location, AuthService){
+angular.module("aquaticsApp").controller('RegisterController', ['RegisterService', 'EmailService', '$http', '$location', 'AuthService','$uibModal', function(RegisterService, EmailService, $http, $location, AuthService,$uibModal){
   console.log('register Ctrl is loaded');
   var ctrl = this;
 
@@ -30,9 +30,24 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
       alert('Both passwords must match.');
       return;
     }
+    newUser.email = newUser.email.toLowerCase();
+    console.log('EMAIL IS ', newUser.email);
     console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
 
+  };
+
+  //modal for aquatic levels
+  ctrl.openInfoModal = function() {
+    console.log('Opening pop up modal');
+  var modalInstance = $uibModal.open({
+    ariaLabelledBy: 'Aquatic levels homepage modals',
+    templateUrl: '/views/aquaticlevelsinfo.modal.html',
+    controller: 'AquaticLevelsModalController',
+    controllerAs: 'levels',
+    animation: 'true',
+    size: 'lg'
+    });
   };
 
 

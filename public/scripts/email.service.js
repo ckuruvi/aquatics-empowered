@@ -56,7 +56,7 @@ function formatDate(dt) {
        return month + '-' + date + '-' + year;
    }
 
-this.sendCancelEmail = function (dateObj, facilityInfo) {
+this.sendCancelEmail = function (dateObj, facilityInfo, userContactData) {
   var date = formatDate(dateObj.date);
   console.log('this is the new formatted date', date);
   var sendingEmail = true;
@@ -69,8 +69,8 @@ this.sendCancelEmail = function (dateObj, facilityInfo) {
     facilityName: facilityInfo.name,
     facilityAddress: facilityInfo.street_address + ' ' + facilityInfo.city +', ' + facilityInfo.state + ' '+ facilityInfo.zip,
 
-    // contacts: newUser.email,
-    // contactPerson: newUser.firstName + ' ' + newUser.lastName + ' ' + newUser.phone,
+    contacts: userContactData.username,
+    contactPerson: userContactData.first_name + ' ' + userContactData.last_name + ' ' + userContactData.phone_number,
   };
   console.log('the emailDataObject is', emailDataObject);
 

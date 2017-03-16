@@ -3,7 +3,12 @@
     <span><h2>Admin</h2></span>
   </header>
 
-  <section class="adminTable">
+  <div class="radios">
+    <label>Facilties<input type="radio" ng-model="admin.view" value="facilities"></label>
+    <label>Users<input type="radio" ng-model="admin.view" value="users"></label>
+  </div>
+
+  <section class="adminTable" ng-show="admin.view == 'facilities'">
     <table class="table table-hover .table-responsive">
       <thead>
         <tr>
@@ -32,17 +37,43 @@
           </td>
 
           <td>
-          <!-- editable form hidden, 'save' and 'cancel' hidden on page load-->
-          <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="hiddenEntry[$index]" class="form-buttons form-inline">
-            <button type="submit" class="btn btn-primary" ng-click="admin.updateFacility(facility); hiddenEntry[$index] = false">Save</button>
-            <button type="button" class="btn btn-default" ng-click="admin.editEntry($index)">Cancel</button>
-          </form>
-          <div class="buttons" ng-show="!hiddenEntry[$index]">
-            <button class="btn btn-primary" ng-click="admin.editEntry($index)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-            <button class="btn btn-danger delete" ng-click="admin.deleteFacility(facility.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
-          </div>
+            <!-- editable form hidden, 'save' and 'cancel' hidden on page load-->
+            <form editable-form name="rowform" onbeforesave="saveFacility($data, facility.id)" ng-show="hiddenEntry[$index]" class="form-buttons form-inline">
+              <button type="submit" class="btn btn-primary" ng-click="admin.updateFacility(facility); hiddenEntry[$index] = false">Save</button>
+              <button type="button" class="btn btn-default" ng-click="admin.editEntry($index)">Cancel</button>
+            </form>
+            <div class="buttons" ng-show="!hiddenEntry[$index]">
+              <button class="btn btn-primary" ng-click="admin.editEntry($index)"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="btn btn-danger delete" ng-click="admin.deleteFacility(facility.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+            </div>
           </td>
 
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="userList" ng-show="admin.view == 'users'">
+    <table class="table table-hover .table-responsive">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email/Username</th>
+          <th>Address</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in admin.userList">
+          <td>{{user.first_name}} {{user.last_name}}</td>
+          <td>{{user.username}}</td>
+          <td>{{user.street_address}} {{user.city}} {{user.state}} {{user.zip}}</td>
+          <td>{{user.phone_number}}</td>
+          <td>
+            <div class="buttons">
+              <button class="btn btn-danger delete" ng-click="admin.deleteUser(user.id)"><i class="fa fa-trash-o"></i></button>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

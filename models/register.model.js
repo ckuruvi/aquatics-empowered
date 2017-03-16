@@ -106,6 +106,23 @@ exports.createFacility = function(id, name, address, city, state, zip, descripti
     });
 };
 
+exports.getAllUsers = function() {
+  return query(
+    "SELECT * FROM users WHERE user_type='user'"
+  ).then(function(users) {
+    console.log('returning users from DB ');
+    return users;
+  }).catch(function(err) {
+    console.log('error getting users from DB in MODEL');
+  });
+}
+
+exports.deleteUser = function(id) {
+  return query(
+    "DELETE FROM users WHERE id = $1 RETURNING *", [ id ]
+  );
+}
+
 
 // exports.create('test', '1234').then(function() {
 //   console.log('Created a test user');

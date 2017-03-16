@@ -3,8 +3,7 @@ $catalina-blue: #0E2682;
 
 body {
   font-family: $font-stack;
-  // background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("/images/pool-image-2.jpg")
-  // background-image: url('/images/pool-water.jpg');
+  // background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("")
 }
 
 .searchDiv {
@@ -12,9 +11,6 @@ body {
   height: 200px;
   padding: 40px 40px 40px 40px;
   margin: 0 auto 0 auto;
-    // button {
-    //   width: 150px;
-    // }
 }
 
 .homeFacilitiesSection {
@@ -22,11 +18,6 @@ body {
   height: 400px;
   margin: 0 auto 0 auto;
   padding: 40px 40px 40px 40px;
-    // li {
-    //   margin: 20px 10px 20px 10px;
-    //   border-top: 1px solid #4e5055;
-    //
-    // }
 }
 
 input[type=text] {
@@ -83,4 +74,18 @@ nav {
 }
 #timeSlots {
   display: inline-block;
+}
+
+// profileviews styling
+.userInfo {
+  p {
+    display: inline-block;
+    color: black;
+    font-size: 14px;
+    margin: 10px 20px 10px 20px;
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+  }
 }

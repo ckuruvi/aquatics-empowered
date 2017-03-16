@@ -2,7 +2,7 @@ var pool = require("../db/connection");
 
 exports.getFacilitiesList=function(zipcode){
   return query(
-    "SELECT * FROM facilities where zip=$1 ;",
+    "SELECT * FROM facilities where zip=$1 and approved='true';",
     [zipcode]
   ).then(function(facilitieslist) {
     return facilitieslist;
