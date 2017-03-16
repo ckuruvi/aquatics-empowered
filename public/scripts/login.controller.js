@@ -32,6 +32,8 @@ function LoginController($http, $location, $rootScope, AuthService) {
     console.log('logging in');
     var testy = sessionStorage.getItem( 'isAdmin' );
     console.log( 'from sessionStorage:', testy );
+    ctrl.username = ctrl.username.toLowerCase();
+    console.log('ctrl.username', ctrl.username);
     $http.post('/login', {
       username: ctrl.username,
       password: ctrl.password
