@@ -57,7 +57,7 @@ router.post('/', function (req, res) {
     var mailOptions = {
       from: "Aquatics Empowered <aquaticsempowered@gmail.com>", // sender address
       // to: contactsArray, //receiver
-      to: "rukia.sm.23@gmail.com",
+      to: "staff.aquatics.empowered@gmail.com",
 
       subject: 'New Facility registered '+ mailData.facilityName  + ' via Aquatics Empowered', //subject line
       text: textEmail, //'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //textEmail, // plain text
@@ -139,7 +139,7 @@ router.post('/cancel', function (req, res) {
     var mailOptions = {
       from: "Aquatics Empowered <aquaticsempowered@gmail.com>", // sender address
       // to: contactsArray, //receiver
-      to: "rukia.sm.23@gmail.com",
+      to: "staff.aquatics.empowered@gmail.com",
 
       subject: mailData.facilityName  + ' Cancelled your booking on ' + mailData.cancelledDate +  ' via Aquatics Empowered at ' + mailData.startTime, //subject line
       text: textEmail, //'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //textEmail, // plain text
