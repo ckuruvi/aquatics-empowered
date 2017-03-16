@@ -12,16 +12,24 @@
         <input type="text" ng-model="home.zipcode" placeholder="Zip Code" class="zipcodeInput">
       <!-- </div> -->
     <!-- <div class="col-xs-2"> -->
-      <button type="submit" class="submitZipButton btn btn-xs btn-primary">Search</button>
+      <button type="submit" class="submitZipButton btn btn-md btn-primary">Search</button>
     <!-- </div> -->
 </form>
 </section>
 
 <!-- Facilities List -->
 <section class="homeFacilitiesSection">
-<ul class="homeFacilitiesList">
+<!-- <ul class="homeFacilitiesList">
   <li ng-repeat="result in home.facilitieslist">
     <a href="#" ng-click="home.openListModal(result.id)">{{ result.name + ' - ' + result.city }}</a>
   </li>
-</ul>
+</ul> -->
+
+<table class="homeFacilitiesList table table-hover .table-responsive" >
+  <tbody>
+    <tr ng-repeat="result in home.facilitieslist">
+      <td><a class="facilityLinks" href="#" ng-click="home.openListModal(result.id)">{{ result.name + ' - ' + result.city }}</a></td>
+    </tr>
+  </tbody>
+</table>
 </section>
