@@ -1,255 +1,234 @@
 
 <!-- <form class="form-horizontal col-xs-12 col-md-6 col-md-offset-3 well" ng-submit="register.register()">
-  <div class="form-group row">
-    <label class="control-label col-xs-offset-1 col-xs-2">Username:</label>
-    <div class="col-xs-8">
-      <input class="form-control" type="text" ng-model="register.username">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label class="control-label col-xs-offset-1 col-xs-2">Password:</label>
-    <div class="col-xs-8">
-      <input class="form-control" type="password" ng-model="register.password">
-    </div>
-  </div>
-  <div class="col-xs-offset-3 col-xs-10">
-    <button type="submit" class="btn btn-primary" >Register</button>
-  </div>
-</form> -->
+<div class="form-group row">
+<label class="control-label col-xs-offset-1 col-xs-2">Username:</label>
+<div class="col-xs-8">
+<input class="form-control" type="text" ng-model="register.username">
+</div>
+</div>
+<div class="form-group row">
+<label class="control-label col-xs-offset-1 col-xs-2">Password:</label>
+<div class="col-xs-8">
+<input class="form-control" type="password" ng-model="register.password">
+</div>
+</div>
+<div class="col-xs-offset-3 col-xs-10">
+<button type="submit" class="btn btn-primary" >Register</button>
+</div>
+-->
 <form class="chooseUserReg"  method="post">
   <label>New User<input type="radio" ng-model="register.newUser.userType" value="user" /></label>
+  &nbsp
   <label>Facility<input type="radio" ng-model="register.newUser.userType" value="facility"/></label>
-</form>
-
-
-<!-- USER FORMS -->
-<div class="userForms" ng-if="register.newUser.userType == 'user'">
-  <h1>Register as a User</h1>
-  <!-- email -->
-  <form class=""  method="post">
-    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Enter a valid email address" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <!-- password -->
-  <form class=""  method="post">
-    <input type="password" id="password1" name="password" ng-model="register.newUser.password" placeholder="Password" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <form>
-    <input type="password" id="password2" name="password" ng-model="register.newUser.password1" placeholder="Confirm password" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <!-- first name  -->
-  <form class=""  method="post">
-    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="First Name" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <!-- lastName -->
-  <form class=""  method="post">
-    <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName" placeholder="Last Name"/>
-  </form>
-  <!-- address -->
-  <form class=""  method="post">
-    <input type="text" id="address" name="address" ng-model="register.newUser.address" placeholder="Street Address"/>
-  </form>
-  <!-- city -->
-  <form class=""  method="post">
-    <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
-  </form>
-  <!-- state -->
-  <form class=""  method="post">
-    <select name="state" ng-model="register.newUser.state" placeholder="State">
-  <option value="AL">Alabama</option>
-  <option value="AK">Alaska</option>
-  <option value="AZ">Arizona</option>
-  <option value="AR">Arkansas</option>
-  <option value="CA">California</option>
-  <option value="CO">Colorado</option>
-  <option value="CT">Connecticut</option>
-  <option value="DE">Delaware</option>
-  <option value="DC">District of Columbia</option>
-  <option value="FL">Florida</option>
-  <option value="GA">Georgia</option>
-  <option value="HI">Hawaii</option>
-  <option value="ID">Idaho</option>
-  <option value="IL">Illinois</option>
-  <option value="IN">Indiana</option>
-  <option value="IA">Iowa</option>
-  <option value="KS">Kansas</option>
-  <option value="KY">Kentucky</option>
-  <option value="LA">Louisiana</option>
-  <option value="ME">Maine</option>
-  <option value="MD">Maryland</option>
-  <option value="MA">Massachusetts</option>
-  <option value="MI">Michigan</option>
-  <option value="MN">Minnesota</option>
-  <option value="MS">Mississippi</option>
-  <option value="MO">Missouri</option>
-  <option value="MT">Montana</option>
-  <option value="NE">Nebraska</option>
-  <option value="NV">Nevada</option>
-  <option value="NH">New Hampshire</option>
-  <option value="NJ">New Jersey</option>
-  <option value="NM">New Mexico</option>
-  <option value="NY">New York</option>
-  <option value="NC">North Carolina</option>
-  <option value="ND">North Dakota</option>
-  <option value="OH">Ohio</option>
-  <option value="OK">Oklahoma</option>
-  <option value="OR">Oregon</option>
-  <option value="PA">Pennsylvania</option>
-  <option value="RI">Rhode Island</option>
-  <option value="SC">South Carolina</option>
-  <option value="SD">South Dakota</option>
-  <option value="TN">Tennessee</option>
-  <option value="TX">Texas</option>
-  <option value="UT">Utah</option>
-  <option value="VT">Vermont</option>
-  <option value="VA">Virginia</option>
-  <option value="WA">Washington</option>
-  <option value="WV">West Virginia</option>
-  <option value="WI">Wisconsin</option>
-  <option value="WY">Wyoming</option>
-  </select>
-  </form>
-  <!-- zipcode -->
-  <form class=""  method="post">
-    <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zipcode" placeholder="five digit zipcode"/>
-  </form>
-  <!-- phone # -->
-  <form class=""  method="post">
-    <input type="tel" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
-    <br />
-    <button class="btn btn-success" type="submit" name="button" ng-click="register.registerUser(register.newUser)">Register</button>
-  </form>
-</div>
 
 
 
+  <!-- USER FORMS -->
+  <div class="userForms" ng-if="register.newUser.userType == 'user'">
+    <h1>Register as a User</h1>
+    <!-- email -->
+      <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Enter a valid email address" required/><p style="color: red; display: inline">*</p>
 
-<!-- FACILITY FORMS -->
-<div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
-  <h1>Register as a Facility</h1>
-  <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
-  <form class="">
-    <!-- Facility Name -->
-    <form class=""  >
-      <input type="text" id="facility" name="facility" ng-model="register.newUser.name" placeholder="Name of Facility"/>
+      <!-- password -->
+      <input type="password" id="password1" name="password" ng-model="register.newUser.password" placeholder="Password" required/><p style="color: red; display: inline">*</p>
+      <input type="password" id="password2" name="password" ng-model="register.newUser.password1" placeholder="Confirm password" required/><p style="color: red; display: inline">*</p>
+
+      <!-- first name  -->
+      <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="First Name" required/><p style="color: red; display: inline">*</p>
+
+      <!-- lastName -->
+      <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName" placeholder="Last Name"/>
+
+      <!-- address -->
+      <input type="text" id="address" name="address" ng-model="register.newUser.address" placeholder="Street Address"/>
+
+      <!-- city -->
+      <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
+
+      <!-- state -->
+      <select name="state" ng-model="register.newUser.state" placeholder="State">
+        <option value="default">Select State</option>
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="DC">District of Columbia</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+
+      <!-- zipcode -->
+      <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zipcode" placeholder="five digit zipcode"/>
+
+      <!-- phone # -->
+      <input type="tel" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
+      <br />
+      <button class="btn btn-success" type="submit" name="button" ng-click="register.registerUser(register.newUser)">Register</button>
+      </div>
     </form>
-  <!-- email -->
-  <form class=""  method="post">
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="example@example.com" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <!-- password -->
-  <form class=""  method="post">
-    <label for="password">Password</label>
-    <input type="password" id="password1" name="password" ng-model="register.newUser.password" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <form>
-    <label for="password">Confirm password</label>
-    <input type="password" id="password2" name="password" ng-model="register.newUser.password1" required/><p style="color: red; display: inline">*</p>
-  </form>
-  <!-- first name  -->
-  <form class=""  method="post">
-    <label for="firstName">Contact First Name:</label>
-    <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" required/><p style="color: red; display: inline">*</p>
 
-  </form>
-  <!-- last name  -->
-  <form class=""  method="post">
-    <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName" placeholder="Contact Last Name"/>
-  </form>
-  <!-- phone # -->
-  <form class=""  method="post">
-    <input type="text" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
-  </form>
-  <!-- address -->
-  <form class=""  method="post">
-    <input type="text" id="address" name="address" ng-model="register.newUser.address" placeholder="Street Address"/>
-  </form>
-  <!-- city -->
-  <form class=""  method="post">
-    <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
-  </form>
-  <!-- state -->
-  <form class=""  method="post">
-    <select name="state" ng-model="register.newUser.state">
-	<option value="AL">Alabama</option>
-	<option value="AK">Alaska</option>
-	<option value="AZ">Arizona</option>
-	<option value="AR">Arkansas</option>
-	<option value="CA">California</option>
-	<option value="CO">Colorado</option>
-	<option value="CT">Connecticut</option>
-	<option value="DE">Delaware</option>
-	<option value="DC">District of Columbia</option>
-	<option value="FL">Florida</option>
-	<option value="GA">Georgia</option>
-	<option value="HI">Hawaii</option>
-	<option value="ID">Idaho</option>
-	<option value="IL">Illinois</option>
-	<option value="IN">Indiana</option>
-	<option value="IA">Iowa</option>
-	<option value="KS">Kansas</option>
-	<option value="KY">Kentucky</option>
-	<option value="LA">Louisiana</option>
-	<option value="ME">Maine</option>
-	<option value="MD">Maryland</option>
-	<option value="MA">Massachusetts</option>
-	<option value="MI">Michigan</option>
-	<option value="MN">Minnesota</option>
-	<option value="MS">Mississippi</option>
-	<option value="MO">Missouri</option>
-	<option value="MT">Montana</option>
-	<option value="NE">Nebraska</option>
-	<option value="NV">Nevada</option>
-	<option value="NH">New Hampshire</option>
-	<option value="NJ">New Jersey</option>
-	<option value="NM">New Mexico</option>
-	<option value="NY">New York</option>
-	<option value="NC">North Carolina</option>
-	<option value="ND">North Dakota</option>
-	<option value="OH">Ohio</option>
-	<option value="OK">Oklahoma</option>
-	<option value="OR">Oregon</option>
-	<option value="PA">Pennsylvania</option>
-	<option value="RI">Rhode Island</option>
-	<option value="SC">South Carolina</option>
-	<option value="SD">South Dakota</option>
-	<option value="TN">Tennessee</option>
-	<option value="TX">Texas</option>
-	<option value="UT">Utah</option>
-	<option value="VT">Vermont</option>
-	<option value="VA">Virginia</option>
-	<option value="WA">Washington</option>
-	<option value="WV">West Virginia</option>
-	<option value="WI">Wisconsin</option>
-	<option value="WY">Wyoming</option>
-</select>
-  </form>
-  <!-- zipcode -->
-  <form class=""  method="post">
-    <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zip" placeholder="five digit zipcode"/>
-  </form>
-<!-- handicap accessibility? -->
-<label>Is your facility ADA compliant? <input type="checkbox" ng-model="register.newUser.accessible"/></label>
-<!-- cost -->
-<form class="" method="post">
-  <label>Does your facility charge for access?<input type="checkbox" ng-model="register.newUser.cost"/></label>
-</form>
-<!-- user level -->
-<form class=""  method="post">
-  <label for="level">What level of user ability can you accomodate?</label>
-  <input type="text" id="level" name="level" ng-model="register.newUser.level"/>
-</form>
-<!-- facility description -->
-<form class=""  method="post">
-  <label for="description">Tell us a bit about your facility</label>
-  <input type="text" id="description" name="description" ng-model="register.newUser.description"/>
-</form>
-<!-- image url -->
-<form class=""  method="post">
-  <label for="image">Link to an image of your facility</label>
-  <input type="text" id="image" name="image" ng-model="register.newUser.image_url"/>
-  <br>
-  <button class="btn btn-success" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
-</form>
-</form>
-</div>
+
+
+
+
+
+
+  <!-- FACILITY FORMS -->
+  <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
+    <h2>Register as a Facility</h2>
+    <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+    <form >
+      <!-- Facility Name -->
+      <input type="text" id="facility" name="facility" ng-model="register.newUser.name" placeholder="Name of Facility"/>
+
+      <!-- email -->
+      <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Email: example@example.com" required/><p style="color: red; display: inline">*</p>
+
+      <!-- password -->
+      <input type="password" id="password1" name="password" ng-model="register.newUser.password" placeholder="Password" required/><p style="color: red; display: inline">*</p>
+      <input type="password" id="password2" name="password" ng-model="register.newUser.password1" placeholder="Confirm password" required/><p style="color: red; display: inline">*</p>
+
+      <!-- first name  -->
+      <input type="text" id="firstName" name="firstName" ng-model="register.newUser.firstName" placeholder="First Name" required/><p style="color: red; display: inline">*</p>
+
+      <!-- last name  -->
+      <input type="text" id="lastName" name="lastName" ng-model="register.newUser.lastName" placeholder="Contact Last Name"/>
+
+      <!-- phone # -->
+      <input type="text" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
+
+      <!-- address -->
+      <input type="text" id="address" name="address" ng-model="register.newUser.address" placeholder="Street Address"/>
+
+      <!-- city -->
+      <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
+
+      <!-- state -->
+      <select name="state" ng-model="register.newUser.state">
+        <option value="AL">Alabama</option>
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="DC">District of Columbia</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+      </select>
+
+      <!-- zipcode -->
+      <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zip" placeholder="five digit zipcode"/>
+      <br>
+
+      <!-- handicap accessibility? -->
+      <label>Is your facility Handicap Accessible? <input type="checkbox" ng-model="register.newUser.accessible"/></label>
+      <br>
+
+      <!-- cost -->
+      <label>Does your facility charge for access?<input type="checkbox" ng-model="register.newUser.cost"/></label>
+      <br>
+
+      <!-- user level -->
+      <label for="level">What level of user ability can you accomodate?</label>
+      <input type="text" id="level" name="level" ng-model="register.newUser.level"/>
+      <br>
+
+      <!-- facility description -->
+      <label for="description">Tell us a bit about your facility</label>
+      <input type="text" id="description" name="description" ng-model="register.newUser.description"/>
+      <br>
+
+      <!-- image url -->
+      <label for="image">Link to an image of your facility</label>
+      <input type="text" id="image" name="image" ng-model="register.newUser.image_url"/>
+      <br>
+      <button class="btn btn-success" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
+    </form>
+
+  </div>
