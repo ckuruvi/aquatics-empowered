@@ -30,6 +30,8 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
       alert('Both passwords must match.');
       return;
     }
+    newUser.email = newUser.email.toLowerCase();
+    console.log('EMAIL IS ', newUser.email);
     console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
 
