@@ -52,12 +52,14 @@
             <label class="control-label col-xs-offset-1 col-xs-2">From:</label>
             <div class="col-xs-8">
                 <select class="form-control" ng-model="facilitydetails.formdata.startTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
+                <select class="form-control" ng-model="facilitydetails.formdata.startampm" ng-options="x for x in facilitydetails.ampm"></select>
             </div>
         </div>
         <div class="form-group row">
             <label class="control-label col-xs-offset-1 col-xs-2">To:</label>
             <div class="col-xs-8">
                 <select class="form-control" ng-model="facilitydetails.formdata.endTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
+                <select class="form-control" ng-model="facilitydetails.formdata.endampm" ng-options="x for x in facilitydetails.ampm"></select>
             </div>
         </div>
 

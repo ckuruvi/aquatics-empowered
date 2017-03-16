@@ -58,8 +58,8 @@ exports.getUserDetails = function(userId) {
 exports.getTimeSlots = function(date, facilityId) {
   console.log('*********date is ', date);
     return query(
-      "SELECT fa.id facility_availability_id,fa.date,fa.start_time,fa.end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
-"FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.date=$1 and fa.facility_id=$2;",
+      "SELECT fa.id facility_availability_id,fa.date,TO_CHAR(fa.start_time, 'FMHH:MI AM')start_time,TO_CHAR(fa.end_time, 'FMHH:MI AM')end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
+       "FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.date=$1 and fa.facility_id=$2 ORDER BY fa.start_time;",
              [date, facilityId]
         ).then(function(timeSlotList) {
             return timeSlotList;
@@ -114,8 +114,8 @@ exports.deleteTimeSlotAvailibility = function(id) {
 exports.getFacilityTimeSlots = function(facilityId) {
   console.log("*****inside getFacilityTimeSlots*******",facilityId);
     return query(
-      "SELECT fa.id facility_availability_id,fa.date,fa.start_time,fa.end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
-"FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.facility_id=$1;",
+      "SELECT fa.id facility_availability_id,fa.date,TO_CHAR(fa.start_time, 'FMHH:MI AM')start_time,TO_CHAR(fa.end_time, 'FMHH:MI AM')end_time,fr.id facility_reservation_id,fr.reservation_id user_id, fr.approved approved "+
+"FROM facility_availability fa LEFT JOIN facility_reservation fr ON fa.id=fr.facility_availability_id WHERE fa.facility_id=$1 ORDER BY fa.start_time;",
              [facilityId]
         ).then(function(facilityTimeSlotList) {
             return facilityTimeSlotList;
