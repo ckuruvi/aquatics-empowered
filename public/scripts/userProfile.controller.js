@@ -15,6 +15,12 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
   //stores current user
   ctrl.currentUser;
 
+  //stores user's booked time slots
+  ctrl.userBookedTimeSlots;
+
+  // stores the date to display on confirm alert
+  ctrl.currentDate;
+
 
   //checks login status
   ctrl.checkLoginStatus = function() {
@@ -76,9 +82,47 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
         ctrl.userBookedTimeSlots = response;
       });
     }
+    //looks for booked time slots on page load
    ctrl.getBookedTimeSlots();
 
-   ctrl.deleteBookedTimeSlot = function (id) {
+   //for formatting ISO date
+   ctrl.formatDate = function(dt) {
+     console.log('this is the dt', dt);
+         var dt = new Date(dt);
+          var month = dt.getMonth() + 1;
+          if (month.length = 1) {
+              month = '0' + month;
+          }
+          var year = dt.getFullYear();
+          var date = dt.getDate();
+          if (date.length = 1) {
+              date = '0' + date;
+          }
+
+          ctrl.currentDate = month + '-' + date + '-' + year;
+      }
+
+   // confirm before deleting facility
+   ctrl.confirmCancel = function(index) {
+     ctrl.formatDate(ctrl.userBookedTimeSlots[index].date)
+     selection = confirm('Are you sure you want to cancel your reservation at \n' +
+     ctrl.userBookedTimeSlots[index].name + '\n' +
+     'On ' + ctrl.currentDate + '\n' +
+     'From ' + ctrl.userBookedTimeSlots[index].start_time + ' to ' + ctrl.userBookedTimeSlots[index].end_time + '?');
+     if (selection == true) {
+       alert('Your reservation has been canceled.');
+     } else {
+       alert('Your reservation was not canceled. See you at ' + ctrl.userBookedTimeSlots[index].start_time + '!');
+       return false;
+     }
+   };
+
+
+   ctrl.deleteBookedTimeSlot = function (id, index) {
+     ctrl.confirmCancel(index);
+     if( selection == false) {
+       return;
+     }
        UserProfileService.deleteBookedTimeSlot(id).then(function(response) {
          ctrl.getBookedTimeSlots();
        });
