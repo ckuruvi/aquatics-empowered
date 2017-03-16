@@ -23,13 +23,14 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function(EmailSe
 
     };
 
-    this.deleteTimeSlot = function(dateObj,facilityInfo) {
+    this.deleteTimeSlot = function(dateObj,facilityInfo, userContactData) {
       console.log('this is the facility info', facilityInfo);
       console.log('this is the date object', dateObj);
+      console.log('this is the fac contact data', userContactData);
         return $http.delete("/facilitydetails/" + dateObj.facility_availability_id).then(function(response){
           console.log(response);
           if(dateObj.approved==true){
-          EmailService.sendCancelEmail(dateObj,facilityInfo);
+          EmailService.sendCancelEmail(dateObj,facilityInfo,userContactData);
         }
       }).catch(function(err) {
             console.log("Error deleting  expense from list", err);

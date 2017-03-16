@@ -121,7 +121,7 @@ router.post('/cancel', function (req, res) {
     htmlEmail += "<h3>" + mailData.facilityName + " Located at : " + mailData.facilityAddress + "</h3>";
 
     // htmlEmail += "<h4> Description: " + mailData.facilityDescription + " Located: " + mailData.facilityAddress + "</h4>";
-    htmlEmail += "<h5> Please contact person: "  + " for more information." + "</h5>";
+    htmlEmail += "<h4> Please contact: "  + mailData.contactPerson + " " + mailData.contacts + " for more information." + "</h4>";
     // + mailData.contactPerson + " " + mailData.contacts +
     // "<h2>" + mailData.months + mailData.monthsText + "</h2>";
 
