@@ -24,6 +24,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
     //stores current user
     ctrl.currentUser;
 
+    ctrl.userContactData;
 
     //checks login status
     ctrl.checkLoginStatus = function() {
@@ -106,7 +107,11 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
 
     ctrl.deleteTimeSlot = function(dateObj) {
         console.log("inside deleteTimeSlot::", dateObj);
-        FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo).then(function(res) {
+        //get sesstion storage item and parse the json string and store it in userContactData
+        var temp = sessionStorage.getItem( 'ucd' );
+        ctrl.userContactData = JSON.parse( temp ) ;
+        console.log('this is the contact info', ctrl.userContactData );
+        FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo, ctrl.userContactData).then(function(res) {
           console.log("line 78",ctrl.formdata);
           if(ctrl.formdata != undefined){
             ctrl.getTimeSlots(ctrl.formdata.date);

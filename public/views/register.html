@@ -126,7 +126,7 @@
 <!-- FACILITY FORMS -->
 <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
   <h1>Register as a Facility</h1>
-
+  <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
   <form class="">
     <!-- Facility Name -->
     <form class=""  >
@@ -229,7 +229,7 @@
     <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zip" placeholder="five digit zipcode"/>
   </form>
 <!-- handicap accessibility? -->
-<label>Is your facility Handicap Accessible? <input type="checkbox" ng-model="register.newUser.accessible"/></label>
+<label>Is your facility ADA compliant? <input type="checkbox" ng-model="register.newUser.accessible"/></label>
 <!-- cost -->
 <form class="" method="post">
   <label>Does your facility charge for access?<input type="checkbox" ng-model="register.newUser.cost"/></label>
