@@ -118,10 +118,17 @@ exports.getAllUsers = function() {
   });
 }
 
+exports.deleteUserReservation = function(id) {
+  return query(
+    "DELETE FROM facility_reservation WHERE reservation_id=$1", [id]
+  );
+}
+
 exports.deleteUser = function(id) {
   return query(
     "DELETE FROM users WHERE id = $1 RETURNING *", [ id ]
   );
+
 }
 
 

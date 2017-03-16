@@ -92,9 +92,11 @@ router.get('/users', function(req, res) {
 });
 
 router.delete('/users/:id', function(req, res) {
-  User.deleteUser(req.params.id).then(function(response) {
-    console.log('success deleting user on ROUTE');
-    res.sendStatus(204);
+  User.deleteUserReservation(req.params.id).then(function(response) {
+    User.deleteUser(req.params.id).then(function(response) {
+      console.log('success deleting user on ROUTE');
+      res.sendStatus(204);
+    });
   }).catch(function(err) {
     console.log('error deleting user on ROUTE');
     res.sendStatus(500);
