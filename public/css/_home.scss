@@ -1,7 +1,9 @@
 $font-stack: 'Catamaran', 'Slabo', 'sans-serif';
+$catalina-blue: #0E2682;
 
 body {
   font-family: $font-stack;
+  // background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("")
 }
 
 .searchDiv {
@@ -9,22 +11,13 @@ body {
   height: 200px;
   padding: 40px 40px 40px 40px;
   margin: 0 auto 0 auto;
-    button {
-      width: 150px;
-    }
-
 }
 
 .homeFacilitiesSection {
   width: 100%;
-  height: 300px;
+  height: 400px;
   margin: 0 auto 0 auto;
   padding: 40px 40px 40px 40px;
-    li {
-      border-left: 6px solid #00D8EE;
-      background-color: #8FA1B4;
-      margin: 20px 10px 20px 10px;
-    }
 }
 
 input[type=text] {
@@ -60,16 +53,39 @@ ul{
 .facilityImg {
   width: 250px;
   height: 250px;
-}
-
-a {
-
+  border: none;
 }
 
 nav {
   font-family: $font-stack;
   color: white;
-    // div div ul {
-    //   color: white;
-    // }
+}
+
+// table with list of facilities on home page
+.homeFacilitiesList {
+  text-align: center;
+  font-size: 16px;
+}
+
+#timeSlots {
+  li {
+    display: inline-block;
+    padding-left: 5px;
+  }
+
+}
+
+
+// profileviews styling
+.userInfo {
+  p {
+    display: inline-block;
+    color: black;
+    font-size: 14px;
+    margin: 10px 20px 10px 20px;
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+  }
 }
