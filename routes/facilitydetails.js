@@ -47,9 +47,17 @@ function setTimeSlots(formdata, facilityId) {
     return new Promise(function(resolve, reject) {
         var startTime = parseInt(formdata.startTime);
         var endTime = parseInt(formdata.endTime);
+        if (formdata.startampm == 'PM') {
+          startTime = startTime + 12;
+        }; 
+        if (formdata.endampm == 'PM') {
+          endTime = endTime + 12;
+        }
+        console.log('startTime is ', startTime, 'startampm::', formdata.startampm, 'endTime is ', endTime, 'endampm::', formdata.endampm);
         var count = endTime - startTime;
         console.log("count::", count, facilityId);
         for (var i = 0; i < count; i++) {
+          console.log('FORLOOP in settimeslots');
             var date = new Date(formdata.date);
             FacilityDetails.setTimeSlots(facilityId, date, startTime + ':00', (startTime + 1) + ':00');
             startTime += 1;

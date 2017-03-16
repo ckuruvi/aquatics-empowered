@@ -26,9 +26,10 @@ exports.findById = function(id) {
 
 exports.getTimeSlots=function(id) {
   return query(
-    "SELECT f.name ,f.street_address,fa.date,fa.start_time,fa.end_time,fr.id reservation_id from facility_availability fa "+
-    "JOIN facility_reservation fr on fa.id=fr.facility_availability_id  join  facilities f on fa.facility_id=f.id "+
-    "where fr.reservation_id=$1",
+    "SELECT f.name ,f.street_address,fa.date,TO_CHAR(fa.start_time, 'FMHH:MI AM')start_time,TO_CHAR(fa.end_time, 'FMHH:MI AM')end12Hr,fr.id reservation_id "+
+    "FROM facility_availability fa "+
+    "JOIN facility_reservation fr ON fa.id=fr.facility_availability_id  JOIN  facilities f ON fa.facility_id=f.id "+
+    "WHERE fr.reservation_id=$1",
     [ id ])
     .then(function(timeslots) {
       return timeslots;

@@ -48,10 +48,12 @@
             </datepicker>
         </div>
 
+
         <div>
             <label>From:</label>
             <!-- <div class="col-xs-8"> -->
                 <select ng-model="facilitydetails.formdata.startTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
+                <select class="form-control" ng-model="facilitydetails.formdata.startampm" ng-options="x for x in facilitydetails.ampm"></select>
             <!-- </div> -->
         <!-- </div> -->
         <!-- <div> -->
@@ -59,6 +61,8 @@
             <label>To:</label>
             <!-- <div> -->
                 <select ng-model="facilitydetails.formdata.endTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
+                <select class="form-control" ng-model="facilitydetails.formdata.endampm" ng-options="x for x in facilitydetails.ampm"></select>
+
                 <button type="submit" class="btn  btn-sm btn-primary">Add Slots</button>
             <!-- </div> -->
         </div>

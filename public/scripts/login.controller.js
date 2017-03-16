@@ -32,6 +32,7 @@ function LoginController($http, $location, $rootScope, AuthService) {
     console.log('logging in');
     var testy = sessionStorage.getItem( 'isAdmin' );
     console.log( 'from sessionStorage:', testy );
+    //makes username case insensitive
     ctrl.username = ctrl.username.toLowerCase();
     console.log('ctrl.username', ctrl.username);
     $http.post('/login', {
@@ -48,6 +49,4 @@ function LoginController($http, $location, $rootScope, AuthService) {
   };
 
 
-
-
-}
+}; //end ctrl
