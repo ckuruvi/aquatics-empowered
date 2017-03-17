@@ -1,11 +1,28 @@
+// styling related to the login div
+$font-stack: 'Slabo', 'Catamaran', 'sans-serif';
+$gray: #4D4D4D;
+$white: #FFFFFF;
+
 .loginInputs {
   width: 300px;
   padding: 30px;
-  background: #FFFFFF;
+  background: $white;
   margin: 50px auto;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.22);
+  font-family: $font-stack;
+    h3 {
+      background: $gray;
+      text-transform: uppercase;
+      text-align: center;
+      color: $white;
+      font-size: 18px;
+      font-weight: 100;
+      padding: 20px;
+      margin: -30px -30px 30px -30px;
+      font-weight: bold;
+    }
     input {
-      border-bottom: 2px solid #5a5b6c;
+      border-bottom: 2px solid $gray;
       display: inline-block;
       color: black;
       font-size: 14px;
@@ -14,5 +31,11 @@
       width: 200px;
       height: 40px;
       text-align: center;
+    }
+    .btn {
+      margin: 0 auto 0 auto;
+    }
+    span {
+      font-size: 16px;
     }
 }

@@ -1,3 +1,5 @@
+$font-stack: 'Slabo', 'Catamaran', 'sans-serif';
+
 .navbar-brand {
   padding: 0px;
   position: relative;
@@ -7,3 +9,19 @@
   background-image: url('/images/water-background.png');
   background-repeat: no-repeat;
 }
+
+nav {
+  font-family: $font-stack;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+// .aquaEmpowered {
+//   font-size: 30px;
+//   text-align: center;
+//   color: white;
+//   font-weight: bold;
+// }
