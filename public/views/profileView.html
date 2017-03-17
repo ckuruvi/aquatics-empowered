@@ -1,45 +1,44 @@
 <form class="userProfileRadio">
   <label>Profile<input type="radio" ng-model="user.view"  checked /></label>
   <label>Reservations<input type="radio" ng-model="user.view" value="reservations" /></label>
-</form>
+</form><br>
 
 <div class="userInfo" ng-show="user.view != 'reservations' ">
   <!-- email -->
-  <form class="userProfileForm">
+
+  <form>
     <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-    <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button>
-    <br>
-    <br />
-    <br />
+    <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button><br><br>
+
     <label for="email">Email:</label>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.username}}</p>
-    <input type="text" id="username" name="username" ng-model="user.userToDisplay.username" value="{{user.userToDisplay.username}}" ng-show="user.editToggle"/>
+    <p ng-show="!user.editToggle">{{user.userToDisplay.username}}</p><br>
+    <input type="text" id="username" name="username" ng-model="user.userToDisplay.username" value="{{user.userToDisplay.username}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- first name  -->
     <label for="firstName">First Name:</label>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.first_name}}</p>
-    <input type="text" id="firstName" name="firstName" ng-model="user.userToDisplay.first_name" value="{{user.userToDisplay.first_name}}" ng-show="user.editToggle"/>
+    <p ng-show="!user.editToggle">{{user.userToDisplay.first_name}}</p><br>
+    <input type="text" id="firstName" name="firstName" ng-model="user.userToDisplay.first_name" value="{{user.userToDisplay.first_name}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- lastName -->
     <label for="lastName">Last Name:</label>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.last_name}}</p>
-    <input type="text" id="lastName" name="lastName" ng-model="user.userToDisplay.last_name" value="{{user.userToDisplay.last_name}}" ng-show="user.editToggle"/>
+    <p ng-show="!user.editToggle">{{user.userToDisplay.last_name}}</p><br>
+    <input type="text" id="lastName" name="lastName" ng-model="user.userToDisplay.last_name" value="{{user.userToDisplay.last_name}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- address -->
     <label for="address">Street Address:</label>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.street_address}}</p>
-    <input type="text" id="address" name="address" ng-model="user.userToDisplay.street_address" value="{{user.userToDisplay.street_address}}" ng-show="user.editToggle"/>
+    <p ng-show="!user.editToggle">{{user.userToDisplay.street_address}}</p><br>
+    <input type="text" id="address" name="address" ng-model="user.userToDisplay.street_address" value="{{user.userToDisplay.street_address}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- city -->
     <label for="city">City:</label>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.city}}</p>
-    <input type="text" id="city" name="city" ng-model="user.userToDisplay.city" value="{{user.userToDisplay.city}}" ng-show="user.editToggle"/>
+    <p ng-show="!user.editToggle">{{user.userToDisplay.city}}</p><br>
+    <input type="text" id="city" name="city" ng-model="user.userToDisplay.city" value="{{user.userToDisplay.city}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- state -->
     <label for="state">State:</label>
-    <br>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.state}}</p>
-    <select name="state" ng-model="user.userToDisplay.state" value="{{user.userToDisplay.state}}" ng-show="user.editToggle">
+    <p ng-show="!user.editToggle">{{user.userToDisplay.state}}</p><br>
+    <select name="state" ng-model="user.userToDisplay.state" value="{{user.userToDisplay.state}}" ng-show="user.editToggle"><br ng-if="user.editToggle">
+
   <option value="AL">Alabama</option>
   <option value="AK">Alaska</option>
   <option value="AZ">Arizona</option>
@@ -91,17 +90,18 @@
   <option value="WV">West Virginia</option>
   <option value="WI">Wisconsin</option>
   <option value="WY">Wyoming</option>
-  </select>
+  </select><br ng-if="user.editToggle">
 
   <!-- zipcode -->
     <label for="zipcode">Zipcode:</label>
-    <br>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.zip}}</p>
-    <input type="text" id="zip" name="zip" ng-model="user.userToDisplay.zip" value="{{user.userToDisplay.zip}}" ng-show="user.editToggle"/>
+
+    <p ng-show="!user.editToggle">{{user.userToDisplay.zip}}</p><br>
+    <input type="text" id="zip" name="zip" ng-model="user.userToDisplay.zip" value="{{user.userToDisplay.zip}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- phone # -->
     <label for="phone">Phone Number:</label>
-    <p ng-show="!user.editToggle">{{user.userToDisplay.phone_number}}</p>
+    <p ng-show="!user.editToggle">{{user.userToDisplay.phone_number}}</p><br>
+
     <input type="tel" id="phone" name="phone" ng-model="user.userToDisplay.phone_number" value="{{user.userToDisplay.phone_number}}" ng-show="user.editToggle"/><br ng-if="user.editToggle"><br ng-if="user.editToggle">
     <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
     <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button>

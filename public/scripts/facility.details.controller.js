@@ -26,6 +26,9 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
 
     ctrl.userContactData;
 
+    // boolean for confirmation
+    var selection;
+
     //checks login status
     ctrl.checkLoginStatus = function() {
       AuthService.checkLoginStatus().then(function(response) {
@@ -56,6 +59,17 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
         ctrl.editToggle = false
       }
     }
+
+    // confirm before deleting facility
+    ctrl.confirmDelete = function() {
+      selection = confirm('Press ok to delete this time slot, this cannot be undone.');
+      if (selection == true) {
+        alert('Time slot deleted');
+      } else {
+        alert('Canceled Deletion.');
+        return false;
+      }
+    };
 
     ctrl.getContactInfo = function () {
         console.log('ctrl.getUser() called');
@@ -106,6 +120,10 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
 
 
     ctrl.deleteTimeSlot = function(dateObj) {
+      ctrl.confirmDelete();
+      if(selection == false) {
+        return;
+      }
         console.log("inside deleteTimeSlot::", dateObj);
         //get sesstion storage item and parse the json string and store it in userContactData
         var temp = sessionStorage.getItem( 'ucd' );
