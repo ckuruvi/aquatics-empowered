@@ -6,6 +6,11 @@
 <div class="userInfo" ng-show="user.view != 'reservations' ">
   <!-- email -->
   <form class="userProfileForm">
+    <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button>
+    <br>
+    <br />
+    <br />
     <label for="email">Email:</label>
     <p ng-show="!user.editToggle">{{user.userToDisplay.username}}</p>
     <input type="text" id="username" name="username" ng-model="user.userToDisplay.username" value="{{user.userToDisplay.username}}" ng-show="user.editToggle"/>
