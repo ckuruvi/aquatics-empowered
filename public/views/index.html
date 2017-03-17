@@ -93,8 +93,8 @@
         <li ng-show="nav.loginStatus == false"><a href="/login">Login</a></li>
         <li ng-show="nav.loginStatus == false"><a href="/newUser">Register</a></li>
         <li class="dropdown">
-          <a ng-show="nav.loginStatus == true && nav.userToDisplay.user_type !='facility'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{nav.userToDisplay.first_name}}<span class="caret"></span></a>
-          <a ng-show="nav.loginStatus == true && nav.userToDisplay.user_type =='facility'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{nav.facilityInfo.name}}<span class="caret"></span></a>
+          <a ng-show="nav.loginStatus == true && nav.userToDisplay.user_type !='facility'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #f49609">{{nav.userToDisplay.first_name}} <span class="caret"></span></a>
+          <a ng-show="nav.loginStatus == true && nav.userToDisplay.user_type =='facility'" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #f49609">{{nav.facilityInfo.name}}<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="/">Search</a></li>
             <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'user'"><a href="/profile">My Profile</a></li>
