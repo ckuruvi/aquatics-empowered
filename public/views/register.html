@@ -215,13 +215,18 @@
       <br>
 
       <!-- user level -->
-      <label for="level">What level of user ability can you accomodate?</label>
-      <input type="text" id="level" name="level" ng-model="register.newUser.level"/>
+      <label for="level">What level of user ability can you accomodate?<select class="" ng-model="register.newUser.level" name="level">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select></label>
       <br>
 
       <!-- facility description -->
       <label for="description">Tell us a bit about your facility</label>
-      <input type="text" id="description" name="description" ng-model="register.newUser.description"/>
+      <textarea name="description" rows="8" cols="80" id="description" name="description" ng-model="register.newUser.description"></textarea>
+      <!-- <input type="text" id="description" name="description" ng-model="register.newUser.description"/> -->
       <br>
 
       <!-- image url -->
