@@ -26,7 +26,7 @@ exports.findById = function(id) {
 
 exports.getTimeSlots=function(id) {
   return query(
-    "SELECT f.name ,f.street_address,fa.date,TO_CHAR(fa.start_time, 'FMHH:MI AM')start_time,TO_CHAR(fa.end_time, 'FMHH:MI AM')end12Hr,fr.id reservation_id "+
+    "SELECT f.name ,f.street_address,fa.date,TO_CHAR(fa.start_time, 'FMHH:MI AM')start_time,TO_CHAR(fa.end_time, 'FMHH:MI AM')end_time,fr.id reservation_id "+
     "FROM facility_availability fa "+
     "JOIN facility_reservation fr ON fa.id=fr.facility_availability_id  JOIN  facilities f ON fa.facility_id=f.id "+
     "WHERE fr.reservation_id=$1",
@@ -118,10 +118,17 @@ exports.getAllUsers = function() {
   });
 }
 
+exports.deleteUserReservation = function(id) {
+  return query(
+    "DELETE FROM facility_reservation WHERE reservation_id=$1", [id]
+  );
+}
+
 exports.deleteUser = function(id) {
   return query(
     "DELETE FROM users WHERE id = $1 RETURNING *", [ id ]
   );
+
 }
 
 

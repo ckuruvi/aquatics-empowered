@@ -141,7 +141,7 @@ router.post('/cancel', function (req, res) {
       // to: contactsArray, //receiver
       to: "staff.aquatics.empowered@gmail.com",
 
-      subject: mailData.facilityName  + ' Cancelled your booking on ' + mailData.cancelledDate +  ' via Aquatics Empowered at ' + mailData.startTime, //subject line
+      subject: mailData.facilityName  + ' Cancelled your booking on ' + mailData.cancelledDate + ' at ' + mailData.startTime + ' via Aquatics Empowered ' , //subject line
       text: textEmail, //'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //textEmail, // plain text
       html: htmlEmail, //'The following facility just registered with Aquatics Empowered, ' + mailData.facilityName, //htmlEmail, //html
       // attachments: [{   // use URL as an attachment
