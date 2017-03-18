@@ -3,11 +3,11 @@
   <label>Reservations<input type="radio" ng-model="user.view" value="reservations" /></label>
 </form><br>
 
-<div class="userInfo" ng-show="user.view != 'reservations' ">
+<div class="text-center userInfo" ng-show="user.view != 'reservations' ">
   <!-- email -->
 
   <form>
-    <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <button class="btn btn-success" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
     <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button><br><br>
 
     <label for="email">Email:</label>
@@ -103,7 +103,7 @@
     <p ng-show="!user.editToggle">{{user.userToDisplay.phone_number}}</p><br>
 
     <input type="tel" id="phone" name="phone" ng-model="user.userToDisplay.phone_number" value="{{user.userToDisplay.phone_number}}" ng-show="user.editToggle"/><br ng-if="user.editToggle"><br ng-if="user.editToggle">
-    <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <button class="btn btn-success" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
     <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button>
     <!-- <button type="submit" name="button" >Register</button> -->
   </form>

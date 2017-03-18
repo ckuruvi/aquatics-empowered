@@ -4,15 +4,17 @@
 
 <!-- Find a faciliy nearby form  -->
 
-<button ng-click="home.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+<button ng-click="home.openInfoModal()" class="infoButton btn btn-info"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
 <br>
-<section class="searchDiv">
+<section class="search">
+<h3>Search for a facility</h3>
 <form name="chartForm" ng-submit="home.getFacilities()">
-      <!-- <div> -->
+      <div>
+        <i class="fa fa-search" aria-hidden="true"></i>
         <input type="text" ng-model="home.zipcode" placeholder="Zip Code" class="zipcodeInput">
-      <!-- </div> -->
+      </div>
     <!-- <div class="col-xs-2"> -->
-      <button type="submit" class="submitZipButton btn btn-md btn-primary">Search</button>
+      <button type="submit" class="submitZipButton btn btn-md btn-info">Search</button>
     <!-- </div> -->
 </form>
 </section>
