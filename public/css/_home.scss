@@ -5,6 +5,7 @@ $white: #FFFFFF;
 body {
   font-family: $font-stack;
   background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("/images/water-background-005.jpg");
+  
 }
 
 h2{
@@ -22,12 +23,17 @@ h2{
   height: 200px;
   padding: 40px 40px 40px 40px;
   margin: 0 auto 0 auto;
+  border: 1px solid #b3afa7;
+  border-radius: 20px;
   input[type=text] {
-    // border: none;
+    // width: ;
+    // height: ;
     border-radius: 25px;
     text-align: center;
   }
     button {
+      text-align: center;
+      padding-left: 45px;
       text-align: center;
     }
 }
