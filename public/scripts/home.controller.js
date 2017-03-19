@@ -2,7 +2,7 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
 
 
   var ctrl = this;
-
+  
   ctrl.logout = function() {
     $http.delete('/login').then(function(){
       console.log('Successfully logged out!');

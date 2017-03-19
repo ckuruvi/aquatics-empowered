@@ -120,22 +120,38 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
 
 
     ctrl.deleteTimeSlot = function(dateObj) {
-      ctrl.confirmDelete();
-      if(selection == false) {
-        return;
-      }
-        console.log("inside deleteTimeSlot::", dateObj);
-        //get sesstion storage item and parse the json string and store it in userContactData
-        var temp = sessionStorage.getItem( 'ucd' );
-        ctrl.userContactData = JSON.parse( temp ) ;
-        console.log('this is the contact info', ctrl.userContactData );
-        FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo, ctrl.userContactData).then(function(res) {
-          console.log("line 78",ctrl.formdata);
-          if(ctrl.formdata != undefined){
-            ctrl.getTimeSlots(ctrl.formdata.date);
-          }
-            ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
-        });
+      // ctrl.confirmDelete();
+      // if(selection == false) {
+      //   return;
+      // }
+
+      swal({
+  title: "",
+  text: "Are you sure you want to cancel the time slot?",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  cancelButtonText: "No",
+  confirmButtonText: "Yes",
+  closeOnConfirm: false
+},
+function(){
+  console.log("inside deleteTimeSlot::", dateObj);
+  //get sesstion storage item and parse the json string and store it in userContactData
+  var temp = sessionStorage.getItem( 'ucd' );
+  ctrl.userContactData = JSON.parse( temp ) ;
+  console.log('this is the contact info', ctrl.userContactData );
+  FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo, ctrl.userContactData).then(function(res) {
+    console.log("line 78",ctrl.formdata);
+    if(ctrl.formdata != undefined){
+      ctrl.getTimeSlots(ctrl.formdata.date);
+    }
+      ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
+      swal("Time slot cancelled");
+  });
+
+});
+
     };
 
 
