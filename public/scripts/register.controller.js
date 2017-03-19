@@ -27,7 +27,7 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
 // sends newUser object (user/facility) to the registerService
   ctrl.registerUser = function(newUser) {
     if (newUser.password != newUser.password1) {
-      alert('Both passwords must match.');
+      swal('Both passwords must match.');
       return;
     }
     newUser.email = newUser.email.toLowerCase();
@@ -35,10 +35,10 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
     console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
     if(newUser.userType == 'facility'){
-    swal("Thank you for registering.Please wait for an approval email.")
+    swal("Thank you for registering with Aquatic Empowered! Please wait for an approval email");
   }
   if(newUser.userType == 'user'){
-  swal("Thank you for registering.")
+  swal("Thank you for joining Aquatics Empowered!");
 }
   };
 
