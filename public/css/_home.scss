@@ -4,7 +4,8 @@ $white: #FFFFFF;
 
 body {
   font-family: $font-stack;
-  // background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("")
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("/images/water-background-005.jpg");
+  
 }
 
 h2{
@@ -17,17 +18,22 @@ h2{
   }
 }
 
-.searchDiv {
+.search {
   width: 300px;
   height: 200px;
   padding: 40px 40px 40px 40px;
   margin: 0 auto 0 auto;
+  border: 1px solid #b3afa7;
+  border-radius: 20px;
   input[type=text] {
-    border: none;
-    border-bottom: 2px solid #4e5055;
+    // width: ;
+    // height: ;
+    border-radius: 25px;
     text-align: center;
   }
     button {
+      text-align: center;
+      padding-left: 45px;
       text-align: center;
     }
 }
@@ -86,3 +92,9 @@ ul{
     display: block;
     }
 }
+
+// .btn-info:active {
+//   color: #272a30;
+//   background-color: #f9f9f9;
+//   border-color: #dbdbda;
+// }

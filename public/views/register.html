@@ -118,10 +118,11 @@
 
 
   <!-- FACILITY FORMS -->
+  <form >
   <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
     <h2>Register as a Facility</h2>
     <!-- <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button> -->
-    <form >
+
       <!-- Facility Name -->
       <input type="text" id="facility" name="facility" ng-model="register.newUser.name" placeholder="Name of Facility"/>
 
@@ -237,6 +238,7 @@
       <input type="text" id="image" name="image" ng-model="register.newUser.image_url"/>
       <br>
       <button class="btn btn-success btn-md" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
-    </form>
+
 
   </div>
+    </form>
