@@ -79,16 +79,35 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //delete facility from db after confirmation of true
   ctrl.deleteFacility = function(id) {
-    ctrl.confirmDelete();
-    if (selection == false) {
-      return;
-    }
-    console.log('In deleteFacility', id);
-    AdminService.deleteFacility(id).then(function(response) {
-      console.log('Success deleting facility', response);
-      ctrl.getFacilitiesList();
-      return response;
-    });
+    // ctrl.confirmDelete();
+    // if (selection == false) {
+    //   return;
+    // }
+
+    swal({
+  title: "",
+  text: "Are you sure you want to delete the facility?",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
+  closeOnConfirm: false
+},
+function(){
+  console.log('In deleteFacility', id);
+  AdminService.deleteFacility(id).then(function(response) {
+    console.log('Success deleting facility', response);
+    ctrl.getFacilitiesList();
+    swal("Facility Deleted.");
+    //return response;
+
+  });
+
+});
+
+
+
   };
 
   //update the status of a facility
@@ -149,16 +168,32 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //deletes a specific user
   ctrl.deleteUser = function (userId) {
-    ctrl.confirmDelete();
-    if (selection == false) {
-      return;
-    }
-    AdminService.deleteUser(userId).then(function(response) {
-      console.log('successfully deleted user');
-      ctrl.getAllUsers();
-    }).catch(function(err) {
-      console.log('error deleting user');
-    });
+    // ctrl.confirmDelete();
+    // if (selection == false) {
+    //   return;
+    // }
+
+    swal({
+  title: "",
+  text: "Are you sure you want to delete the user?",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
+  closeOnConfirm: false
+},
+function(){
+  AdminService.deleteUser(userId).then(function(response) {
+    console.log('successfully deleted user');
+    ctrl.getAllUsers();
+    swal("User Deleted.");
+  }).catch(function(err) {
+    console.log('error deleting user');
+  });
+
+});
+
   }
 
 }); //end module

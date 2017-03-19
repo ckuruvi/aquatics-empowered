@@ -34,7 +34,12 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
     console.log('EMAIL IS ', newUser.email);
     console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
-
+    if(newUser.userType == 'facility'){
+    swal("Thank you for registering.Please wait for an approval email.")
+  }
+  if(newUser.userType == 'user'){
+  swal("Thank you for registering.")
+}
   };
 
   //modal for aquatic levels
