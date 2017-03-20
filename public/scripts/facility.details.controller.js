@@ -199,6 +199,18 @@ function(){
             });
     };
 
+    //modal for aquatic levels
+    ctrl.openInfoModal = function() {
+      console.log('Opening pop up modal');
+    var modalInstance = $uibModal.open({
+      ariaLabelledBy: 'Aquatic levels homepage modals',
+      templateUrl: '/views/aquaticlevelsinfo.modal.html',
+      controller: 'AquaticLevelsModalController',
+      controllerAs: 'levels',
+      animation: 'true',
+      size: 'lg'
+      });
+    };
 
 
 }]);

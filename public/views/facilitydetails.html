@@ -199,10 +199,19 @@
         <strong ng-show="facilitydetails.facilityInfo.cost == true && !facilitydetails.editToggle" >{{facilitydetails.facilityInfo.name}} charges for access</strong>
         <strong ng-show="facilitydetails.facilityInfo.cost == false && !facilitydetails.editToggle">{{facilitydetails.facilityInfo.name}} does not charge for access</strong><br><br>
       <!-- user level -->
-        <label for="level">what level of user ability can you accomodate?</label><br>
+        <!-- <label for="level">what level of user ability can you accomodate?</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.level}}</p>
-        <input type="text" id="level" name="level" ng-model="facilitydetails.facilityInfo.level" value="{{facilitydetails.facilityInfo.level}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
+        <input type="text" id="level" name="level" ng-model="facilitydetails.facilityInfo.level" value="{{facilitydetails.facilityInfo.level}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle"> -->
 
+        <label for="level">What <a href="#" ng-click="facilitydetails.openInfoModal()">level</a> of user ability can you accomodate?
+          <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.level}}</p>
+          <select class="" ng-show="facilitydetails.editToggle" ng-model="facilitydetails.newUser.level" name="level">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select></label><br ng-show="facilitydetails.editToggle">
+        <br>
       <!-- facility description -->
         <label for="description">Facility Description</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.description}}</p>
