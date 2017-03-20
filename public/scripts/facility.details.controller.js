@@ -124,10 +124,16 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
       // if(selection == false) {
       //   return;
       // }
+      console.log("inside deleteTimeSlot::", dateObj);
+      if(dateObj.approved==true){
+        var message="Are you sure you want to cancel the booked time slot?";
+      }else{
+        var message="Are you sure you want to cancel the time slot?";
+      }
 
       swal({
   title: "",
-  text: "Are you sure you want to cancel the time slot?",
+  text: message,
   type: "warning",
   showCancelButton: true,
   confirmButtonColor: "#DD6B55",

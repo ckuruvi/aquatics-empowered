@@ -1,13 +1,22 @@
 <h2>{{facilitydetails.facilityInfo.name}}</h2>
 
-<form class="facilityDetails"  method="post">
+<!-- <form class="facilityDetails"  method="post">
   <label>All Availability<input type="radio" checked ng-model="facilitydetails.view" /></label>
   <label>Edit Availability<input type="radio" ng-model="facilitydetails.view" value="availability" /></label>
   <label>My Facility<input type="radio" ng-model="facilitydetails.view" value="facility"/></label>
   <label>My Contact<input type="radio" ng-model="facilitydetails.view" value="contact"/></label>
-</form>
+</form> -->
 
-<div id="slotsAvailable" ng-show="facilitydetails.view != 'availability' && facilitydetails.view != 'facility' && facilitydetails.view != 'contact' ">
+<div class="" ng-init="facilitydetails.active = 1">
+  <button type="button" class="btn btn-default btn-sm" ng-class="{active: facilitydetails.active == 1}" ng-click="facilitydetails.active = 1" ng-model="facilitydetails.view">All Availability</button>
+  <button type="button" class="btn btn-default btn-sm" ng-class="{active: facilitydetails.active == 2}" ng-click="facilitydetails.active = 2" ng-model="facilitydetails.view">Edit Availability</button>
+  <button type="button" class="btn btn-default btn-sm" ng-class="{active: facilitydetails.active == 3}" ng-click="facilitydetails.active = 3" ng-model="facilitydetails.view">My Facility</button>
+  <button type="button" class="btn btn-default btn-sm" ng-class="{active: facilitydetails.active == 4}" ng-click="facilitydetails.active = 4" ng-model="facilitydetails.view">My Contact Info</button>
+</div>
+<br>
+
+
+<div id="slotsAvailable" ng-show="facilitydetails.active == 1">
     <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
             <h4>Available Slots</h4>
@@ -40,8 +49,10 @@
 
 
 
-<div id="availability" ng-show="facilitydetails.view == 'availability'">
-    <form class="form-inline" ng-submit="facilitydetails.setTimeSlots(facilitydetails.formdata)">
+
+<div id="availability" ng-show="facilitydetails.active == 2">
+    <form ng-submit="facilitydetails.setTimeSlots(facilitydetails.formdata)">
+
         <div class="calendar">
             <datepicker date-format="EEEE MM/dd/yyyy">
                 <input ng-change="facilitydetails.getTimeSlots(facilitydetails.formdata.date)" ng-model="facilitydetails.formdata.date" type="text" class="angular-datepicker-input fa font-fontawesome font-light radius3" placeholder="&#xf073; Choose a date" />
@@ -102,22 +113,24 @@
 
 
     <!-- FACILITY INFO -->
-    <div class="facilityInfo" ng-show="facilitydetails.view == 'facility'">
+    <div class="facilityInfo" ng-show="facilitydetails.active == 3">
+      <button class="btn btn-primary" ng-click="facilitydetails.edit()" style="background-color:green"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+      <button type="submit" class="btn btn-primary" ng-click="facilitydetails.edit(); facilitydetails.updateUser(facilitydetails.facilityInfo)" ng-show="facilitydetails.editToggle">Save</button><br ng-show="facilitydetails.editToggle">
       <!-- Facility Name -->
-      <form>
+      <br><form>
         <label for="facilityName">Name of Facility:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.name}}</p>
-        <input type="text" id="facility" name="facility" ng-model="facilitydetails.facilityInfo.name" value="{{facilitydetails.facilityInfo.name}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="facility" name="facility" ng-model="facilitydetails.facilityInfo.name" value="{{facilitydetails.facilityInfo.name}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
       <!-- address -->
         <label for="address">Street Address:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.street_address}}</p>
-        <input type="text" id="address" name="address" ng-model="facilitydetails.facilityInfo.street_address" value="{{facilitydetails.facilityInfo.street_address}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="address" name="address" ng-model="facilitydetails.facilityInfo.street_address" value="{{facilitydetails.facilityInfo.street_address}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
       <!-- city -->
         <label for="city">City:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.city}}</p>
-        <input type="text" id="city" name="city" ng-model="facilitydetails.facilityInfo.city" value="{{facilitydetails.facilityInfo.city}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="city" name="city" ng-model="facilitydetails.facilityInfo.city" value="{{facilitydetails.facilityInfo.city}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
       <!-- state -->
         <label for="state">State:</label><br>
@@ -174,32 +187,35 @@
       <option value="WV">West Virginia</option>
       <option value="WI">Wisconsin</option>
       <option value="WY">Wyoming</option>
-      </select>
+      </select><br ng-show="facilitydetails.editToggle">
 
       <!-- zipcode -->
         <label for="zipcode">Zipcode:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.zip}}</p>
-        <input type="text" id="zip" name="zip" ng-model="facilitydetails.facilityInfo.zip" value="{{facilitydetails.facilityInfo.zip}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="zip" name="zip" ng-model="facilitydetails.facilityInfo.zip" value="{{facilitydetails.facilityInfo.zip}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle"><br ng-show="facilitydetails.editToggle">
 
       <!-- cost -->
-        <label>Does your facility charge for access?<input type="checkbox" ng-model="facilitydetails.facilityInfo.cost" value="{{facilitydetails.facilityInfo.cost}}"/></label>
-
+      <div class="" ng-if="facilitydetails.editToggle">
+        <label>Does your facility charge for access?<input type="checkbox" ng-model="facilitydetails.facilityInfo.cost" value="{{facilitydetails.facilityInfo.cost}}"/></label><br>
+      </div>
+        <strong ng-show="facilitydetails.facilityInfo.cost == true && !facilitydetails.editToggle" >{{facilitydetails.facilityInfo.name}} charges for access</strong>
+        <strong ng-show="facilitydetails.facilityInfo.cost == false && !facilitydetails.editToggle">{{facilitydetails.facilityInfo.name}} does not charge for access</strong><br><br>
       <!-- user level -->
-        <label for="level">what level of user ability can you accomodate?</label>
+        <label for="level">what level of user ability can you accomodate?</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.level}}</p>
-        <input type="text" id="level" name="level" ng-model="facilitydetails.facilityInfo.level" value="{{facilitydetails.facilityInfo.level}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="level" name="level" ng-model="facilitydetails.facilityInfo.level" value="{{facilitydetails.facilityInfo.level}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
       <!-- facility description -->
-        <label for="description">Tell us a bit about your facility</label><br>
+        <label for="description">Facility Description</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.description}}</p>
         <textarea name="description" rows="8" cols="80" ng-model="facilitydetails.facilityInfo.description" value="{{facilitydetails.facilityInfo.description}}" ng-show="facilitydetails.editToggle"></textarea>
 
       <!-- image url -->
         <label for="image">Link to an image of your facility</label><br>
-        <img ng-src="{{facilitydetails.facilityInfo.image_url}}" alt="" ng-show="!facilitydetails.editToggle">
-        <input type="text" id="image" name="image" ng-model="facilitydetails.facilityInfo.image_url" value="{{facilitydetails.facilityInfo.image_url}}" ng-show="facilitydetails.editToggle"/>
+        <img ng-src="{{facilitydetails.facilityInfo.image_url}}" alt="" ng-show="!facilitydetails.editToggle"><br>
+        <input type="text" id="image" name="image" ng-model="facilitydetails.facilityInfo.image_url" value="{{facilitydetails.facilityInfo.image_url}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
-        <button class="btn btn-primary" ng-click="facilitydetails.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+        <button class="btn btn-primary" ng-click="facilitydetails.edit()" style="background-color:green"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         <button type="submit" class="btn btn-primary" ng-click="facilitydetails.edit(); facilitydetails.updateUser(facilitydetails.facilityInfo)" ng-show="facilitydetails.editToggle">Save</button>
         </form>
     </div>
@@ -207,29 +223,29 @@
 
 
     <!-- FACILITY CONTACT INFO -->
-    <div class="facilityContactInfo" ng-show="facilitydetails.view == 'contact'">
+    <div class="facilityContactInfo" ng-show="facilitydetails.active == 4">
       <!-- email -->
       <form>
         <label for="email">Email:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.contactInfo.username}}</p>
-        <input type="text" id="username" name="username" ng-model="facilitydetails.contactInfo.username" value="{{facilitydetails.contactInfo.username}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="username" name="username" ng-model="facilitydetails.contactInfo.username" value="{{facilitydetails.contactInfo.username}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
       <!-- first name  -->
         <label for="firstName">First Name:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.contactInfo.first_name}}</p>
-        <input type="text" id="firstName" name="firstName" ng-model="facilitydetails.contactInfo.first_name" value="{{facilitydetails.contactInfo.first_name}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="firstName" name="firstName" ng-model="facilitydetails.contactInfo.first_name" value="{{facilitydetails.contactInfo.first_name}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
       <!-- lastName -->
         <label for="lastName">Last Name:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.contactInfo.last_name}}</p>
-        <input type="text" id="lastName" name="lastName" ng-model="facilitydetails.contactInfo.last_name" value="{{facilitydetails.contactInfo.last_name}}" ng-show="facilitydetails.editToggle"/>
+        <input type="text" id="lastName" name="lastName" ng-model="facilitydetails.contactInfo.last_name" value="{{facilitydetails.contactInfo.last_name}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle">
 
 
         <label for="phone">Phone Number:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.contactInfo.phone_number}}</p>
         <input type="tel" id="phone" name="phone" ng-model="facilitydetails.contactInfo.phone_number" value="{{facilitydetails.contactInfo.phone_number}}" ng-show="facilitydetails.editToggle"/><br ng-if="facilitydetails.editToggle"><br ng-if="facilitydetails.editToggle">
 
-      <button class="btn btn-primary" ng-click="facilitydetails.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-      <button type="submit" class="btn btn-primary" ng-click="facilitydetails.edit(); facilitydetails.updateUser(facilitydetails.contactInfo)" ng-show="facilitydetails.editToggle">Save</button>
+      <button class="btn btn-primary" ng-click="facilitydetails.edit()" style="background-color: green"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+      <button type="submit" class="btn btn-primary" ng-click="facilitydetails.edit(); facilitydetails.updateUser(facilitydetails.contactInfo)" ng-show="facilitydetails.editToggle" >Save</button>
       </form>
     </div>

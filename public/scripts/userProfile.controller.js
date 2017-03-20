@@ -21,6 +21,9 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
   // stores the date to display on confirm alert
   ctrl.currentDate;
 
+  //class for active tabs
+  ctrl.class = 'active';
+
 
   //checks login status
   ctrl.checkLoginStatus = function() {
@@ -42,6 +45,7 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
         });
     })
   }
+
   //checks loginstatus on pageload
   ctrl.checkLoginStatus();
 
@@ -57,6 +61,15 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
       });
     }
   } // end getUser()
+
+//changes active class of tabs
+  ctrl.changeClass = function() {
+    if (ctrl.class == 'active') {
+      ctrl.class = 'inactive';
+    } else {
+      ctrl.class = 'active'
+    }
+  }
 
   //changes ctrl.editToggle to true or false to allow editing.
   ctrl.edit = function () {
