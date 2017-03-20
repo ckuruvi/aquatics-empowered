@@ -1,0 +1,26 @@
+// styling for profile views
+$font-stack: 'Slabo', 'Catamaran', 'sans-serif';
+
+.userProfileRadio {
+  input[type=radio] {
+  border: 0px;
+  width: 100%;
+  height: 2em;
+  padding: 0 50px 0 50px;
+  margin: 0 auto 0 auto;
+  }
+}
+
+// .userInfo {
+//   input {
+//     display: block;
+//     margin: 0 auto 0 auto;
+//   }
+// }
+
+.userProfileForm {
+  input {
+    display: block;
+    margin: 0 auto 0 auto;
+  }
+}

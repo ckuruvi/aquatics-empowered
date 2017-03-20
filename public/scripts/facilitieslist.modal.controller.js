@@ -73,21 +73,37 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
       return;
     } else if (ctrl.loginStatus == false) {
       console.log('Cannot book reservation without logging in');
-      alert('You must be logged in to book a reservation' );
+      //alert('You must be logged in to book a reservation' );
+      swal("You must be logged in to book a reservation")
       return;
     }
-    ctrl.confirmBooking(reservation);
-    if(selection == false) {
-      return;
-    }
+    // ctrl.confirmBooking(reservation);
+    // if(selection == false) {
+    //   return;
+    // }
     console.log('this is the reservation selected', reservation);
-    FacilitiesService.postFacilityAvail(reservation).then(function (response){
-  // console.log('this is the response', response);
-      // response[0].facility_availability_id = reservation.id;
-      ctrl.postAvail = response;
-      console.log('this is the post fac avail reservation', ctrl.postAvail);
-      ctrl.getSearchResults(ctrl.selectedDate, ctrl.facilityInfo.id);
-    });
+
+    swal({
+  title: "",
+  text: "Are you sure you want to reserve this time slot?",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
+  closeOnConfirm: false
+},
+function(){
+  FacilitiesService.postFacilityAvail(reservation).then(function (response){
+// console.log('this is the response', response);
+    // response[0].facility_availability_id = reservation.id;
+    ctrl.postAvail = response;
+    console.log('this is the post fac avail reservation', ctrl.postAvail);
+    ctrl.getSearchResults(ctrl.selectedDate, ctrl.facilityInfo.id);
+    swal("Time slot has been reserved" );
+  });
+
+});
 
   };
 

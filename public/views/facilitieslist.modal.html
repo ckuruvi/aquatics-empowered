@@ -28,7 +28,7 @@ facility name, street address, city, zipcode, description, level, cost, image  -
       <li ng-repeat="slot in list.results">
           <div ng-switch="slot.approved">
             <button ng-switch-when="true" style="text-decoration: line-through; color: black; background-color: grey; border: grey" class="btn btn-danger" ng-click="list.alreadyBooked(slot)"><time>{{slot.start_time}}</time></button>
-            <button ng-switch-default ng-click="list.postFacilityAvail(slot)" class="btn btn-danger"><time>{{slot.start_time}}</time></button>
+            <button ng-switch-default ng-click="list.postFacilityAvail(slot)" class="btn btn-success"><time>{{slot.start_time}}</time></button>
           </div>
         </li>
     </ul>

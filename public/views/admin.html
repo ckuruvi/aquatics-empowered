@@ -3,12 +3,13 @@
     <span><h2>Admin</h2></span>
   </header>
 
-  <div class="radios">
-    <label>Facilties<input type="radio" ng-model="admin.view" value="facilities"></label>
-    <label>Users<input type="radio" ng-model="admin.view" value="users"></label>
+
+  <div class="" ng-init="admin.active = 1">
+    <button type="button" class="btn btn-default btn-sm" ng-class="{active: admin.active == 1}" ng-click="admin.active = 1" ng-model="admin.view">Facilities</button>
+    <button type="button" class="btn btn-default btn-sm" ng-class="{active: admin.active == 2}" ng-click="admin.active = 2" ng-model="admin.view">Users</button>
   </div>
 
-  <section class="adminTable" ng-show="admin.view == 'facilities'">
+  <section class="adminTable" ng-show="admin.active == 1">
     <table class="table table-hover .table-responsive">
       <thead>
         <tr>
@@ -53,7 +54,7 @@
     </table>
   </section>
 
-  <section class="userList" ng-show="admin.view == 'users'">
+  <section class="userList" ng-show="admin.active == 2">
     <table class="table table-hover .table-responsive">
       <thead>
         <tr>

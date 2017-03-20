@@ -1,17 +1,19 @@
-<form method="post">
-  <label>Profile<input type="radio" ng-model="user.view"  checked /></label>
-  <label>Reservations<input type="radio" ng-model="user.view" value="reservations" /></label>
 
-  <p>
-   <button type="button" class="btn btn-default btn-sm" ng-click="user.active = 1">Select second tab</button>
-   <button type="button" class="btn btn-default btn-sm" ng-click="user.active = 2; ">Select third tab</button>
- </p>
-</form><br>
+  <div class="" ng-init="user.active = 1">
+   <button type="button" class="btn btn-default btn-sm" ng-class="{active: user.active == 1}" ng-click="user.active = 1">My Profile</button>
+   <button type="button" class="btn btn-default btn-sm" ng-class="{active: user.active == 2}" ng-click="user.active = 2">My Reservations</button>
+ </div>
+
+
+
+<br>
+
 
 <div class="userInfo" ng-show="user.active == 1">
+
   <!-- email -->
   <form>
-    <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <button class="btn btn-success" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
     <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button><br><br>
 
     <label for="email">Email:</label>
@@ -42,6 +44,7 @@
     <label for="state">State:</label>
     <p ng-show="!user.editToggle">{{user.userToDisplay.state}}</p><br>
     <select name="state" ng-model="user.userToDisplay.state" value="{{user.userToDisplay.state}}" ng-show="user.editToggle"><br ng-if="user.editToggle">
+
   <option value="AL">Alabama</option>
   <option value="AK">Alaska</option>
   <option value="AZ">Arizona</option>
@@ -97,14 +100,16 @@
 
   <!-- zipcode -->
     <label for="zipcode">Zipcode:</label>
+
     <p ng-show="!user.editToggle">{{user.userToDisplay.zip}}</p><br>
     <input type="text" id="zip" name="zip" ng-model="user.userToDisplay.zip" value="{{user.userToDisplay.zip}}" ng-show="user.editToggle"/><br ng-if="user.editToggle">
 
   <!-- phone # -->
     <label for="phone">Phone Number:</label>
     <p ng-show="!user.editToggle">{{user.userToDisplay.phone_number}}</p><br>
+
     <input type="tel" id="phone" name="phone" ng-model="user.userToDisplay.phone_number" value="{{user.userToDisplay.phone_number}}" ng-show="user.editToggle"/><br ng-if="user.editToggle"><br ng-if="user.editToggle">
-    <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <button class="btn btn-success" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
     <button type="submit" class="btn btn-primary" ng-click="user.edit(); user.updateUser(user.userToDisplay)" ng-show="user.editToggle">Save</button>
     <!-- <button type="submit" name="button" >Register</button> -->
   </form>
@@ -132,7 +137,7 @@
               <td>{{obj.date|date:'MM-dd-yyyy'}}</td>
               <td>{{obj.start_time}}</td>
               <td>{{obj.end_time}}</td>
-              <td><button class="btn btn-xs btn-info" ng-click="user.deleteBookedTimeSlot(obj.reservation_id, $index)" type="submit">Cancel</button></td>
+              <td><button class="btn btn-xs btn-info" ng-click="user.deleteBookedTimeSlot(obj.reservation_id, $index)" type="submit" style="background-color: red">Cancel</button></td>
           </tr>
       </tBody>
   </table>

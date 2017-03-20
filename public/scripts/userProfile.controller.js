@@ -132,12 +132,29 @@ angular.module('aquaticsApp').controller('userProfileController', ['UserProfileS
 
 
    ctrl.deleteBookedTimeSlot = function (id, index) {
-     ctrl.confirmCancel(index);
-     if( selection == false) {
-       return;
-     }
-       UserProfileService.deleteBookedTimeSlot(id).then(function(response) {
-         ctrl.getBookedTimeSlots();
-       });
+    //  ctrl.confirmCancel(index);
+    //  if( selection == false) {
+    //    return;
+    //  }
+
+     swal({
+ title: "",
+ text: "Are you sure you want to cancel your reservation.",
+ type: "warning",
+ showCancelButton: true,
+ confirmButtonColor: "#DD6B55",
+ confirmButtonText: "Yes",
+ cancelButtonText: "No",
+ closeOnConfirm: false
+},
+function(){
+  UserProfileService.deleteBookedTimeSlot(id).then(function(response) {
+    ctrl.getBookedTimeSlots();
+    swal("Your reservation has been canceled.");
+  });
+
+});
+
+
      }
 }]); //end userProfileController

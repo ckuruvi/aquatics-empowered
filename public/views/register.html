@@ -25,7 +25,7 @@
 
   <!-- USER FORMS -->
   <div class="userForms" ng-if="register.newUser.userType == 'user'">
-    <h1>Register as a User</h1>
+    <h2>Register as a User</h2>
     <!-- email -->
       <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Enter a valid email address" required/><p style="color: red; display: inline">*</p>
 
@@ -107,7 +107,7 @@
       <!-- phone # -->
       <input type="tel" id="phone" name="phone" ng-model="register.newUser.phone" placeholder="Phone: (123)-555-5478"/>
       <br />
-      <button class="btn btn-success" type="submit" name="button" ng-click="register.registerUser(register.newUser)">Register</button>
+      <button class="btn btn-success btn-md" type="submit" name="button" ng-click="register.registerUser(register.newUser)">Register</button>
       </div>
     </form>
 
@@ -118,10 +118,11 @@
 
 
   <!-- FACILITY FORMS -->
+  <form >
   <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
     <h2>Register as a Facility</h2>
-    <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
-    <form >
+    <!-- <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button> -->
+
       <!-- Facility Name -->
       <input type="text" id="facility" name="facility" ng-model="register.newUser.name" placeholder="Name of Facility"/>
 
@@ -204,10 +205,12 @@
 
       <!-- zipcode -->
       <input type="text" id="zipcode" name="zipcode" ng-model="register.newUser.zip" placeholder="five digit zipcode"/>
-      <br>
 
       <!-- handicap accessibility? -->
+
+
       <label>Is your facility ADA (American Disabilities Act) Compliant? <input type="checkbox" ng-model="register.newUser.accessible"/></label>
+
       <br>
 
       <!-- cost -->
@@ -215,7 +218,8 @@
       <br>
 
       <!-- user level -->
-      <label for="level">What level of user ability can you accomodate?<select class="" ng-model="register.newUser.level" name="level">
+
+      <label for="level">What <a href="#" ng-click="register.openInfoModal()">level</a> of user ability can you accomodate?<select class="" ng-model="register.newUser.level" name="level">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -233,7 +237,8 @@
       <label for="image">Link to an image of your facility</label>
       <input type="text" id="image" name="image" ng-model="register.newUser.image_url"/>
       <br>
-      <button class="btn btn-success" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
-    </form>
+      <button class="btn btn-success btn-md" type="submit" name="button" ng-click="email.sendEmail(); register.registerUser(register.newUser)">Register</button>
+
 
   </div>
+    </form>

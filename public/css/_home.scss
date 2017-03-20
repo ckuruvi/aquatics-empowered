@@ -1,29 +1,49 @@
-$font-stack: 'Catamaran', 'Slabo', 'sans-serif';
+$font-stack: 'Slabo', 'Catamaran', 'sans-serif';
 $catalina-blue: #0E2682;
+$white: #FFFFFF;
 
 body {
   font-family: $font-stack;
-  // background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("")
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%,rgba(255,255,255,0.9) 100%),url("/images/water-background-005.jpg");
+  
 }
 
-.searchDiv {
+h2{
+  text-align: center;
+}
+
+.navContainer {
+  ul {
+    color: $white;
+  }
+}
+
+.search {
   width: 300px;
   height: 200px;
   padding: 40px 40px 40px 40px;
   margin: 0 auto 0 auto;
+  border: 1px solid #b3afa7;
+  border-radius: 20px;
+  input[type=text] {
+    // width: ;
+    // height: ;
+    border-radius: 25px;
+    text-align: center;
+  }
+    button {
+      text-align: center;
+      padding-left: 45px;
+      text-align: center;
+    }
 }
+
 
 .homeFacilitiesSection {
   width: 100%;
   height: 400px;
   margin: 0 auto 0 auto;
   padding: 40px 40px 40px 40px;
-}
-
-input[type=text] {
-  border: none;
-  border-bottom: 2px solid #4e5055;
-  text-align: center;
 }
 
 .submitZipButton {
@@ -44,29 +64,20 @@ ul{
   display: inline-block;
 }
 
-.btn-danger:hover{
-  background-color: green;
-  color: green;
-  border-color: green;
-}
-
+// images that users see in facilitieslist.modal.html
 .facilityImg {
   width: 250px;
   height: 250px;
-  border: none;
-}
-
-nav {
-  font-family: $font-stack;
-  color: white;
+  border: 1px solid white;
 }
 
 // table with list of facilities on home page
 .homeFacilitiesList {
   text-align: center;
-  font-size: 16px;
+  font-size: 20px;
 }
 
+// time slots for facility availability in facilitieslist.modal.html
 #timeSlots {
   li {
     display: inline-block;
@@ -75,17 +86,15 @@ nav {
 
 }
 
-
 // profileviews styling
 .userInfo {
-  p {
-    display: inline-block;
-    color: black;
-    font-size: 14px;
-    margin: 10px 20px 10px 20px;
-    text-decoration: none;
-    width: 200px;
-    height: 40px;
-    text-align: center;
-  }
+    input {
+    display: block;
+    }
 }
+
+// .btn-info:active {
+//   color: #272a30;
+//   background-color: #f9f9f9;
+//   border-color: #dbdbda;
+// }

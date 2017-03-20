@@ -74,21 +74,37 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     });
   }; //end getFacilitiesList
 
-
-
-
   //delete facility from db after confirmation of true
   ctrl.deleteFacility = function(id) {
-    ctrl.confirmDelete();
-    if (selection == false) {
-      return;
-    }
-    console.log('In deleteFacility', id);
-    AdminService.deleteFacility(id).then(function(response) {
-      console.log('Success deleting facility', response);
-      ctrl.getFacilitiesList();
-      return response;
-    });
+    // ctrl.confirmDelete();
+    // if (selection == false) {
+    //   return;
+    // }
+
+    swal({
+  title: "",
+  text: "Are you sure you want to delete the facility?",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
+  closeOnConfirm: false
+},
+function(){
+  console.log('In deleteFacility', id);
+  AdminService.deleteFacility(id).then(function(response) {
+    console.log('Success deleting facility', response);
+    ctrl.getFacilitiesList();
+    swal("Facility Deleted.");
+    //return response;
+
+  });
+
+});
+
+
+
   };
 
   //update the status of a facility
@@ -119,22 +135,6 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   ctrl.editToggle = false;
 
-  // method to toggle edit
-  // ctrl.toggleEditState = function() {
-  //   for (var i = 0; i < ctrl.facilitiesList.length; i++) {
-  //     if( ctrl.facilitiesList[i].approved ){
-  //       ctrl.facilitiesList[i].status = 'approved';
-  //       ctrl.facilitiesList[i].pending = false;
-  //   } else if (ctrl.facilitiesList[i].approved == null) {
-  //     ctrl.facilitiesList[i].status = 'pending';
-  //     ctrl.facilitiesList[i].pending = true;
-  //   } else {
-  //     ctrl.facilitiesList[i].status = 'denied';
-  //     ctrl.facilitiesList[i].pending = false;
-  //   }
-  // }
-  // }; //end toggleEditState
-
   // gets list of all users
   ctrl.getAllUsers = function () {
     AdminService.getAllUsers().then(function(users) {
@@ -149,16 +149,32 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //deletes a specific user
   ctrl.deleteUser = function (userId) {
-    ctrl.confirmDelete();
-    if (selection == false) {
-      return;
-    }
-    AdminService.deleteUser(userId).then(function(response) {
-      console.log('successfully deleted user');
-      ctrl.getAllUsers();
-    }).catch(function(err) {
-      console.log('error deleting user');
-    });
+    // ctrl.confirmDelete();
+    // if (selection == false) {
+    //   return;
+    // }
+
+    swal({
+  title: "",
+  text: "Are you sure you want to delete the user?",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Yes",
+  cancelButtonText: "No",
+  closeOnConfirm: false
+},
+function(){
+  AdminService.deleteUser(userId).then(function(response) {
+    console.log('successfully deleted user');
+    ctrl.getAllUsers();
+    swal("User Deleted.");
+  }).catch(function(err) {
+    console.log('error deleting user');
+  });
+
+});
+
   }
 
 }); //end module
