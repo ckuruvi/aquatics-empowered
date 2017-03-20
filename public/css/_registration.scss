@@ -2,47 +2,42 @@ $gray: #4D4D4D;
 
 .chooseUserReg {
   input[type=radio] {
-  border: 0px;
-  width: 100%;
-  height: 2em;
-  padding: 0 50px 0 50px;
-  margin: 0 auto 0 auto;
+  // border: 0px;
+  // width: 100%;
+  // height: 2em;
+  // padding: 0 50px 0 50px;
+  // margin: 0 auto 0 auto;
 }
 }
 
 .userForms, .facilityForms {
   margin: 0 auto 0 auto;
   padding: 0px 100px 0px 100px;
-  input[type=text], input[type=password], input[type=tel], input[type=email], select {
-    border-bottom: 2px solid $gray;
-    border-top: 0px solid;
-    border-right: 0px solid;
-    border-left: 0px solid;
-    display: block;
-    outline: none;
+  input[type=text], input[type=password], input[type=tel], input[type=email], .state {
+    // border-bottom: 2px solid $gray;
+    // border-top: 0px solid;
+    // border-right: 0px solid;
+    // border-left: 0px solid;
+    // display: block;
     color: black;
     font-size: 14px;
     // margin: 0 auto 0 auto;
+
+    display: inline-block;
+    color: black;
+    font-size: 14px;
     margin: 10px 20px 10px 20px;
     text-decoration: none;
-    width: 80%;
+    width: 200px;
     height: 40px;
     text-align: center;
+    border-radius: 5px 5px 5px 5px;
+  }
+  button {
+    margin-left: 180px;
+  }
+  textarea {
+    width: 250px;
+    height: 80px;
   }
 }
-
-// input[type=radio]:checked~.check {
-//   border: 5px solid #0DFF92;
-// }
-//
-// input[type=radio]:checked~.check::before {
-//   background: #0DFF92;
-// }
-//
-// input[type=radio]:checked~ label {
-//   color: #0DFF92;
-// }
-
-// .chooseUserReg {
-//   padding: 0px 100px 0px 100px;
-// }
