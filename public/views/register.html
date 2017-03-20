@@ -16,15 +16,16 @@
 <button type="submit" class="btn btn-primary" >Register</button>
 </div>
 -->
-<form class="chooseUserReg"  method="post">
-  <label>New User<input type="radio" ng-model="register.newUser.userType" value="user" /></label>
-  &nbsp
-  <label>Facility<input type="radio" ng-model="register.newUser.userType" value="facility"/></label>
 
+  <div class="">
+    <button type="button" class="btn btn-default btn-sm" ng-class="{active: register.active == 1}" ng-click="register.active = 1" ng-model="register.view">New User</button>
+    <button type="button" class="btn btn-default btn-sm" ng-class="{active: register.active == 2}" ng-click="register.active = 2" ng-model="register.view">New Facility</button>
+  </div>
+  <br>
 
 
   <!-- USER FORMS -->
-  <div class="userForms" ng-if="register.newUser.userType == 'user'">
+  <div class="userForms" ng-if="register.active == 1">
     <h2>Register as a User</h2>
     <!-- email -->
       <input type="email" id="email" name="email" ng-model="register.newUser.email" placeholder="Enter a valid email address" required/><p style="color: red; display: inline">*</p>
@@ -119,7 +120,7 @@
 
   <!-- FACILITY FORMS -->
   <form >
-  <div class="facilityForms" ng-if="register.newUser.userType == 'facility'">
+  <div class="facilityForms" ng-if="register.active == 2">
     <h2>Register as a Facility</h2>
     <!-- <button ng-click="register.openInfoModal()" class="infoButton btn btn-primary"><i class="fa fa-info-circle" aria-hidden="true"></i></button> -->
 
