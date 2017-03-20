@@ -21,7 +21,7 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
       });
     } else { // if info is a facility, sends to facilitydetails route
       return $http.put('/facilitydetails/' + info.id, info).then(function (response) {
-        console.log('facility updated is', response.name);
+        console.log('facility updated is', response.data);
         return response.data;
       });
     }

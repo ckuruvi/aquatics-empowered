@@ -201,14 +201,15 @@
       </div>
         <strong ng-show="facilitydetails.facilityInfo.cost == true && !facilitydetails.editToggle" >{{facilitydetails.facilityInfo.name}} charges for access</strong>
         <strong ng-show="facilitydetails.facilityInfo.cost == false && !facilitydetails.editToggle">{{facilitydetails.facilityInfo.name}} does not charge for access</strong><br><br>
-      <!-- user level -->
+
         <!-- <label for="level">what level of user ability can you accomodate?</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.level}}</p>
         <input type="text" id="level" name="level" ng-model="facilitydetails.facilityInfo.level" value="{{facilitydetails.facilityInfo.level}}" ng-show="facilitydetails.editToggle"/><br ng-show="facilitydetails.editToggle"> -->
 
+        <!-- user level -->
         <label for="level">What <a href="#" ng-click="facilitydetails.openInfoModal()">level</a> of user ability can you accomodate?
           <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.level}}</p>
-          <select class="" ng-show="facilitydetails.editToggle" ng-model="facilitydetails.newUser.level" name="level">
+          <select ng-show="facilitydetails.editToggle" name="level" ng-model="facilitydetails.facilityInfo.level" value="{{facilitydetails.facilityInfo.level}}">
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -218,7 +219,7 @@
       <!-- facility description -->
         <label for="description">Facility Description</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.description}}</p>
-        <textarea name="description" rows="8" cols="80" ng-model="facilitydetails.facilityInfo.description" value="{{facilitydetails.facilityInfo.description}}" ng-show="facilitydetails.editToggle"></textarea>
+        <textarea name="description" rows="8" cols="80" ng-model="facilitydetails.facilityInfo.description" value="{{facilitydetails.facilityInfo.description}}" ng-show="facilitydetails.editToggle"></textarea><br><br>
 
       <!-- image url -->
         <label for="image">Link to an image of your facility</label><br>

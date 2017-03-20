@@ -49,7 +49,7 @@ function setTimeSlots(formdata, facilityId) {
         var endTime = parseInt(formdata.endTime);
         if (formdata.startampm == 'PM') {
           startTime = startTime + 12;
-        }; 
+        };
         if (formdata.endampm == 'PM') {
           endTime = endTime + 12;
         }
@@ -113,7 +113,7 @@ router.get('/:id', function(req, res) {
   router.put('/:id', function(req, res) {
     console.log('attempting to update facility ', req.body.name);
     FacilityDetails.updateFacility(req.body).then(function(facility) {
-      res.status(204).send(facility);
+      res.send(facility).status(204);
     }).catch(function(err) {
       console.log('err updating facility', err);
       res.sendStatus(500);
