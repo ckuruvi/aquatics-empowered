@@ -134,6 +134,7 @@
         <label for="state">State:</label><br>
         <p ng-show="!facilitydetails.editToggle">{{facilitydetails.facilityInfo.state}}</p>
         <select name="state" ng-model="facilitydetails.facilityInfo.state" value="{{facilitydetails.facilityInfo.state}}" ng-show="facilitydetails.editToggle">
+          <option value="" disabled selected>Select your state</option>
       <option value="AL">Alabama</option>
       <option value="AK">Alaska</option>
       <option value="AZ">Arizona</option>

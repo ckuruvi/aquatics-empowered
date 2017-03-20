@@ -44,7 +44,7 @@
     <label for="state">State:</label>
     <p ng-show="!user.editToggle">{{user.userToDisplay.state}}</p><br>
     <select name="state" ng-model="user.userToDisplay.state" value="{{user.userToDisplay.state}}" ng-show="user.editToggle"><br ng-if="user.editToggle">
-
+  <option value="" disabled selected>Select your state</option>
   <option value="AL">Alabama</option>
   <option value="AK">Alaska</option>
   <option value="AZ">Arizona</option>
