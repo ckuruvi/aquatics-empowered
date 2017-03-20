@@ -30,6 +30,11 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
       swal('Both passwords must match.');
       return;
     }
+    if(ctrl.active == 1) {
+      newUser.userType = 'user';
+    } else if (ctrl.active == 2) {
+      newUser.userType = 'facility';
+    }
     newUser.email = newUser.email.toLowerCase();
     console.log('EMAIL IS ', newUser.email);
     console.log('creating a new user ', newUser);
