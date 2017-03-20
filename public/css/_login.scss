@@ -2,6 +2,7 @@
 $font-stack: 'Slabo', 'Catamaran', 'sans-serif';
 $gray: #4D4D4D;
 $white: #FFFFFF;
+$catalina-blue: #0E2682;
 
 .loginInputs {
   width: 300px;
@@ -10,19 +11,22 @@ $white: #FFFFFF;
   margin: 50px auto;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.22);
   font-family: $font-stack;
+  // border-radius: 12px;
+
     h3 {
-      background: $gray;
+      // background: $gray;
       text-transform: uppercase;
       text-align: center;
-      color: $white;
+      color: $catalina-blue;
       font-size: 18px;
-      font-weight: 100;
+      font-weight: bold;
       padding: 20px;
       margin: -30px -30px 30px -30px;
       font-weight: bold;
+      // border-radius: 12px 12px 0 0;
     }
     input {
-      border-bottom: 2px solid $gray;
+      // border-bottom: 2px solid $gray;
       display: inline-block;
       color: black;
       font-size: 14px;
@@ -31,9 +35,12 @@ $white: #FFFFFF;
       width: 200px;
       height: 40px;
       text-align: center;
+      border-radius: 5px 5px 5px 5px;
     }
     .btn {
       margin: 0 auto 0 auto;
+      padding: 10px 20px 10px 25px;
+      margin-left: 75px;
     }
     span {
       font-size: 16px;

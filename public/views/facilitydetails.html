@@ -41,7 +41,7 @@
 
 
 <div id="availability" ng-show="facilitydetails.view == 'availability'">
-    <form ng-submit="facilitydetails.setTimeSlots(facilitydetails.formdata)">
+    <form class="form-inline" ng-submit="facilitydetails.setTimeSlots(facilitydetails.formdata)">
         <div class="calendar">
             <datepicker date-format="EEEE MM/dd/yyyy">
                 <input ng-change="facilitydetails.getTimeSlots(facilitydetails.formdata.date)" ng-model="facilitydetails.formdata.date" type="text" class="angular-datepicker-input fa font-fontawesome font-light radius3" placeholder="&#xf073; Choose a date" />
@@ -49,11 +49,11 @@
         </div>
 
 
-        <div>
-            <label>From:</label>
+        <div class="editAvail">
+            <label >From:</label>
             <!-- <div class="col-xs-8"> -->
                 <select ng-model="facilitydetails.formdata.startTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
-                <select class="form-control" ng-model="facilitydetails.formdata.startampm" ng-options="x for x in facilitydetails.ampm"></select>
+                <select ng-model="facilitydetails.formdata.startampm" ng-options="x for x in facilitydetails.ampm"></select>
             <!-- </div> -->
         <!-- </div> -->
         <!-- <div> -->
@@ -61,8 +61,8 @@
             <label>To:</label>
             <!-- <div> -->
                 <select ng-model="facilitydetails.formdata.endTime" ng-options="x for x in facilitydetails.timeSelectionArray"></select>
-                <select class="form-control" ng-model="facilitydetails.formdata.endampm" ng-options="x for x in facilitydetails.ampm"></select>
-
+                <select ng-model="facilitydetails.formdata.endampm" ng-options="x for x in facilitydetails.ampm"></select>
+                <br>
                 <button type="submit" class="btn  btn-sm btn-primary">Add Slots</button>
             <!-- </div> -->
         </div>

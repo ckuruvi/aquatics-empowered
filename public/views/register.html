@@ -46,7 +46,7 @@
       <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
 
       <!-- state -->
-      <select name="state" ng-model="register.newUser.state" placeholder="State">
+      <select class="state" name="state" ng-model="register.newUser.state" placeholder="State">
         <option value="default">Select State</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
@@ -149,7 +149,7 @@
       <input type="text" id="city" name="city" ng-model="register.newUser.city" placeholder="City"/>
 
       <!-- state -->
-      <select name="state" ng-model="register.newUser.state">
+      <select class="state" name="state" ng-model="register.newUser.state">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
@@ -219,7 +219,7 @@
 
       <!-- user level -->
 
-      <label for="level">What <a href="#" ng-click="register.openInfoModal()">level</a> of user ability can you accomodate?<select class="" ng-model="register.newUser.level" name="level">
+      <label for="level">What <a href="#" ng-click="register.openInfoModal()">level</a> of user ability can you accomodate?<select ng-model="register.newUser.level" name="level">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
