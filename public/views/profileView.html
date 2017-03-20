@@ -1,9 +1,14 @@
 <form method="post">
   <label>Profile<input type="radio" ng-model="user.view"  checked /></label>
   <label>Reservations<input type="radio" ng-model="user.view" value="reservations" /></label>
+
+  <p>
+   <button type="button" class="btn btn-default btn-sm" ng-click="user.active = 1">Select second tab</button>
+   <button type="button" class="btn btn-default btn-sm" ng-click="user.active = 2; ">Select third tab</button>
+ </p>
 </form><br>
 
-<div class="userInfo" ng-show="user.view != 'reservations' ">
+<div class="userInfo" ng-show="user.active == 1">
   <!-- email -->
   <form>
     <button class="btn btn-primary" ng-click="user.edit()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
@@ -105,7 +110,7 @@
   </form>
 </div>
 
-<div class="userInfo" ng-show="user.view == 'reservations' ">
+<div class="userInfo" ng-show="user.active == 2">
   <div class="row">
       <div class="col-xs-6 col-xs-offset-3">
           <h4>Reservations currently booked:</h4>
