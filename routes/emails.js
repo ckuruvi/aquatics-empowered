@@ -108,7 +108,7 @@ router.post('/cancel', function (req, res) {
     var mailOptions = {
       from: "Aquatics Empowered <aquaticsempowered@gmail.com>", // sender address
       // to: contactsArray, //receiver
-      to: "staff.aquatics.empowered@gmail.com",
+      to: "ethan.coyne11@gmail.com",
 
       subject: mailData.facilityName  + ' Cancelled your booking on ' + mailData.cancelledDate + ' at ' + mailData.startTime + ' via Aquatics Empowered ' , //subject line
       text: textEmail,
