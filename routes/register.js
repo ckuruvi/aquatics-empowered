@@ -6,9 +6,11 @@ router.post('/user', function(req, res){
     if (user) {
       return res.status(400).send('A user with that email already exists');
     }
+    console.log('attempting to register :::', req.body);
 
     return User.createUser(req.body.email, req.body.password, req.body.userType, req.body.firstName, req.body.lastName, req.body.phone, req.body.address, req.body.city, req.body.state, req.body.zipcode).then(function(user){
       console.log('Created new user ', user);
+      if (user.user_type == 'user') {
       req.login(user, function(err){
         console.log('logging in as ', user);
         if (err) {
@@ -16,7 +18,7 @@ router.post('/user', function(req, res){
           return res.sendStatus(500);
         }
       });
-
+    }
       res.sendStatus(201);
     });
   }).catch(function(err){

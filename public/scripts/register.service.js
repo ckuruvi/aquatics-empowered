@@ -24,10 +24,8 @@ angular.module("aquaticsApp").service('RegisterService', function(EmailService, 
           $rootScope.$broadcast('userLoggedIn');
           //sends the user back to home page after logging in
           $location.path('/');
-        }).catch(function(error) {
-          console.log('error registering new user', error);
         });
-    } else {
+    } else if (newUser.userType == 'user') {
       // if user, sends newUser to register/user route
       $http.post('/register/user', newUser).then(function(response){
         console.log(response);
@@ -35,8 +33,15 @@ angular.module("aquaticsApp").service('RegisterService', function(EmailService, 
         $rootScope.$broadcast('userLoggedIn');
         //sends the user back to home page after logging in
         $location.path('/');
+      });
+    } else if (newUser.userType == 'admin') {
+      console.log('registering admin');
+        return $http.post('/register/user', newUser).then(function(response){
+          console.log(response);
+          return response;
       }).catch(function(error) {
         console.log('error registering new user', error);
+        return error;
       });
     }
   };

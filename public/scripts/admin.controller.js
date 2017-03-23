@@ -1,4 +1,4 @@
-angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService, AuthService, UserProfileService, $scope) {
+angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService, AuthService, UserProfileService, RegisterService, $scope) {
 
   console.log('AdminController is loaded');
 
@@ -82,29 +82,47 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     // }
 
     swal({
-  title: "",
-  text: "Are you sure you want to delete the facility?",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#DD6B55",
-  confirmButtonText: "Yes",
-  cancelButtonText: "No",
-  closeOnConfirm: false
-},
-function(){
-  console.log('In deleteFacility', id);
-  AdminService.deleteFacility(id).then(function(response) {
-    console.log('Success deleting facility', response);
-    ctrl.getFacilitiesList();
-    swal("Facility Deleted.");
-    //return response;
+      title: "",
+      text: "Are you sure you want to delete the facility?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      closeOnConfirm: false
+    },
+    function(){
+      console.log('In deleteFacility', id);
+      AdminService.deleteFacility(id).then(function(response) {
+        console.log('Success deleting facility', response);
+        ctrl.getFacilitiesList();
+        swal("Facility Deleted.");
+        //return response;
 
-  });
+      });
+    });
+  };
 
-});
-
-
-
+  // sends newUser object (user/facility) to the registerService
+  ctrl.registerAdmin = function(newAdmin) {
+    console.log('registerAdmin called with user ', newAdmin);
+    newAdmin.userType = 'admin';
+    if (newAdmin.password != newAdmin.password1) {
+      swal('Both passwords must match.');
+      return;
+    }
+    newAdmin.email = newAdmin.email.toLowerCase();
+    // console.log('EMAIL IS ', newUser.email);
+    console.log('creating a new admin ', newAdmin);
+    RegisterService.registerUser(newAdmin).then(function(response) {
+      console.log('response is ', response);
+      document.adminForm.reset();
+      if (response.status == 201) {
+        swal ("You've successfully added an Admin!");
+      } else if (response.status == 400){
+          swal ("An Admin with that email address already exists.")
+      }
+    });
   };
 
   //update the status of a facility
