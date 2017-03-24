@@ -59,10 +59,11 @@ function formatDate(dt) {
 this.sendCancelEmail = function (dateObj, facilityInfo, userContactData) {
   var date = formatDate(dateObj.date);
   console.log('this is the new formatted date', date);
+  console.log("this is the dateObj", dateObj);
   var sendingEmail = true;
 
   var emailDataObject = {
-    id: dateObj.facility_availibility_id,
+    id: dateObj.facility_reservation_id,
     cancelledDate: date,
     startTime: dateObj.start_time,
 
