@@ -31,7 +31,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
       }
         UserProfileService.getUser().then(function(response) {
           ctrl.currentUser = response;
-          if(ctrl.currentUser.user_type != "admin") {
+          if(ctrl.currentUser.user_type == 'facility' || ctrl.currentUser.user_type == 'user') {
             $location.path('/');
           }
           //getting facilities list on page load
@@ -46,7 +46,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //grab facilitiesList and return a response
   ctrl.getFacilitiesList = function() {
     console.log('current user is', ctrl.currentUser);
-    if (ctrl.currentUser.user_type != "admin") {
+    if (ctrl.currentUser.user_type == 'facility' || ctrl.currentUser.user_type == 'user') {
       console.log('user is not an admin');
       return;
     }
@@ -106,10 +106,14 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   // sends newUser object (user/facility) to the registerService
   ctrl.registerAdmin = function(newAdmin) {
     console.log('registerAdmin called with user ', newAdmin);
-    newAdmin.userType = 'admin';
     if (newAdmin.password != newAdmin.password1) {
       swal('Both passwords must match.');
       return;
+    }
+    if (newAdmin.superadmin != true) {
+      newAdmin.userType = 'admin';
+    } else {
+      newAdmin.userType = 'superadmin'
     }
     newAdmin.email = newAdmin.email.toLowerCase();
     // console.log('EMAIL IS ', newUser.email);

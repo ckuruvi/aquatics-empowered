@@ -100,7 +100,7 @@
             <li><a href="/" style="color: #D0000F">Search</a></li>
             <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'user'"><a href="/profile" style="color: #D0000F">My Profile</a></li>
             <li ng-show="nav.loginStatus == true && nav.facilityInfo.name"><a href="/facilitydetails" style="color: #D0000F">My Profile</a></li>
-            <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'admin'"><a href="/admin" style="color: #D0000F">Admin</a></li>
+            <li ng-show="nav.loginStatus == true && nav.userToDisplay.user_type == 'admin' || nav.userToDisplay.user_type == 'superadmin'"><a href="/admin" style="color: #D0000F">Admin</a></li>
             <li ng-show="nav.loginStatus == true" ng-click="nav.logout()"><a href="#" style="color: #D0000F">Logout</a></li>
           </ul>
         </li>
