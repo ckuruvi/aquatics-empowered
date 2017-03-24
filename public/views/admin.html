@@ -64,6 +64,7 @@
           <th>Email/Username</th>
           <th>Address</th>
           <th>Phone</th>
+          <th>User Type</th>
         </tr>
       </thead>
       <tbody>
@@ -72,6 +73,7 @@
           <td>{{user.username}}</td>
           <td>{{user.street_address}} {{user.city}} {{user.state}} {{user.zip}}</td>
           <td>{{user.phone_number}}</td>
+          <td>{{user.user_type}}</td>
           <td>
             <div class="buttons">
               <button class="btn btn-danger delete" ng-click="admin.deleteUser(user.id)"><i class="fa fa-trash-o"></i></button>
