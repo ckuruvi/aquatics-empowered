@@ -15,7 +15,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   ctrl.currentUser;
 
   //stores list of all users
-  ctrl.userList;
+  ctrl.userList = [];
 
 
   //checks login status
@@ -162,7 +162,15 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     AdminService.getAllUsers().then(function(users) {
       console.log('received ', users.length, ' users from DB');
       console.log('users are ', users);
+      if (ctrl.currentUser.user_type != 'superadmin') {
+      users.forEach(function(user) {
+        if (user.user_type != 'admin') {
+          ctrl.userList.push(user)
+        }
+      })
+    } else {
       ctrl.userList = users;
+    }
       console.log('userLIst is ', ctrl.userList);
     }).catch(function(err) {
       console.log('error getting userList', err);
