@@ -34,7 +34,7 @@ angular.module("aquaticsApp").service('RegisterService', function(EmailService, 
         //sends the user back to home page after logging in
         $location.path('/');
       });
-    } else if (newUser.userType == 'admin') {
+    } else if (newUser.userType == 'admin' || newUser.userType == 'superadmin') {
       console.log('registering admin');
         return $http.post('/register/user', newUser).then(function(response){
           console.log(response);

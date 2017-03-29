@@ -15,7 +15,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   ctrl.currentUser;
 
   //stores list of all users
-  ctrl.userList;
+  ctrl.userList = [];
 
 
   //checks login status
@@ -29,15 +29,15 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
       } else {
         ctrl.loginStatus = true;
       }
-        UserProfileService.getUser().then(function(response) {
-          ctrl.currentUser = response;
-          if(ctrl.currentUser.user_type != "admin") {
-            $location.path('/');
-          }
-          //getting facilities list on page load
-          ctrl.getFacilitiesList();
-          ctrl.getAllUsers();
-        });
+      UserProfileService.getUser().then(function(response) {
+        ctrl.currentUser = response;
+        if(ctrl.currentUser.user_type == 'facility' || ctrl.currentUser.user_type == 'user') {
+          $location.path('/');
+        }
+        //getting facilities and users list on page load
+        ctrl.getFacilitiesList();
+        ctrl.getAllUsers();
+      });
     })
   }
   //checks loginstatus on pageload
@@ -46,7 +46,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //grab facilitiesList and return a response
   ctrl.getFacilitiesList = function() {
     console.log('current user is', ctrl.currentUser);
-    if (ctrl.currentUser.user_type != "admin") {
+    if (ctrl.currentUser.user_type == 'facility' || ctrl.currentUser.user_type == 'user') {
       console.log('user is not an admin');
       return;
     }
@@ -106,10 +106,14 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   // sends newUser object (user/facility) to the registerService
   ctrl.registerAdmin = function(newAdmin) {
     console.log('registerAdmin called with user ', newAdmin);
-    newAdmin.userType = 'admin';
     if (newAdmin.password != newAdmin.password1) {
       swal('Both passwords must match.');
       return;
+    }
+    if (newAdmin.superadmin != true) {
+      newAdmin.userType = 'admin';
+    } else {
+      newAdmin.userType = 'superadmin'
     }
     newAdmin.email = newAdmin.email.toLowerCase();
     // console.log('EMAIL IS ', newUser.email);
@@ -120,7 +124,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
       if (response.status == 201) {
         swal ("You've successfully added an Admin!");
       } else if (response.status == 400){
-          swal ("An Admin with that email address already exists.")
+        swal ("An Admin with that email address already exists.")
       }
     });
   };
@@ -158,8 +162,19 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     AdminService.getAllUsers().then(function(users) {
       console.log('received ', users.length, ' users from DB');
       console.log('users are ', users);
-      ctrl.userList = users;
-      console.log('userLIst is ', ctrl.userList);
+      // only superadmins can see / delete admins
+      if (ctrl.currentUser.user_type != 'superadmin') {
+        users.forEach(function(user) {
+          // filters out admins when user is not superadmin
+          if (user.user_type != 'admin') {
+            ctrl.userList.push(user)
+          }
+        });
+        // if user is not admin, they are superadmin, and can see everyone.
+      } else {
+        ctrl.userList = users;
+      }
+      console.log('userList is ', ctrl.userList);
     }).catch(function(err) {
       console.log('error getting userList', err);
     });
@@ -173,26 +188,24 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     // }
 
     swal({
-  title: "",
-  text: "Are you sure you want to delete the user?",
-  type: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#DD6B55",
-  confirmButtonText: "Yes",
-  cancelButtonText: "No",
-  closeOnConfirm: false
-},
-function(){
-  AdminService.deleteUser(userId).then(function(response) {
-    console.log('successfully deleted user');
-    ctrl.getAllUsers();
-    swal("User Deleted.");
-  }).catch(function(err) {
-    console.log('error deleting user');
-  });
-
-});
-
+      title: "",
+      text: "Are you sure you want to delete the user?",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",
+      confirmButtonText: "Yes",
+      cancelButtonText: "No",
+      closeOnConfirm: false
+    },
+    function(){
+      AdminService.deleteUser(userId).then(function(response) {
+        console.log('successfully deleted user');
+        ctrl.getAllUsers();
+        swal("User Deleted.");
+      }).catch(function(err) {
+        console.log('error deleting user');
+      });
+    });
   }
 
 }); //end module

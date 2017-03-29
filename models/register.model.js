@@ -109,7 +109,7 @@ exports.createFacility = function(id, name, address, city, state, zip, descripti
 
 exports.getAllUsers = function() {
   return query(
-    "SELECT * FROM users WHERE user_type='user'"
+    "SELECT * FROM users WHERE user_type='user' OR user_type='admin'"
   ).then(function(users) {
     console.log('returning users from DB ');
     return users;

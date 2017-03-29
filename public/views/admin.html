@@ -7,7 +7,7 @@
   <div class="" ng-init="admin.active = 1">
     <button type="button" class="btn btn-default btn-sm" ng-class="{active: admin.active == 1}" ng-click="admin.active = 1" ng-model="admin.view">Facilities</button>
     <button type="button" class="btn btn-default btn-sm" ng-class="{active: admin.active == 2}" ng-click="admin.active = 2" ng-model="admin.view">Users</button>
-    <button type="button" class="btn btn-default btn-sm" ng-class="{active: admin.active == 3}" ng-click="admin.active = 3" ng-model="admin.view">Add new Admin</button>
+    <button type="button" class="btn btn-default btn-sm" ng-class="{active: admin.active == 3}" ng-click="admin.active = 3" ng-model="admin.view" ng-show="admin.currentUser.user_type == 'superadmin'">Add new Admin</button>
   </div>
 
   <section class="adminTable" ng-show="admin.active == 1">
@@ -64,6 +64,7 @@
           <th>Email/Username</th>
           <th>Address</th>
           <th>Phone</th>
+          <th>User Type</th>
         </tr>
       </thead>
       <tbody>
@@ -72,6 +73,7 @@
           <td>{{user.username}}</td>
           <td>{{user.street_address}} {{user.city}} {{user.state}} {{user.zip}}</td>
           <td>{{user.phone_number}}</td>
+          <td>{{user.user_type}}</td>
           <td>
             <div class="buttons">
               <button class="btn btn-danger delete" ng-click="admin.deleteUser(user.id)"><i class="fa fa-trash-o"></i></button>
@@ -82,7 +84,7 @@
     </table>
   </section>
 
-  <section class="newAdmin" ng-show="admin.active == 3">
+  <section class="newAdmin" ng-show="admin.active == 3 && admin.currentUser.user_type == 'superadmin'">
     <h2>Add a New Admin</h2>
     <form class="" method="post" name="adminForm">
       <!-- email -->
@@ -99,7 +101,11 @@
       <!-- last name -->
       <label for="newAdminLastName">Last Name:</label>
       <input type="text" name="lastName" value="" ng-model="admin.newAdmin.lastName" required><p style="color: red; display: inline">*</p><br>
+      <!-- is new admin superadmin? -->
+      <label for="superAdmin">Allow this Admin to add other Admins?</label>
+      <input type="checkbox" name="" value="" ng-model=admin.newAdmin.superadmin><br>
       <button class="btn btn-success btn-md" type="submit" name="button" ng-click="admin.registerAdmin(admin.newAdmin)">Add Admin</button>
+
     </form>
   </section>
 
