@@ -13,12 +13,6 @@ CREATE TABLE users(
   phone_number integer
 	);
 
-	--accessibility table
-	CREATE TABLE accessibility(
-	id SERIAL PRIMARY KEY,
-	accessibility text
-	);
-
 --facilities table:
 CREATE TABLE facilities(
 	id SERIAL PRIMARY KEY,
@@ -33,8 +27,7 @@ CREATE TABLE facilities(
   level integer,
   image_url text,
   cost boolean,
-  approved boolean,
-  accessibility_id integer REFERENCES accessibility
+  approved boolean
 	);
 
 
