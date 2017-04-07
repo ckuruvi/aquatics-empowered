@@ -30,6 +30,8 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
       swal('Both passwords must match.');
       return;
     }
+    newUser.phone = newUser.phone.split('-').join('');
+    console.log('phone num is now:: ', newUser.phone);
     if(ctrl.active == 1) {
       newUser.userType = 'user';
     } else if (ctrl.active == 2) {
@@ -59,6 +61,7 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
     size: 'lg'
     });
   };
+
 
 
 }]); // end register ctrl
