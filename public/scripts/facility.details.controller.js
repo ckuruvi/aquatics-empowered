@@ -1,5 +1,4 @@
 angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityDetailsService','EmailService','UserProfileService', 'AuthService', '$uibModal', '$location', function(FacilityDetailsService, EmailService, UserProfileService, AuthService, $uibModal, $location) {
-    console.log('FacilityDetailsController is loaded');
 
     var ctrl = this;
     //array of hours in a day for dropdown menu
@@ -32,7 +31,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
     //checks login status
     ctrl.checkLoginStatus = function() {
       AuthService.checkLoginStatus().then(function(response) {
-        console.log('login check returned: ', response);
+        // console.log('login check returned: ', response);
         if (response == false) {
           ctrl.loginStatus = false;
           $location.path('/');
@@ -72,7 +71,7 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
     };
 
     ctrl.getContactInfo = function () {
-        console.log('ctrl.getUser() called');
+        // console.log('ctrl.getUser() called');
         UserProfileService.getUser().then(function(response) {
           ctrl.contactInfo = response;
           ctrl.getFacility();
@@ -96,22 +95,19 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
 
     // set timeslots based on user selection
     ctrl.setTimeSlots = function(formData) {
-        console.log("inside setTimeSlots", formData);
         FacilityDetailsService.setTimeSlots(formData).then(function(response) {
             //ctrl.results = response;
-            console.log("date for getTimeSlots", ctrl.formdata.date);
+            // console.log("date for getTimeSlots", ctrl.formdata.date);
             ctrl.getTimeSlots(ctrl.formdata.date);
-            console.log('this is the fac avail', ctrl.results);
+            // console.log('this is the fac avail', ctrl.results);
         });
     };
 
 
  // get timeslots  for a single date
     ctrl.getTimeSlots = function(date) {
-        console.log("inside getTimeSlots::", date);
         if (date != undefined) {
             FacilityDetailsService.getTimeSlots(date).then(function(res) {
-                console.log('timeslots', res);
                 ctrl.timeSlotList = res;
                 ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
             });
@@ -124,7 +120,6 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
       // if(selection == false) {
       //   return;
       // }
-      console.log("inside deleteTimeSlot::", dateObj);
       if(dateObj.approved==true){
         var message="Are you sure you want to cancel the booked time slot?";
       }else{
@@ -142,13 +137,12 @@ angular.module('aquaticsApp').controller('FacilityDetailsController',['FacilityD
   closeOnConfirm: false
 },
 function(){
-  console.log("inside deleteTimeSlot::", dateObj);
   //get sesstion storage item and parse the json string and store it in userContactData
   var temp = sessionStorage.getItem( 'ucd' );
   ctrl.userContactData = JSON.parse( temp ) ;
-  console.log('this is the contact info', ctrl.userContactData );
+  // console.log('this is the contact info', ctrl.userContactData );
   FacilityDetailsService.deleteTimeSlot(dateObj, ctrl.facilityInfo, ctrl.userContactData).then(function(res) {
-    console.log("line 78",ctrl.formdata);
+    // console.log("line 78",ctrl.formdata);
     if(ctrl.formdata != undefined){
       ctrl.getTimeSlots(ctrl.formdata.date);
     }
@@ -163,7 +157,7 @@ function(){
 
     ctrl.getFacility = function() {
       FacilityDetailsService.getFacilityInfo(ctrl.contactInfo.id).then(function(response) {
-        console.log('facility stored is ', response);
+        // console.log('facility stored is ', response);
         ctrl.facilityInfo = response;
         ctrl.getFacilityTimeSlots(ctrl.facilityInfo.id);
       });
@@ -171,9 +165,9 @@ function(){
 
   // modal  call to display user infomation for booked timeslots
     ctrl.openModal=function(id){
-      console.log('inside openModal',id);
+      // console.log('inside openModal',id);
       FacilityDetailsService.getUserDetails(id).then(function(res) {
-          console.log('userdetails', res);
+          // console.log('userdetails', res);
           ctrl.userDetails = res;
           var modalInstance = $uibModal.open({
               ariaLabelledBy: 'User Details',
@@ -192,16 +186,14 @@ function(){
     }
  // get all timeslots available for the facility
     ctrl.getFacilityTimeSlots = function(facilityId) {
-        console.log("inside getFacilityTimeSlots::");
             FacilityDetailsService.getFacilityTimeSlots(facilityId).then(function(res) {
-                console.log('facility timeslots', res);
+                // console.log('facility timeslots', res);
                 ctrl.facilityTimeSlotList = res;
             });
     };
 
     //modal for aquatic levels
     ctrl.openInfoModal = function() {
-      console.log('Opening pop up modal');
     var modalInstance = $uibModal.open({
       ariaLabelledBy: 'Aquatic levels homepage modals',
       templateUrl: '/views/aquaticlevelsinfo.modal.html',

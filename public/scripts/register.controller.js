@@ -1,5 +1,4 @@
 angular.module("aquaticsApp").controller('RegisterController', ['RegisterService', 'EmailService', '$http', '$location', 'AuthService','$uibModal', function(RegisterService, EmailService, $http, $location, AuthService,$uibModal){
-  console.log('register Ctrl is loaded');
   var ctrl = this;
 
 
@@ -13,7 +12,6 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
   //checks login status
   ctrl.checkLoginStatus = function() {
     AuthService.checkLoginStatus().then(function(response) {
-      console.log('login check returned: ', response);
       if (response == true) {
         ctrl.loginStatus = true;
         $location.path('/');
@@ -36,8 +34,8 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
       newUser.userType = 'facility';
     }
     newUser.email = newUser.email.toLowerCase();
-    console.log('EMAIL IS ', newUser.email);
-    console.log('creating a new user ', newUser);
+    // console.log('EMAIL IS ', newUser.email);
+    // console.log('creating a new user ', newUser);
     RegisterService.registerUser(newUser);
     if(newUser.userType == 'facility'){
     swal("Thank you for registering with Aquatic Empowered! Please wait for an approval email");
@@ -49,7 +47,6 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
 
   //modal for aquatic levels
   ctrl.openInfoModal = function() {
-    console.log('Opening pop up modal');
   var modalInstance = $uibModal.open({
     ariaLabelledBy: 'Aquatic levels homepage modals',
     templateUrl: '/views/aquaticlevelsinfo.modal.html',
@@ -59,6 +56,5 @@ angular.module("aquaticsApp").controller('RegisterController', ['RegisterService
     size: 'lg'
     });
   };
-
 
 }]); // end register ctrl

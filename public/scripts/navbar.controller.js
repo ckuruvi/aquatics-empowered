@@ -1,6 +1,5 @@
 angular.module("aquaticsApp").controller('NavController', ['AuthService', 'UserProfileService', 'FacilityDetailsService', '$http', '$location', '$rootScope',
 function(AuthService, UserProfileService, FacilityDetailsService, $http, $location, $rootScope) {
-  console.log('navctrl loaded');
   var ctrl = this;
 
   //boolean checking if user is logged in or ngRoute
@@ -16,7 +15,7 @@ function(AuthService, UserProfileService, FacilityDetailsService, $http, $locati
   //checks login status
   ctrl.checkLoginStatus = function() {
     AuthService.checkLoginStatus().then(function(response) {
-      console.log('login check returned: ', response);
+      // console.log('login check returned: ', response);
       if (response == false) {
         ctrl.loginStatus = false;
       } else {
@@ -38,7 +37,7 @@ function(AuthService, UserProfileService, FacilityDetailsService, $http, $locati
   //logs out user
   ctrl.logout = function() {
     $http.delete('/login').then(function(){
-      console.log('Successfully logged out!');
+      // console.log('Successfully logged out!');
       sessionStorage.setItem( 'isAdmin', 'yay I am here...' );
       ctrl.loginStatus = false;
       ctrl.facilityInfo = {};
@@ -46,20 +45,19 @@ function(AuthService, UserProfileService, FacilityDetailsService, $http, $locati
       ctrl.currentUser = {};
       $location.path('/');
     }).catch(function(err){
-      console.log('Error logging out');
+      // console.log('Error logging out');
     });
   }
 
   // rechecks login status when user logs in
   $rootScope.$on('userLoggedIn', function() {
-    console.log('rootScope message received');
+    // console.log('rootScope message received');
     ctrl.checkLoginStatus();
   });
 
   ctrl.getFacilityInfo = function(id) {
-    console.log('in getFacilityInfo() with id# ', id);
     FacilityDetailsService.getFacilityInfo(id).then(function(facility) {
-      console.log('got facility back ', facility.name);
+      // console.log('got facility back ', facility.name);
       ctrl.facilityInfo = facility;
     });
   }

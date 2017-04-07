@@ -1,21 +1,19 @@
 angular.module('aquaticsApp').controller('HomeController', function($http, $location, HomeService, FacilitiesService, $uibModal){
 
-
   var ctrl = this;
-  
+
   ctrl.logout = function() {
     $http.delete('/login').then(function(){
-      console.log('Successfully logged out!');
+      // console.log('Successfully logged out!');
       sessionStorage.setItem( 'isAdmin', 'yay I am here...' );
       $location.path('/');
     }).catch(function(err){
-      console.log('Error logging out');
+      // console.log('Error logging out');
     });
   }
 
   //modal for aquatic levels
   ctrl.openInfoModal = function() {
-    console.log('Opening pop up modal');
   var modalInstance = $uibModal.open({
     ariaLabelledBy: 'Aquatic levels homepage modals',
     templateUrl: '/views/aquaticlevelsinfo.modal.html',
@@ -48,16 +46,9 @@ angular.module('aquaticsApp').controller('HomeController', function($http, $loca
     });
   };
 
-
   ctrl.getFacilities = function(){
     HomeService.getFacilitiesList(ctrl.zipcode).then(function(list){
       ctrl.facilitieslist = list;
     });
   }
-
 });
-
-//  TODO stores the clicked facility in service to grab on next page.
-// ctrl.storeFacChoice = function (facility) {
-//
-// }

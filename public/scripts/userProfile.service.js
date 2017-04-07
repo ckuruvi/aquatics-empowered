@@ -1,13 +1,11 @@
 angular.module('aquaticsApp').service('UserProfileService', function($http, $location) {
-  console.log('UserProfileService is loaded');
 
-// gets user data  from /userProfile and returns response
+  // gets user data  from /userProfile and returns response
   this.getUser = function () {
-    console.log('in userProfile service');
     return $http.get('/userProfile').then(function (response) {
-        this.userContactData = response.data;
-        //stores user'facility' contact data in sessionStorage as JSON, getItem in controller.
-        sessionStorage.setItem( 'ucd', JSON.stringify( response.data ) );
+      this.userContactData = response.data;
+      //stores user'facility' contact data in sessionStorage as JSON, getItem in controller.
+      sessionStorage.setItem( 'ucd', JSON.stringify( response.data ) );
       return response.data;
     });
   }
@@ -15,13 +13,13 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
   this.updateUser = function (info) {
     if(info.user_type){ // checks if info is contact, if not its a facility and does the else statement
       return $http.put('/userProfile/' + info.id, info).then(function (response) {
-        console.log('contact updated is ', response.data);
+        // console.log('contact updated is ', response.data);
         this.userContactData = response.data;
         return response.data;
       });
     } else { // if info is a facility, sends to facilitydetails route
       return $http.put('/facilitydetails/' + info.id, info).then(function (response) {
-        console.log('facility updated is', response.data);
+        // console.log('facility updated is', response.data);
         return response.data;
       });
     }
@@ -34,11 +32,10 @@ angular.module('aquaticsApp').service('UserProfileService', function($http, $loc
   }
 
   this.deleteBookedTimeSlot = function(id) {
-    console.log("id###",id);
-      return $http.delete("/userProfile/" + id).catch(function(err) {
-          console.log("Error deleting  booked timeslots", err);
-      });
-
+    // console.log("id###",id);
+    return $http.delete("/userProfile/" + id).catch(function(err) {
+      // console.log("Error deleting  booked timeslots", err);
+    });
   }
 
 }); // end userProfileService

@@ -1,35 +1,34 @@
 angular.module('aquaticsApp').service('FacilitiesService', function($http){
-  console.log('FacilitiesService is loaded');
-
+  
   var sKey = {
       results: []
   };
 //to get facilities info from database
   this.getFacilitiesInfo = function (id){
     return $http.get('/facility/' + id).then(function(response) {
-     console.log('This is the facility data: ', response);
+    //  console.log('This is the facility data: ', response);
      return response.data;
    }).catch(function(err) {
-     console.log('error getting response from the facilities :', err);
+    //  console.log('error getting response from the facilities :', err);
    });
 
   };
 
   this.getFacilitiesAvail = function (id, date){
     return $http.get('/facility/availability/' + id +'/search/?q=' + date).then(function(response) {
-     console.log('This is the facility avail data: ', response);
+    //  console.log('This is the facility avail data: ', response);
      return response.data;
    }).catch(function(err) {
-     console.log('error getting response from the facilities avail:', err);
+    //  console.log('error getting response from the facilities avail:', err);
    });
 
   };
 
   this.getSearchResults = function (date, id){
-  console.log('this is the date selected', date);
+  // console.log('this is the date selected', date);
   return $http.get('/facility/' + id  + '/search/?q=' + date).then(function (response){
 
-       console.log('This is the search data: ', response.data);
+      //  console.log('This is the search data: ', response.data);
 
         //reference the array inside the object
         sKey.results = response.data;
@@ -37,7 +36,7 @@ angular.module('aquaticsApp').service('FacilitiesService', function($http){
         sKey.key = date;
         return response.data;
      }).catch(function(err){
-       console.log('Error searching database', err);
+      //  console.log('Error searching database', err);
      });
 
 };
@@ -46,10 +45,10 @@ this.postFacilityAvail = function (reservation){
   return $http.post('/facility', {
     data: reservation
   }).then(function (response){
-    console.log('Posting this avail data to reservation', response);
+    // console.log('Posting this avail data to reservation', response);
     return response.data;
   }).catch(function(err){
-    console.log('error posting response to facility_reservation', err);
+    // console.log('error posting response to facility_reservation', err);
   });
 };
 

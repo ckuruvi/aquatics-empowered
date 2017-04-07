@@ -13,11 +13,11 @@ CREATE TABLE users(
   phone_number integer
 	);
 
-	--accessibility table
-	CREATE TABLE accessibility(
-	id SERIAL PRIMARY KEY,
-	accessibility text
-	);
+	-- --accessibility table
+	-- CREATE TABLE accessibility(
+	-- id SERIAL PRIMARY KEY,
+	-- accessibility text
+	-- );
 
 --facilities table:
 CREATE TABLE facilities(

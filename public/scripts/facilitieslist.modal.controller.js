@@ -1,5 +1,4 @@
 angular.module('aquaticsApp').controller('FacilitiesListModalController', function($scope, $uibModalInstance, facilityInfo, $filter, $interval, FacilitiesService, AuthService, UserProfileService) {
-  console.log('Facilities List Modal Controller loaded', facilityInfo);
 
   var ctrl = this;
 
@@ -36,7 +35,7 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
   //checks login status
   ctrl.checkLoginStatus = function() {
     AuthService.checkLoginStatus().then(function(response) {
-      console.log('login check returned: ', response);
+      // console.log('login check returned: ', response);
       if (response == false) {
         ctrl.loginStatus = false;
       } else {
@@ -59,7 +58,7 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
   //this gets the time slots for a facility on selected date
   ctrl.getSearchResults = function (date, id){
     ctrl.selectedDate = date;
-    console.log('loading searched date');
+
     FacilitiesService.getSearchResults(date, id).then(function(response){
       ctrl.results = response;
     });
@@ -67,7 +66,7 @@ angular.module('aquaticsApp').controller('FacilitiesListModalController', functi
 
   //reserve a spot in facility reservations
   ctrl.postFacilityAvail = function (reservation){
-    console.log('reservation object is ', reservation );
+    // console.log('reservation object is ', reservation );
     if (ctrl.currentUser.user_type == 'facility') {
       console.log('facilites cant book a reservation');
       return;
@@ -98,7 +97,7 @@ function(){
 // console.log('this is the response', response);
     // response[0].facility_availability_id = reservation.id;
     ctrl.postAvail = response;
-    console.log('this is the post fac avail reservation', ctrl.postAvail);
+    // console.log('this is the post fac avail reservation', ctrl.postAvail);
     ctrl.getSearchResults(ctrl.selectedDate, ctrl.facilityInfo.id);
     swal("Time slot has been reserved" );
   });
@@ -123,10 +122,10 @@ function(){
 
   //to get facilities availability
   ctrl.getFacilitiesAvail = function(id, date){
-    console.log('date to get avail is ', date);
-    console.log('id to get availability is ', id);
+    // console.log('date to get avail is ', date);
+    // console.log('id to get availability is ', id);
     FacilitiesService.getFacilitiesAvail(id, date).then(function (res){
-      console.log('got data from facilities availability', res);
+      // console.log('got data from facilities availability', res);
       ctrl.facilityAvail = res;
     })
   };

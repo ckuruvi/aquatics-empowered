@@ -1,7 +1,5 @@
 angular.module('aquaticsApp').controller('AdminController', function($http, $location, AdminService, AuthService, UserProfileService, RegisterService, $scope) {
 
-  console.log('AdminController is loaded');
-
   var ctrl = this;
   var selection;
 
@@ -21,7 +19,6 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   //checks login status
   ctrl.checkLoginStatus = function() {
     AuthService.checkLoginStatus().then(function(response) {
-      console.log('login check returned: ', response);
       if (response == false) {
         ctrl.loginStatus = false;
         $location.path('/');
@@ -45,13 +42,11 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //grab facilitiesList and return a response
   ctrl.getFacilitiesList = function() {
-    console.log('current user is', ctrl.currentUser);
+
     if (ctrl.currentUser.user_type != "admin") {
-      console.log('user is not an admin');
       return;
     }
     AdminService.getFacilitiesList().then(function(response) {
-      console.log('Displaying facilities', response);
 
       //facilitiesList array is equal to response received from db
       ctrl.facilitiesList = response;
@@ -69,7 +64,6 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
           ctrl.facilitiesList[i].status = 'denied';
           // ctrl.facilitiesList[i].pending = false;
         }
-        console.log('logging approved', ctrl.facilitiesList[i].approved);
       }
     });
   }; //end getFacilitiesList
@@ -92,9 +86,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
       closeOnConfirm: false
     },
     function(){
-      console.log('In deleteFacility', id);
       AdminService.deleteFacility(id).then(function(response) {
-        console.log('Success deleting facility', response);
         ctrl.getFacilitiesList();
         swal("Facility Deleted.");
         //return response;
@@ -105,7 +97,7 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   // sends newUser object (user/facility) to the registerService
   ctrl.registerAdmin = function(newAdmin) {
-    console.log('registerAdmin called with user ', newAdmin);
+    // console.log('registerAdmin called with user ', newAdmin);
     newAdmin.userType = 'admin';
     if (newAdmin.password != newAdmin.password1) {
       swal('Both passwords must match.');
@@ -113,9 +105,9 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
     }
     newAdmin.email = newAdmin.email.toLowerCase();
     // console.log('EMAIL IS ', newUser.email);
-    console.log('creating a new admin ', newAdmin);
+    // console.log('creating a new admin ', newAdmin);
     RegisterService.registerUser(newAdmin).then(function(response) {
-      console.log('response is ', response);
+      // console.log('response is ', response);
       document.adminForm.reset();
       if (response.status == 201) {
         swal ("You've successfully added an Admin!");
@@ -127,9 +119,9 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 
   //update the status of a facility
   ctrl.updateFacility = function(facility) {
-    console.log('In updateFacility', facility);
+    // console.log('In updateFacility', facility);
     AdminService.updateFacility(facility).then(function(facility) {
-      console.log('Success deleting facility', facility);
+      // console.log('Success deleting facility', facility);
       ctrl.getFacilitiesList();
       return facility;
     });
@@ -156,12 +148,12 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
   // gets list of all users
   ctrl.getAllUsers = function () {
     AdminService.getAllUsers().then(function(users) {
-      console.log('received ', users.length, ' users from DB');
-      console.log('users are ', users);
+      // console.log('received ', users.length, ' users from DB');
+      // console.log('users are ', users);
       ctrl.userList = users;
-      console.log('userLIst is ', ctrl.userList);
+      // console.log('userLIst is ', ctrl.userList);
     }).catch(function(err) {
-      console.log('error getting userList', err);
+      // console.log('error getting userList', err);
     });
   }
 
@@ -184,11 +176,11 @@ angular.module('aquaticsApp').controller('AdminController', function($http, $loc
 },
 function(){
   AdminService.deleteUser(userId).then(function(response) {
-    console.log('successfully deleted user');
+    // console.log('successfully deleted user');
     ctrl.getAllUsers();
     swal("User Deleted.");
   }).catch(function(err) {
-    console.log('error deleting user');
+    // console.log('error deleting user');
   });
 
 });

@@ -34,7 +34,6 @@ angular
   .run(function($rootScope, $location, $route, AuthService) {
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
       AuthService.checkLoginStatus().then(function(loggedIn) {
-        console.log(loggedIn);
         if (next.authRequired && !loggedIn) {
           $location.path("/login");
           $route.reload();

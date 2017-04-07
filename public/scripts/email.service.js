@@ -1,5 +1,5 @@
 angular.module("aquaticsApp").service('EmailService', function ($http, $location, $rootScope){
-  console.log('EmailService is loaded');
+  // console.log('EmailService is loaded');
 
 var ctrl = this;
 this.sendEmail = function (newUser) {
@@ -19,22 +19,20 @@ this.sendEmail = function (newUser) {
     contacts: newUser.email,
     contactPerson: newUser.firstName + ' ' + newUser.lastName + ' ' + newUser.phone,
   };
-  console.log('the emailDataObject is', emailDataObject);
+  // console.log('the emailDataObject is', emailDataObject);
 
 
   return $http.post('/emails', emailDataObject).then(function(response) {
-    console.log('back from emails.' , response.data);
+    // console.log('back from emails.' , response.data);
 
   }).then(function() {
-    //TODO this needs to do a conditional for new registered user or be removed. It reroutes home when a facility deletes a timeslot.
-    // $location.path('/');
   });
 
 };
 
 //getEmails function//get call from DB where contact info is stored
 this.getEmails = function () {
-  console.log("trying to get data");
+
 return $http.get('/user').then(function(response) {
     // ctrl.contactList = user.username;
   });
@@ -44,7 +42,7 @@ ctrl.getEmails();
 
 
 function formatDate(dt) {
-  console.log('this is the dt', dt);
+  // console.log('this is the dt', dt);
       var dt = new Date(dt);
        var month = dt.getMonth() + 1;
        if (month.length = 1) {
@@ -58,7 +56,7 @@ function formatDate(dt) {
 
 this.sendCancelEmail = function (dateObj, facilityInfo, userContactData) {
   var date = formatDate(dateObj.date);
-  console.log('this is the new formatted date', date);
+  // console.log('this is the new formatted date', date);
   var sendingEmail = true;
 
   var emailDataObject = {
@@ -72,14 +70,13 @@ this.sendCancelEmail = function (dateObj, facilityInfo, userContactData) {
     contacts: userContactData.username,
     contactPerson: userContactData.first_name + ' ' + userContactData.last_name + ' ' + userContactData.phone_number,
   };
-  console.log('the emailDataObject is', emailDataObject);
+  // console.log('the emailDataObject is', emailDataObject);
 
 
   return $http.post('/emails/cancel', emailDataObject).then(function(response) {
-    console.log('back from emails.' , response.data);
+    // console.log('back from emails.' , response.data);
 
   }).then(function() {
-    //TODO this needs to do a conditional for new registered user or be removed. It reroutes home when a facility deletes a timeslot.
     // $location.path('/');
   });
 

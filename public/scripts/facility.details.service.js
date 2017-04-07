@@ -1,39 +1,33 @@
 angular.module('aquaticsApp').service('FacilityDetailsService', function(EmailService, $http) {
 
-    console.log('FacilityDetailsService is loaded');
-
     // single facility stored here to display on facilityDetails page.
     var storedFacility;
 
     this.setTimeSlots = function(formdata) {
         return $http.post("/facilitydetails", formdata).catch(function(err) {
-            console.log("Error saving timeslots", err);
+            // console.log("Error saving timeslots", err);
         });
     }
 
 
     this.getTimeSlots = function(date) {
-        console.log('inside getTimeSlots', date);
         return $http.get('/facilitydetails/gettimeslots?date=' + date).then(function(response) {
-            console.log('timeslot data: ', response);
+            // console.log('timeslot data: ', response);
             return response.data;
         }).catch(function(err) {
-            console.log('error getting timeslots :', err);
+            // console.log('error getting timeslots :', err);
         });
 
     };
 
     this.deleteTimeSlot = function(dateObj,facilityInfo, userContactData) {
-      console.log('this is the facility info', facilityInfo);
-      console.log('this is the date object', dateObj);
-      console.log('this is the fac contact data', userContactData);
         return $http.delete("/facilitydetails/" + dateObj.facility_availability_id).then(function(response){
-          console.log(response);
+          // console.log(response);
           if(dateObj.approved==true){
           EmailService.sendCancelEmail(dateObj,facilityInfo,userContactData);
         }
       }).catch(function(err) {
-            console.log("Error deleting  expense from list", err);
+            // console.log("Error deleting  expense from list", err);
         });
     }
 
@@ -43,27 +37,25 @@ angular.module('aquaticsApp').service('FacilityDetailsService', function(EmailSe
         storedFacility = response.data;
         return response.data;
       }).catch(function(err) {
-        console.log('error getting facility info', err);
+        // console.log('error getting facility info', err);
       });
     }
 
    this.getUserDetails=function(id){
-     console.log('inside getUserDetails', id);
      return $http.get('/facilitydetails/getuserdetails?userId=' + id).then(function(response) {
-         console.log('user details: ', response);
+        //  console.log('user details: ', response);
          return response.data;
      }).catch(function(err) {
-         console.log('error getting user details :', err);
+        //  console.log('error getting user details :', err);
      });
    }
 
    this.getFacilityTimeSlots = function(facilityId) {
-       console.log('inside getFacilityTimeSlots',facilityId);
        return $http.get('/facilitydetails/facilityslots/'+facilityId).then(function(response) {
-           console.log('facility timeslots list: ', response);
+          //  console.log('facility timeslots list: ', response);
            return response.data;
        }).catch(function(err) {
-           console.log('error getting facility timeslots :', err);
+          //  console.log('error getting facility timeslots :', err);
        });
 
    };
